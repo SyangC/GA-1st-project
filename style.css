@@ -33,7 +33,7 @@ ul {
   left: 0;
   z-index: -1;
 
-  transition: all 100ms linear;
+  transition: all 1000ms linear;
 }
 
 .test {
