@@ -2,61 +2,88 @@ console.log("js has loaded")
 
 $ (function() {
 
+  var $animation = $('#pcmovement');
   var selectedCharacter = "";
+  var selectedCharacterCurrentWeapon = "";
+
   // create player consturction function
-    function Player (name, divClass, healthTotal, health, attack, defense, movement, movementMax){
-      this.name = name;
-      this.divClass = divClass;
-      this.healthTotal = healthTotal;
-      this.health = health;
-      this.attack = attack;
-      this.defense = defense;
-      this.movement = movement;
-      this.movementMax = movementMax;
-    }
-
-
+  function Player (name, divClass, healthTotal, health, attack, attackNumber, weaponOne, weaponOneAmmo, weaponTwo, weaponTwoAmmo, weaponMelee, defense, movement, movementMax){
+    this.name = name;
+    this.divClass = divClass;
+    this.healthTotal = healthTotal;
+    this.health = health;
+    this.attack = attack;
+    this.attackNumber = attackNumber;
+    this.weaponOne = weaponOne;
+    this.weaponOneAmmo = weaponOneAmmo;
+    this.weaponTwo = weaponTwo;
+    this.weaponTwoAmmo = weaponTwoAmmo;
+    this.weaponMelee = weaponMelee;
+    this.defense = defense;
+    this.movement = movement;
+    this.movementMax = movementMax;
+  }
 
 // actual players
-    var pOneCha1 = new Player("Shu", "shu", 100, 100, 15, 15, 5, 5);
-
-    $("ul").on("click", "li.shu", function() {
-      $('#name').html(pOneCha1.name)
-      $('#health').html(pOneCha1.health + " / " + pOneCha1.healthTotal)
-      $('#attack').html(pOneCha1.attack)
-      $('#defense').html(pOneCha1.defense)
-      $('#movement').html(pOneCha1.movement + " / " + pOneCha1.movementMax)
-      selectedCharacter = pOneCha1;
-      console.log(selectedCharacter);
-    });
-
-    var pOneCha2 = new Player("Alpha", "alpha", 70, 70, 30, 5, 8, 8);
-
-    $("ul").on("click", "li.alpha", function() {
-      $('#name').html(pOneCha2.name)
-      $('#health').html(pOneCha2.health + " / " + pOneCha2.healthTotal)
-      $('#attack').html(pOneCha2.attack)
-      $('#defense').html(pOneCha2.defense)
-      $('#movement').html(pOneCha2.movement + " / " + pOneCha2.movementMax)
-      selectedCharacter = pOneCha2;
-      console.log(selectedCharacter);
-    });
-
-    var pTwoCha1 = new Player("Beta", "beta", 150, 150, 10, 40, 2, 2);
-
-    $("ul").on("click", "li.beta", function() {
-      $('#name').html(pTwoCha1.name)
-      $('#health').html(pTwoCha1.health + " / " + pTwoCha1.healthTotal)
-      $('#attack').html(pTwoCha1.attack)
-      $('#defense').html(pTwoCha1.defense)
-      $('#movement').html(pTwoCha1.movement + " / " + pTwoCha1.movementMax)
-      selectedCharacter = pTwoCha1;
-      console.log(selectedCharacter);
-    });
+  var pOneCha1 = new Player("Shu", "shu", 100, 100, 47, 2, "Assault Rifle", 30, "Pistol", 60, "Sword", 30, 7, 7);
 
 
-  // attempt 2 (woop! this works!)
-  var $animation = $('#pcmovement');
+  $("ul").on("click", "li.shu", function() {
+    $('#name').html(pOneCha1.name);
+    $('#health').html(pOneCha1.health + " / " + pOneCha1.healthTotal);
+    $('#attack').html(pOneCha1.attack);
+    $('#defense').html(pOneCha1.defense);
+    $('#movement').html(pOneCha1.movement + " / " + pOneCha1.movementMax);
+    $('#weaponOneName').html(pOneCha1.weaponOne);
+    $('#weaponOneAmmo').html(pOneCha1.weaponOneAmmo);
+    $('#weaponTwoName').html(pOneCha1.weaponTwo);
+    $('#weaponTwoAmmo').html(pOneCha1.weaponTwoAmmo);
+    $('#attackNumber').html(pOneCha1.attackNumber);
+    selectedCharacter = pOneCha1;
+    console.log(selectedCharacter);
+  });
+
+
+  var pOneCha2 = new Player("Alpha", "alpha", 65, 65, 73, 1, "Sniper Rifle", 15, "Pistol", 60, "Knife", 15, 10, 10);
+
+
+  $("ul").on("click", "li.alpha", function() {
+    $('#name').html(pOneCha2.name)
+    $('#health').html(pOneCha2.health + " / " + pOneCha2.healthTotal)
+    $('#attack').html(pOneCha2.attack)
+    $('#defense').html(pOneCha2.defense)
+    $('#movement').html(pOneCha2.movement + " / " + pOneCha2.movementMax)
+    $('#weaponOneName').html(pOneCha2.weaponOne);
+    $('#weaponOneAmmo').html(pOneCha2.weaponOneAmmo);
+    $('#weaponTwoName').html(pOneCha2.weaponTwo);
+    $('#weaponTwoAmmo').html(pOneCha2.weaponTwoAmmo);
+    $('#attackNumber').html(pOneCha2.attackNumber);
+    selectedCharacter = pOneCha2;
+    console.log(selectedCharacter);
+  });
+
+
+  var pTwoCha1 = new Player("Beta", "beta", 150, 150, 40, 2, "Minigun", 200, "Rocket Launcher", 2, "Fists", 60, 4, 4);
+
+
+  $("ul").on("click", "li.beta", function() {
+    $('#name').html(pTwoCha1.name)
+    $('#health').html(pTwoCha1.health + " / " + pTwoCha1.healthTotal)
+    $('#attack').html(pTwoCha1.attack)
+    $('#defense').html(pTwoCha1.defense)
+    $('#movement').html(pTwoCha1.movement + " / " + pTwoCha1.movementMax)
+    $('#weaponOneName').html(pTwoCha1.weaponOne);
+    $('#weaponOneAmmo').html(pTwoCha1.weaponOneAmmo);
+    $('#weaponTwoName').html(pTwoCha1.weaponTwo);
+    $('#weaponTwoAmmo').html(pTwoCha1.weaponTwoAmmo);
+    $('#attackNumber').html(pTwoCha1.attackNumber);
+    selectedCharacter = pTwoCha1;
+    console.log(selectedCharacter);
+  });
+
+
+// player movement
+
   $(document).on("keydown", function(e) {
     switch(e.key) {
       case "a":
@@ -129,15 +156,15 @@ $ (function() {
   });
 
 
-
-
-
-
-
 // attack
-  // pOneCha3.health = pOneCha3.health-15;
-
-
+  $(".attack").on("click", function() {
+    console.log("you've clicked attack!")
+    pOneCha2.health = pOneCha2.health-15;
+    console.log(pOneCha2.health);
+    if (pOneCha2.health <= 0) {
+      $("."+pOneCha2.divClass).attr('class', 'grid rip')
+    }
+  });
 
 
 
