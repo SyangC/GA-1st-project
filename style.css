@@ -36,7 +36,31 @@ ul {
   transition: all 1000ms linear;
 }
 
-.test {
+.alpha {
   background: url("gundam00-helmet-icons-01.jpg") center no-repeat;
   background-size: cover;
+}
+
+.beta {
+  background: url("gundam00-helmet-icons-01.jpg") center no-repeat;
+  background-size: cover;
+}
+
+.display {
+  position:absolute;
+  height: 800px;
+  width: 400px;
+  border: 1px solid;
+  right:0px;
+}
+
+table {
+  border: 1px solid;
+  display: inline-block;
+}
+
+td {
+  width: 200px;
+  height: 75px;
+  border: 1px solid;
 }
