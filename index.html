@@ -10,11 +10,11 @@
   
 <main>
   <ul class="board">
-    <li class="shu" id="a1"></li>
-    <li class="grid" id="a2"></li>
-    <li class="grid" id="a3"></li>
-    <li class="grid" id="a4"></li>
-    <li class="grid" id="a5"></li>
+    <li class="alpha" id="a1"></li>
+    <li class="beta" id="a2"></li>
+    <li class="charlie" id="a3"></li>
+    <li class="delta" id="a4"></li>
+    <li class="echo" id="a5"></li>
     <li class="grid" id="a6"></li>
     <li class="grid" id="a7"></li>
     <li class="grid" id="a8"></li>
@@ -25,7 +25,7 @@
     <li class="grid" id="b5"></li>
     <li class="grid" id="b6"></li>
     <li class="grid" id="b7"></li>
-    <li class="alpha" id="b8"></li>
+    <li class="grid" id="b8"></li>
     <li class="grid" id="c1"></li>
     <li class="grid" id="c2"></li>
     <li class="grid" id="c3"></li>
@@ -36,7 +36,7 @@
     <li class="grid" id="c8"></li>
     <li class="grid" id="d1"></li>
     <li class="grid" id="d2"></li>
-    <li class="beta" id="d3"></li>
+    <li class="grid" id="d3"></li>
     <li class="grid" id="d4"></li>
     <li class="grid" id="d5"></li>
     <li class="grid" id="d6"></li>
@@ -69,11 +69,11 @@
     <li class="grid" id="h1"></li>
     <li class="grid" id="h2"></li>
     <li class="grid" id="h3"></li>
-    <li class="grid" id="h4"></li>
-    <li class="grid" id="h5"></li>
-    <li class="grid" id="h6"></li>
-    <li class="grid" id="h7"></li>
-    <li class="grid" id="h8"></li>
+    <li class="foxtrot" id="h4"></li>
+    <li class="gamma" id="h5"></li>
+    <li class="hotel" id="h6"></li>
+    <li class="indigo" id="h7"></li>
+    <li class="juliett" id="h8"></li>
   </ul>
   <div class= "display">
     <table>     
@@ -112,8 +112,13 @@
         <td id="attackNumberDisplay">Number of Attacks Remaining</td>
         <td id="attackNumber"></td>
       </tr>
+      <tr>
+        <td id="selectedEnemy">Enemy</td>
+        <td id="enemyHealth"></td>
+        <td><button id="attackButton">ATTACK</button></td>
+      </tr>
     </table>
-    <button class="attack">ATTACK</button>
+    <button id="endTurn">END TURN</button>
     </div>         
 </main>
 

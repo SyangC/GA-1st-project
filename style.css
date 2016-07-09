@@ -1,14 +1,14 @@
 .board {
-  width: 800px;
-  height:800px;
+  width: 400px;
+  height:400px;
   margin: 0 auto;
   padding: 0;
   position:absolute;
 }
 
 .board li {
-  width: 98px;
-  height: 100px;
+  width: 48px;
+  height: 50px;
   float: left;
   margin: 0;
   padding: 0;
@@ -17,11 +17,6 @@
 
 ul {
   list-style: none
-}
-
-.shu {
-  background: url("shu.jpg") center no-repeat;
-  background-size: cover;
 }
 
 #pcmovement {
@@ -34,16 +29,6 @@ ul {
   z-index: -1;
 
   transition: all 1000ms linear;
-}
-
-.alpha {
-  background: url("gundam00-helmet-icons-01.jpg") center no-repeat;
-  background-size: cover;
-}
-
-.beta {
-  background: url("gundam00-helmet-icons-01.jpg") center no-repeat;
-  background-size: cover;
 }
 
 .display {
@@ -65,7 +50,64 @@ td {
   border: 1px solid;
 }
 
+.alpha {
+  background: url("gundam00-helmet-icons-01.jpg") center no-repeat;
+  background-size: cover;
+}
+
+.beta {
+  background: url("gundam00-helmet-icons-01.jpg") center no-repeat;
+  background-size: cover;
+}
+
+.charlie {
+  background: url("gundam00-helmet-icons-01.jpg") center no-repeat;
+  background-size: cover;
+}
+
+.delta {
+  background: url("gundam00-helmet-icons-01.jpg") center no-repeat;
+  background-size: cover;
+}
+
+.echo {
+  background: url("gundam00-helmet-icons-01.jpg") center no-repeat;
+  background-size: cover;
+}
+
+.foxtrot {
+  background: url("Image-Icon-Megaman-Helmet-Protoman.png") center no-repeat;
+  background-size: cover;
+}
+
+.gamma {
+  background: url("Image-Icon-Megaman-Helmet-Protoman.png") center no-repeat;
+  background-size: cover;
+}
+
+.hotel {
+  background: url("Image-Icon-Megaman-Helmet-Protoman.png") center no-repeat;
+  background-size: cover;
+}
+
+.indigo {
+  background: url("Image-Icon-Megaman-Helmet-Protoman.png") center no-repeat;
+  background-size: cover;
+}
+
+.juliett {
+  background: url("Image-Icon-Megaman-Helmet-Protoman.png") center no-repeat;
+  background-size: cover;
+}
+
 .rip {
   background: url("rip-clipart-rip-gravestone-md.png") center no-repeat;
   background-size: cover;
+}
+
+#endTurn {
+  background-color: red;
+  width:50px;
+  height: 50px;
+  border-radius: 45px;
 }
