@@ -5,6 +5,7 @@
   <link rel="stylesheet" type="text/css" href="style.css">
   <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
   <script type="text/javascript" src="main.js"></script>
+  <meta charset="UTF-8">
 </head>
 <body>
   
@@ -77,10 +78,10 @@
   </ul>
   <div class= "display">
     <table>     
-      <th>
+      <tr>
         <td id="namedisplay">Name</td>
         <td id="name"></td>
-      </th>
+      </tr>
       <tr>
         <td id="healthdisplay">Health</td>
         <td id="health"></td>
@@ -100,13 +101,17 @@
       <tr>
         <td id="weaponOneName">Weapon 1</td>
         <td id="weaponOneAmmo"></td>
+        <td><button class="selectWeapon" id="selectWeaponOne">SELECT</button></td>
       </tr>
       <tr>
         <td id="weaponTwoName">Weapon 2</td>
         <td id="weaponTwoAmmo"></td>
+        <td><button class="selectWeapon" id="selectWeaponTwo">SELECT</button></td>
       </tr>
       <tr>
         <td id="weaponMelee">Melee</td>
+        <td id="weaponMeleeAmmo">∞</td>
+        <td><button class="selectWeapon" id="selectWeaponMelee">SELECT</button></td>
       </tr>
       <tr>
         <td id="attackNumberDisplay">Number of Attacks Remaining</td>
@@ -115,7 +120,6 @@
       <tr>
         <td id="selectedEnemy">Enemy</td>
         <td id="enemyHealth"></td>
-        <td><button id="attackButton">ATTACK</button></td>
       </tr>
     </table>
     <button id="endTurn">END TURN</button>

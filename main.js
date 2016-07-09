@@ -1,4 +1,4 @@
-console.log("js has loaded")
+console.log("main.js has loaded")
 
 $ (function() {
 
@@ -9,9 +9,11 @@ $ (function() {
   var playerTurn = 1;
   var teamOneRemainingCha = 5;
   var teamTwoRemainingCha = 5;
+  var selectedWeapon = "";
 
   // create player consturction function
-  function Player (name, divClass, healthTotal, health, attack, attackNumber, attackNumberMax, weaponOne, weaponOneAmmo, weaponTwo, weaponTwoAmmo, weaponMelee, defense, movement, movementMax, team){
+  
+  function Player (name, divClass, healthTotal, health, attack, attackNumber, attackNumberMax, weaponOne, weaponOneAmmo, weaponOneRange, weaponTwo, weaponTwoAmmo, weaponTwoRange, weaponMelee, defense, movement, movementMax, team){
     this.name = name;
     this.divClass = divClass;
     this.healthTotal = healthTotal;
@@ -21,8 +23,10 @@ $ (function() {
     this.attackNumberMax = attackNumberMax;
     this.weaponOne = weaponOne;
     this.weaponOneAmmo = weaponOneAmmo;
+    this.weaponOneRange = weaponOneRange;
     this.weaponTwo = weaponTwo;
     this.weaponTwoAmmo = weaponTwoAmmo;
+    this.weaponTwoRange = weaponTwoRange;
     this.weaponMelee = weaponMelee;
     this.defense = defense;
     this.movement = movement;
@@ -30,10 +34,10 @@ $ (function() {
     this.team = team
   }
 
-// actual players
+  // actual players
 
 // Team 1
-  var pOneCha1 = new Player("Alpha", "alpha", 100, 100, 47, 2, 2, "Assault Rifle", 30, "Pistol", 60, "Sword", 30, 7, 7, 1);
+  var pOneCha1 = new Player("Alpha", "alpha", 100, 100, 47, 2, 2, "Assault Rifle", 30, 4, "Pistol", 60, 2, "Sword", 30, 7, 7, 1);
 
 
   $("ul").on("click", "li.alpha", function() {
@@ -58,7 +62,7 @@ $ (function() {
   });
 
 
-  var pOneCha2 = new Player("Beta", "beta", 65, 65, 73, 2, 2, "Sniper Rifle", 15, "Pistol", 60, "Knife", 15, 10, 10, 1);
+  var pOneCha2 = new Player("Beta", "beta", 65, 65, 73, 2, 2, "Sniper Rifle", 15, 7, "Pistol", 60, 2, "Knife", 15, 10, 10, 1);
 
 
   $("ul").on("click", "li.beta", function() {
@@ -83,7 +87,7 @@ $ (function() {
   });
 
 
-  var pOneCha3 = new Player("Charlie", "charlie", 150, 150, 40, 2, 2, "Minigun", 200, "Rocket Launcher", 2, "Fists", 60, 4, 4, 1);
+  var pOneCha3 = new Player("Charlie", "charlie", 150, 150, 40, 2, 2, "Minigun", 200, 3, "Rocket Launcher", 2, 4, "Fists", 60, 4, 4, 1);
 
 
   $("ul").on("click", "li.charlie", function() {
@@ -108,7 +112,7 @@ $ (function() {
   });
 
 
-  var pOneCha4 = new Player("Delta", "delta", 65, 65, 73, 2, 2, "Sniper Rifle", 15, "Pistol", 60, "Knife", 15, 10, 10, 1);
+  var pOneCha4 = new Player("Delta", "delta", 65, 65, 73, 2, 2, "Sniper Rifle", 15, 7, "Pistol", 60, 2, "Knife", 15, 10, 10, 1);
 
 
   $("ul").on("click", "li.delta", function() {
@@ -133,7 +137,7 @@ $ (function() {
   });
 
 
-  var pOneCha5 = new Player("Echo", "echo", 150, 150, 40, 2, 2, "Minigun", 200, "Rocket Launcher", 2, "Fists", 60, 4, 4, 1);
+  var pOneCha5 = new Player("Echo", "echo", 150, 150, 40, 2, 2, "Minigun", 200, 3, "Rocket Launcher", 2, 4, "Fists", 60, 4, 4, 1);
 
 
   $("ul").on("click", "li.echo", function() {
@@ -158,131 +162,131 @@ $ (function() {
   });
 
 
-// Team 2
+  // Team 2
 
-var pTwoCha1 = new Player("Foxtrot", "foxtrot", 100, 100, 47, 2, 2, "Assault Rifle", 30, "Pistol", 60, "Sword", 30, 7, 7, 2);
-
-
-$("ul").on("click", "li.foxtrot", function() {
-  if (playerTurn%2 === 0) {
-    $('#name').html(pTwoCha1.name);
-    $('#health').html(pTwoCha1.health + " / " + pTwoCha1.healthTotal);
-    $('#attack').html(pTwoCha1.attack);
-    $('#defense').html(pTwoCha1.defense);
-    $('#movement').html(pTwoCha1.movement + " / " + pTwoCha1.movementMax);
-    $('#weaponOneName').html(pTwoCha1.weaponOne);
-    $('#weaponOneAmmo').html(pTwoCha1.weaponOneAmmo);
-    $('#weaponTwoName').html(pTwoCha1.weaponTwo);
-    $('#weaponTwoAmmo').html(pTwoCha1.weaponTwoAmmo);
-    $('#attackNumber').html(pTwoCha1.attackNumber);
-    selectedCharacter = pTwoCha1;
-    console.log(selectedCharacter);
-  } else {
-    selectedEnemy = pTwoCha1
-    $('#selectedEnemy').html(pTwoCha1.name);
-    $('#enemyHealth').html(pTwoCha1.health + " / " + pTwoCha1.healthTotal);
-  }
-});
+  var pTwoCha1 = new Player("Foxtrot", "foxtrot", 100, 100, 47, 2, 2, "Assault Rifle", 30, 5, "Pistol", 60, 2, "Sword", 30, 7, 7, 2);
 
 
-var pTwoCha2 = new Player("Gamma", "gamma", 65, 65, 73, 2, 2, "Sniper Rifle", 15, "Pistol", 60, "Knife", 15, 10, 10, 2);
+  $("ul").on("click", "li.foxtrot", function() {
+    if (playerTurn%2 === 0) {
+      $('#name').html(pTwoCha1.name);
+      $('#health').html(pTwoCha1.health + " / " + pTwoCha1.healthTotal);
+      $('#attack').html(pTwoCha1.attack);
+      $('#defense').html(pTwoCha1.defense);
+      $('#movement').html(pTwoCha1.movement + " / " + pTwoCha1.movementMax);
+      $('#weaponOneName').html(pTwoCha1.weaponOne);
+      $('#weaponOneAmmo').html(pTwoCha1.weaponOneAmmo);
+      $('#weaponTwoName').html(pTwoCha1.weaponTwo);
+      $('#weaponTwoAmmo').html(pTwoCha1.weaponTwoAmmo);
+      $('#attackNumber').html(pTwoCha1.attackNumber);
+      selectedCharacter = pTwoCha1;
+      console.log(selectedCharacter);
+    } else {
+      selectedEnemy = pTwoCha1
+      $('#selectedEnemy').html(pTwoCha1.name);
+      $('#enemyHealth').html(pTwoCha1.health + " / " + pTwoCha1.healthTotal);
+    }
+  });
 
 
-$("ul").on("click", "li.gamma", function() {
-  if (playerTurn%2 === 0) {
-    $('#name').html(pTwoCha2.name)
-    $('#health').html(pTwoCha2.health + " / " + pTwoCha2.healthTotal)
-    $('#attack').html(pTwoCha2.attack)
-    $('#defense').html(pTwoCha2.defense)
-    $('#movement').html(pTwoCha2.movement + " / " + pTwoCha2.movementMax)
-    $('#weaponOneName').html(pTwoCha2.weaponOne);
-    $('#weaponOneAmmo').html(pTwoCha2.weaponOneAmmo);
-    $('#weaponTwoName').html(pTwoCha2.weaponTwo);
-    $('#weaponTwoAmmo').html(pTwoCha2.weaponTwoAmmo);
-    $('#attackNumber').html(pTwoCha2.attackNumber);
-    selectedCharacter = pTwoCha2;
-    console.log(selectedCharacter);
-  } else {
-    selectedEnemy = pTwoCha2
-    $('#selectedEnemy').html(pTwoCha2.name);
-    $('#enemyHealth').html(pTwoCha2.health + " / " + pTwoCha2.healthTotal);
-  }
-});
+  var pTwoCha2 = new Player("Gamma", "gamma", 65, 65, 73, 2, 2, "Sniper Rifle", 15, 7, "Pistol", 60, 2, "Knife", 15, 10, 10, 2);
 
 
-var pTwoCha3 = new Player("Hotel", "hotel", 150, 150, 40, 2, 2, "Minigun", 200, "Rocket Launcher", 2, "Fists", 60, 4, 4, 2);
+  $("ul").on("click", "li.gamma", function() {
+    if (playerTurn%2 === 0) {
+      $('#name').html(pTwoCha2.name)
+      $('#health').html(pTwoCha2.health + " / " + pTwoCha2.healthTotal)
+      $('#attack').html(pTwoCha2.attack)
+      $('#defense').html(pTwoCha2.defense)
+      $('#movement').html(pTwoCha2.movement + " / " + pTwoCha2.movementMax)
+      $('#weaponOneName').html(pTwoCha2.weaponOne);
+      $('#weaponOneAmmo').html(pTwoCha2.weaponOneAmmo);
+      $('#weaponTwoName').html(pTwoCha2.weaponTwo);
+      $('#weaponTwoAmmo').html(pTwoCha2.weaponTwoAmmo);
+      $('#attackNumber').html(pTwoCha2.attackNumber);
+      selectedCharacter = pTwoCha2;
+      console.log(selectedCharacter);
+    } else {
+      selectedEnemy = pTwoCha2
+      $('#selectedEnemy').html(pTwoCha2.name);
+      $('#enemyHealth').html(pTwoCha2.health + " / " + pTwoCha2.healthTotal);
+    }
+  });
 
 
-$("ul").on("click", "li.hotel", function() {
-  if (playerTurn%2 === 0) {
-    $('#name').html(pTwoCha3.name)
-    $('#health').html(pTwoCha3.health + " / " + pTwoCha3.healthTotal)
-    $('#attack').html(pTwoCha3.attack)
-    $('#defense').html(pTwoCha3.defense)
-    $('#movement').html(pTwoCha3.movement + " / " + pTwoCha3.movementMax)
-    $('#weaponOneName').html(pTwoCha3.weaponOne);
-    $('#weaponOneAmmo').html(pTwoCha3.weaponOneAmmo);
-    $('#weaponTwoName').html(pTwoCha3.weaponTwo);
-    $('#weaponTwoAmmo').html(pTwoCha3.weaponTwoAmmo);
-    $('#attackNumber').html(pTwoCha3.attackNumber);
-    selectedCharacter = pTwoCha3;
-    console.log(selectedCharacter);
-  } else {
-    selectedEnemy = pTwoCha3
-    $('#selectedEnemy').html(pTwoCha3.name);
-    $('#enemyHealth').html(pTwoCha3.health + " / " + pTwoCha3.healthTotal);
-  }
-});
+  var pTwoCha3 = new Player("Hotel", "hotel", 150, 150, 40, 2, 2, "Minigun", 200, 3, "Rocket Launcher", 2, 4, "Fists", 60, 4, 4, 2);
 
 
-var pTwoCha4 = new Player("Indigo", "indigo", 65, 65, 73, 2, 2, "Sniper Rifle", 15, "Pistol", 60, "Knife", 15, 10, 10, 2);
+  $("ul").on("click", "li.hotel", function() {
+    if (playerTurn%2 === 0) {
+      $('#name').html(pTwoCha3.name)
+      $('#health').html(pTwoCha3.health + " / " + pTwoCha3.healthTotal)
+      $('#attack').html(pTwoCha3.attack)
+      $('#defense').html(pTwoCha3.defense)
+      $('#movement').html(pTwoCha3.movement + " / " + pTwoCha3.movementMax)
+      $('#weaponOneName').html(pTwoCha3.weaponOne);
+      $('#weaponOneAmmo').html(pTwoCha3.weaponOneAmmo);
+      $('#weaponTwoName').html(pTwoCha3.weaponTwo);
+      $('#weaponTwoAmmo').html(pTwoCha3.weaponTwoAmmo);
+      $('#attackNumber').html(pTwoCha3.attackNumber);
+      selectedCharacter = pTwoCha3;
+      console.log(selectedCharacter);
+    } else {
+      selectedEnemy = pTwoCha3
+      $('#selectedEnemy').html(pTwoCha3.name);
+      $('#enemyHealth').html(pTwoCha3.health + " / " + pTwoCha3.healthTotal);
+    }
+  });
 
 
-$("ul").on("click", "li.indigo", function() {
-  if (playerTurn%2 === 0) {
-    $('#name').html(pTwoCha4.name)
-    $('#health').html(pTwoCha4.health + " / " + pTwoCha4.healthTotal)
-    $('#attack').html(pTwoCha4.attack)
-    $('#defense').html(pTwoCha4.defense)
-    $('#movement').html(pTwoCha4.movement + " / " + pTwoCha4.movementMax)
-    $('#weaponOneName').html(pTwoCha4.weaponOne);
-    $('#weaponOneAmmo').html(pTwoCha4.weaponOneAmmo);
-    $('#weaponTwoName').html(pTwoCha4.weaponTwo);
-    $('#weaponTwoAmmo').html(pTwoCha4.weaponTwoAmmo);
-    $('#attackNumber').html(pTwoCha4.attackNumber);
-    selectedCharacter = pTwoCha4;
-    console.log(selectedCharacter);
-  } else {
-    selectedEnemy = pTwoCha4
-    $('#selectedEnemy').html(pTwoCha4.name);
-    $('#enemyHealth').html(pTwoCha4.health + " / " + pTwoCha4.healthTotal);
-  }
-});
+  var pTwoCha4 = new Player("Indigo", "indigo", 65, 65, 73, 2, 2, "Sniper Rifle", 15, 7, "Pistol", 60, 2, "Knife", 15, 10, 10, 2);
 
 
-var pTwoCha5 = new Player("Juliett", "juliett", 150, 150, 40, 2, 2, "Minigun", 200, "Rocket Launcher", 2, "Fists", 60, 4, 4, 2);
+  $("ul").on("click", "li.indigo", function() {
+    if (playerTurn%2 === 0) {
+      $('#name').html(pTwoCha4.name)
+      $('#health').html(pTwoCha4.health + " / " + pTwoCha4.healthTotal)
+      $('#attack').html(pTwoCha4.attack)
+      $('#defense').html(pTwoCha4.defense)
+      $('#movement').html(pTwoCha4.movement + " / " + pTwoCha4.movementMax)
+      $('#weaponOneName').html(pTwoCha4.weaponOne);
+      $('#weaponOneAmmo').html(pTwoCha4.weaponOneAmmo);
+      $('#weaponTwoName').html(pTwoCha4.weaponTwo);
+      $('#weaponTwoAmmo').html(pTwoCha4.weaponTwoAmmo);
+      $('#attackNumber').html(pTwoCha4.attackNumber);
+      selectedCharacter = pTwoCha4;
+      console.log(selectedCharacter);
+    } else {
+      selectedEnemy = pTwoCha4
+      $('#selectedEnemy').html(pTwoCha4.name);
+      $('#enemyHealth').html(pTwoCha4.health + " / " + pTwoCha4.healthTotal);
+    }
+  });
 
 
-$("ul").on("click", "li.juliett", function() {
-  if (playerTurn%2 === 0) {
-    $('#name').html(pTwoCha5.name)
-    $('#health').html(pTwoCha5.health + " / " + pTwoCha5.healthTotal)
-    $('#attack').html(pTwoCha5.attack)
-    $('#defense').html(pTwoCha5.defense)
-    $('#movement').html(pTwoCha5.movement + " / " + pTwoCha5.movementMax)
-    $('#weaponOneName').html(pTwoCha5.weaponOne);
-    $('#weaponOneAmmo').html(pTwoCha5.weaponOneAmmo);
-    $('#weaponTwoName').html(pTwoCha5.weaponTwo);
-    $('#weaponTwoAmmo').html(pTwoCha5.weaponTwoAmmo);
-    $('#attackNumber').html(pTwoCha5.attackNumber);
-    selectedCharacter = pTwoCha5;
-    console.log(selectedCharacter);
-  } else {
-    selectedEnemy = pTwoCha5
-    $('#selectedEnemy').html(pTwoCha5.name);
-    $('#enemyHealth').html(pTwoCha5.health + " / " + pTwoCha5.healthTotal);
-  }
-});
+  var pTwoCha5 = new Player("Juliett", "juliett", 150, 150, 40, 2, 2, "Minigun", 200, 3, "Rocket Launcher", 2, 4, "Fists", 60, 4, 4, 2);
+
+
+  $("ul").on("click", "li.juliett", function() {
+    if (playerTurn%2 === 0) {
+      $('#name').html(pTwoCha5.name)
+      $('#health').html(pTwoCha5.health + " / " + pTwoCha5.healthTotal)
+      $('#attack').html(pTwoCha5.attack)
+      $('#defense').html(pTwoCha5.defense)
+      $('#movement').html(pTwoCha5.movement + " / " + pTwoCha5.movementMax)
+      $('#weaponOneName').html(pTwoCha5.weaponOne);
+      $('#weaponOneAmmo').html(pTwoCha5.weaponOneAmmo);
+      $('#weaponTwoName').html(pTwoCha5.weaponTwo);
+      $('#weaponTwoAmmo').html(pTwoCha5.weaponTwoAmmo);
+      $('#attackNumber').html(pTwoCha5.attackNumber);
+      selectedCharacter = pTwoCha5;
+      console.log(selectedCharacter);
+    } else {
+      selectedEnemy = pTwoCha5
+      $('#selectedEnemy').html(pTwoCha5.name);
+      $('#enemyHealth').html(pTwoCha5.health + " / " + pTwoCha5.healthTotal);
+    }
+  });
 
 // player movement
 
@@ -358,7 +362,20 @@ $("ul").on("click", "li.juliett", function() {
   });
 
 
-// attack
+// select weapon
+
+  $(".selectWeapon").on("click", function() {
+    if (this.id === "selectWeaponOne") {
+      selectedWeapon = selectedCharacter.weaponOne;
+    } else if (this.id === "selectWeaponTwo") {
+      selectedWeapon = selectedCharacter.weaponTwo;
+    } else {
+      selectedWeapon = selectedCharacter.weaponMelee;
+    }
+    console.log("you've clicked on " + selectedWeapon + "!");
+  });
+// attack and win condition
+
   $("#attackButton").on("click", function() {
     if (selectedCharacter.attackNumber > 0) {
       console.log("you've clicked attack!")
@@ -388,6 +405,12 @@ $("ul").on("click", "li.juliett", function() {
       }
     }
   });
+
+// attack range
+
+
+
+
 
 // switch turn
 
@@ -432,9 +455,6 @@ $("ul").on("click", "li.juliett", function() {
       playerTurn ++;
     }
   });
-
-// win condition
-
 
 
 });
