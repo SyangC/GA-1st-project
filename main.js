@@ -680,6 +680,7 @@ $ (function() {
             $('#infoDisplay').html("Critical Hit!");
             weaponDamage = ((selectedWeaponDamageMin+Math.round(Math.random()*(selectedWeaponDamageMax-selectedWeaponDamageMin)))*1.5)-(selectedCharacter.defense+terrainEffectsDefense);
             setTimeout(function() {
+              $('.enemyImage').animateCss('flash');
               $('#infoDisplay').html("Dealt the enemy " + weaponDamage + " damage!");
               $('#selectedEnemy').html(selectedEnemy.name);
               $('#enemyHealth').html(selectedEnemy.health + " / " + selectedEnemy.healthTotal);
@@ -689,6 +690,7 @@ $ (function() {
             deathCheck();
           } else {
             $('#infoDisplay').html("Hit!");
+            $('.enemyImage').animateCss('flash');
             weaponDamage = (selectedWeaponDamageMin+Math.round(Math.random()*(selectedWeaponDamageMax-selectedWeaponDamageMin)))-(selectedCharacter.defense+terrainEffectsDefense);
             setTimeout(function(){
               $('#infoDisplay').html("Dealt the enemy " + weaponDamage + " damage!");
@@ -728,6 +730,7 @@ $ (function() {
     if (selectedEnemy.health <= 0) {
       $("#"+selectedEnemy.divId).attr('id', 'rip')
       selectedEnemy = "";
+      $('.enemyImage').attr("id", "ripImage")
       $('#selectedEnemy').html("Enemy");
       $('#enemyHealth').html("");
       if (playerTurn%2 !== 0) {
@@ -804,8 +807,8 @@ $ (function() {
   $("#endTurn").on("click", function() {
     $(".grid").removeClass("inRange");
     selectedEnemy = "";
-    $('.pcImage').attr("")
-    $('.enemyImage').attr("")
+    $('.pcImage').removeAttr("id")
+    $('.enemyImage').removeAttr("id")
     $('#selectedEnemy').html("Enemy");
     $('#enemyHealth').html("");
     selectedCharacter = "";
@@ -831,11 +834,11 @@ $ (function() {
       pOneCha5.movement = pOneCha5.movementMax;
       pOneCha5.attackNumber = pOneCha5.attackNumberMax;
       playerTurn ++;
-      $('main').animateCss('flash');
+      $('main').animateCss('flip');
       setTimeout(function(){
         $(".blue").attr("class", "red");
         $(".selectWeaponBlue").attr("class", "selectWeaponRed");
-      }, 700);
+      }, 800);
     } else {
       pTwoCha1.movement = pTwoCha1.movementMax;
       pTwoCha1.attackNumber = pTwoCha1.attackNumberMax;
@@ -848,11 +851,11 @@ $ (function() {
       pTwoCha5.movement = pTwoCha5.movementMax;
       pTwoCha5.attackNumber = pTwoCha5.attackNumberMax;
       playerTurn ++;
-      $('main').animateCss('flash');
+      $('main').animateCss('flip');
       setTimeout(function(){
         $(".red").attr("class", "blue");
         $(".selectWeaponRed").attr("class", "selectWeaponBlue");
-      }, 700);
+      }, 800);
     }
   });
 

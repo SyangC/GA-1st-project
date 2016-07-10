@@ -265,6 +265,11 @@ td {
   background-size: cover;
 }
 
+#ripImage {
+  background: url("8TsHW.jpg") center no-repeat;
+  background-size: cover;
+}
+
 /*.grid {
   background: url("tree.png") center no-repeat;
   background-size: cover;
