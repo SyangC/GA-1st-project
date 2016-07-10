@@ -135,12 +135,32 @@ td {
   margin-bottom: 5px;
 }
 
-#fortify {
-  background-color: yellow;
-  margin:auto;
+.forest {
+  background: url("forest.png") center no-repeat;
+  background-size: cover;
 }
 
-#dodge {
-  background-color: cyan;
-  margin:auto;
+.rock {
+  background: url("rock.png") center no-repeat;
+  background-size: cover;
+}
+
+.water {
+  background: url("water.png") center no-repeat;
+  background-size: cover;
+}
+
+.sand {
+  background: url("sand.png") center no-repeat;
+  background-size: cover;
+}
+
+.plains {
+  background: url("plains.png") center no-repeat;
+  background-size: cover;
+}
+
+.ice {
+  background: url("ice.png") center no-repeat;
+  background-size: cover;
 }
