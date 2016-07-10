@@ -61,6 +61,7 @@ $ (function() {
   $("ul").on("click", "li#alpha", function() {
     if (playerTurn%2 !== 0) {
       $(".grid").removeClass("inRange");
+      selectedWeapon = "";
       $('#name').html(pOneCha1.name);
       $('#health').html(pOneCha1.health + " / " + pOneCha1.healthTotal);
       $('#accuracy').html(pOneCha1.accuracy);
@@ -77,16 +78,19 @@ $ (function() {
       selectedWeaponAmmo = 0;
       selectedWeaponAmmoUsed = 0;
       weaponDamage = 0;
-      console.log(selectedCharacter);
+      $('#infoDisplay').html(pOneCha1.name + " selected!" + "<br>" + "Use WASD to move" + "</br>" + "Select the weapon then click on the enemy to attack.");
     } else {
-      selectedEnemy = pOneCha1
+      selectedEnemy = pOneCha1;
       $('#selectedEnemy').html(pOneCha1.name);
       $('#enemyHealth').html(pOneCha1.health + " / " + pOneCha1.healthTotal);
       if ($("#"+pOneCha1.divId).hasClass("inRange")) {
-        attackResolve()
-        deathCheck()
+        attackResolve();
+        selectedWeapon = "";
+        $(".grid").removeClass("inRange");
       } else {
-        console.log("you are out of range!")
+        $('#infoDisplay').html("You are out of range! Move closer to attack.");
+        selectedWeapon = "";
+        $(".grid").removeClass("inRange");
       }
     }
   });
@@ -98,6 +102,7 @@ $ (function() {
   $("ul").on("click", "li#beta", function() {
     if (playerTurn%2 !== 0) {
       $(".grid").removeClass("inRange");
+      selectedWeapon = "";
       $('#name').html(pOneCha2.name)
       $('#health').html(pOneCha2.health + " / " + pOneCha2.healthTotal)
       $('#accuracy ').html(pOneCha2.accuracy)
@@ -113,16 +118,19 @@ $ (function() {
       selectedWeaponAmmo = "";
       selectedWeaponAmmoUsed = 0;
       weaponDamage = 0;
-      console.log(selectedCharacter);
+      $('#infoDisplay').html(pOneCha2.name + " selected!" + "<br>" + "Use WASD to move" + "</br>" + "Select the weapon then click on the enemy to attack.");
     } else {
-      selectedEnemy = pOneCha2
+      selectedEnemy = pOneCha2;
       $('#selectedEnemy').html(pOneCha2.name);
       $('#enemyHealth').html(pOneCha2.health + " / " + pOneCha2.healthTotal);
       if ($("#"+pOneCha2.divId).hasClass("inRange")) {
         attackResolve();
-        deathCheck()
+        selectedWeapon = "";
+        $(".grid").removeClass("inRange");
       } else {
-        console.log("you are out of range!")
+        $('#infoDisplay').html("You are out of range! Move closer to attack.");
+        selectedWeapon = "";
+        $(".grid").removeClass("inRange");
       }
     }
   });
@@ -134,6 +142,7 @@ $ (function() {
   $("ul").on("click", "li#charlie", function() {
     if (playerTurn%2 !== 0) {
       $(".grid").removeClass("inRange");
+      selectedWeapon = "";
       $('#name').html(pOneCha3.name)
       $('#health').html(pOneCha3.health + " / " + pOneCha3.healthTotal)
       $('#accuracy').html(pOneCha3.accuracy)
@@ -149,16 +158,19 @@ $ (function() {
       selectedWeaponAmmo = "";
       selectedWeaponAmmoUsed = 0;
       weaponDamage = 0;
-      console.log(selectedCharacter);
+      $('#infoDisplay').html(pOneCha3.name + " selected!" + "<br>" + "Use WASD to move" + "</br>" + "Select the weapon then click on the enemy to attack.");
     } else {
-      selectedEnemy = pOneCha3
+      selectedEnemy = pOneCha3;
       $('#selectedEnemy').html(pOneCha3.name);
       $('#enemyHealth').html(pOneCha3.health + " / " + pOneCha3.healthTotal);
       if ($("#"+pOneCha3.ideaClass).hasClass("inRange")) {
         attackResolve();
-        deathCheck();
+        selectedWeapon = "";
+        $(".grid").removeClass("inRange");
       } else {
-        console.log("you are out of range!")
+        $('#infoDisplay').html("You are out of range! Move closer to attack.");
+        selectedWeapon = "";
+        $(".grid").removeClass("inRange");
       }
     }
   });
@@ -170,6 +182,7 @@ $ (function() {
   $("ul").on("click", "li#delta", function() {
     if (playerTurn%2 !== 0) {
       $(".grid").removeClass("inRange");
+      selectedWeapon = "";
       $('#name').html(pOneCha4.name)
       $('#health').html(pOneCha4.health + " / " + pOneCha4.healthTotal)
       $('#accuracy').html(pOneCha4.accuracy)
@@ -185,16 +198,19 @@ $ (function() {
       selectedWeaponAmmo = "";
       selectedWeaponAmmoUsed = 0;
       weaponDamage = 0;
-      console.log(selectedCharacter);
+      $('#infoDisplay').html(pOneCha4.name + " selected!" + "<br>" + "Use WASD to move" + "</br>" + "Select the weapon then click on the enemy to attack.");
     } else {
-      selectedEnemy = pOneCha4
+      selectedEnemy = pOneCha4;
       $('#selectedEnemy').html(pOneCha4.name);
       $('#enemyHealth').html(pOneCha4.health + " / " + pOneCha4.healthTotal);
       if ($("#"+pOneCha4.divId).hasClass("inRange")) {
         attackResolve();
-        deathCheck();
+        selectedWeapon = "";
+        $(".grid").removeClass("inRange");
       } else {
-        console.log("you are out of range!")
+        $('#infoDisplay').html("You are out of range! Move closer to attack.");
+        selectedWeapon = "";
+        $(".grid").removeClass("inRange");
       }
     }
   });
@@ -206,6 +222,7 @@ $ (function() {
   $("ul").on("click", "li#echo", function() {
     if (playerTurn%2 !== 0) {
       $(".grid").removeClass("inRange");
+      selectedWeapon = "";
       $('#name').html(pOneCha5.name)
       $('#health').html(pOneCha5.health + " / " + pOneCha5.healthTotal)
       $('#accuracy').html(pOneCha5.accuracy)
@@ -221,16 +238,19 @@ $ (function() {
       selectedWeaponAmmo = "";
       selectedWeaponAmmoUsed = 0;
       weaponDamage = 0;
-      console.log(selectedCharacter);
+      $('#infoDisplay').html(pOneCha5.name + " selected!" + "<br>" + "Use WASD to move" + "</br>" + "Select the weapon then click on the enemy to attack.");
     } else {
-      selectedEnemy = pOneCha5
+      selectedEnemy = pOneCha5;
       $('#selectedEnemy').html(pOneCha5.name);
       $('#enemyHealth').html(pOneCha5.health + " / " + pOneCha5.healthTotal);
       if ($("#"+pOneCha5.divId).hasClass("inRange")) {
         attackResolve();
-        deathCheck();
+        selectedWeapon = "";
+        $(".grid").removeClass("inRange");
       } else {
-        console.log("you are out of range!")
+        $('#infoDisplay').html("You are out of range! Move closer to attack.");
+        selectedWeapon = "";
+        $(".grid").removeClass("inRange");
       }
     }
   });
@@ -244,6 +264,7 @@ $ (function() {
   $("ul").on("click", "li#foxtrot", function() {
     if (playerTurn%2 === 0) {
       $(".grid").removeClass("inRange");
+      selectedWeapon = "";
       $('#name').html(pTwoCha1.name);
       $('#health').html(pTwoCha1.health + " / " + pTwoCha1.healthTotal);
       $('#accuracy').html(pTwoCha1.accuracy);
@@ -259,16 +280,19 @@ $ (function() {
       selectedWeaponAmmo = "";
       selectedWeaponAmmoUsed = 0;
       weaponDamage = 0;
-      console.log(selectedCharacter);
+      $('#infoDisplay').html(pTwoCha1.name + " selected!" + "<br>" + "Use WASD to move" + "</br>" + "Select the weapon then click on the enemy to attack.");
     } else {
-      selectedEnemy = pTwoCha1
+      selectedEnemy = pTwoCha1;
       $('#selectedEnemy').html(pTwoCha1.name);
       $('#enemyHealth').html(pTwoCha1.health + " / " + pTwoCha1.healthTotal);
       if ($("#"+pTwoCha1.divId).hasClass("inRange")) {
         attackResolve();
-        deathCheck();
+        selectedWeapon = "";
+        $(".grid").removeClass("inRange");
       } else {
-        console.log("you are out of range!")
+        $('#infoDisplay').html("You are out of range! Move closer to attack.");
+        selectedWeapon = "";
+        $(".grid").removeClass("inRange");
       }
     }
   });
@@ -280,6 +304,7 @@ $ (function() {
   $("ul").on("click", "li#gamma", function() {
     if (playerTurn%2 === 0) {
       $(".grid").removeClass("inRange");
+      selectedWeapon = "";
       $('#name').html(pTwoCha2.name)
       $('#health').html(pTwoCha2.health + " / " + pTwoCha2.healthTotal)
       $('#accuracy').html(pTwoCha2.accuracy)
@@ -296,16 +321,19 @@ $ (function() {
       selectedWeaponAmmo = "";
       selectedWeaponAmmoUsed = 0;
       weaponDamage = 0;
-      console.log(selectedCharacter);
+      $('#infoDisplay').html(pTwoCha2.name + " selected!" + "<br>" + "Use WASD to move" + "</br>" + "Select the weapon then click on the enemy to attack.");
     } else {
-      selectedEnemy = pTwoCha2
+      selectedEnemy = pTwoCha2;
       $('#selectedEnemy').html(pTwoCha2.name);
       $('#enemyHealth').html(pTwoCha2.health + " / " + pTwoCha2.healthTotal);
       if ($("#"+pTwoCha2.divId).hasClass("inRange")) {
         attackResolve();
-        deathCheck();
+        selectedWeapon = "";
+        $(".grid").removeClass("inRange");
       } else {
-        console.log("you are out of range!")
+        $('#infoDisplay').html("You are out of range! Move closer to attack.");
+        selectedWeapon = "";
+        $(".grid").removeClass("inRange");
       }
     }
   });
@@ -317,6 +345,7 @@ $ (function() {
   $("ul").on("click", "li#hotel", function() {
     if (playerTurn%2 === 0) {
       $(".grid").removeClass("inRange");
+      selectedWeapon = "";
       $('#name').html(pTwoCha3.name)
       $('#health').html(pTwoCha3.health + " / " + pTwoCha3.healthTotal)
       $('#accuracy').html(pTwoCha3.accuracy)
@@ -333,16 +362,19 @@ $ (function() {
       selectedWeaponAmmo = "";
       selectedWeaponAmmoUsed = 0;
       weaponDamage = 0;
-      console.log(selectedCharacter);
+      $('#infoDisplay').html(pTwoCha3.name + " selected!" + "<br>" + "Use WASD to move" + "</br>" + "Select the weapon then click on the enemy to attack.");
     } else {
-      selectedEnemy = pTwoCha3
+      selectedEnemy = pTwoCha3;
       $('#selectedEnemy').html(pTwoCha3.name);
       $('#enemyHealth').html(pTwoCha3.health + " / " + pTwoCha3.healthTotal);
       if ($("#"+pTwoCha3.divId).hasClass("inRange")) {
         attackResolve();
-        deathCheck();
+        selectedWeapon = "";
+        $(".grid").removeClass("inRange");
       } else {
-        console.log("you are out of range!")
+        $('#infoDisplay').html("You are out of range! Move closer to attack.");
+        selectedWeapon = "";
+        $(".grid").removeClass("inRange");
       }
     }
   });
@@ -354,6 +386,7 @@ $ (function() {
   $("ul").on("click", "li#indigo", function() {
     if (playerTurn%2 === 0) {
       $(".grid").removeClass("inRange");
+      selectedWeapon = "";
       $('#name').html(pTwoCha4.name)
       $('#health').html(pTwoCha4.health + " / " + pTwoCha4.healthTotal)
       $('#accuracy').html(pTwoCha4.accuracy)
@@ -370,16 +403,19 @@ $ (function() {
       selectedWeaponAmmo = "";
       selectedWeaponAmmoUsed = 0;
       weaponDamage = 0;
-      console.log(selectedCharacter);
+      $('#infoDisplay').html(pTwoCha4.name + " selected!" + "<br>" + "Use WASD to move" + "</br>" + "Select the weapon then click on the enemy to attack.");
     } else {
-      selectedEnemy = pTwoCha4
+      selectedEnemy = pTwoCha4;
       $('#selectedEnemy').html(pTwoCha4.name);
       $('#enemyHealth').html(pTwoCha4.health + " / " + pTwoCha4.healthTotal);
       if ($("#"+pTwoCha4.divId).hasClass("inRange")) {
         attackResolve();
-        deathCheck();
+        selectedWeapon = "";
+        $(".grid").removeClass("inRange");
       } else {
-        console.log("you are out of range!")
+        $('#infoDisplay').html("You are out of range! Move closer to attack.");
+        selectedWeapon = "";
+        $(".grid").removeClass("inRange");
       }
     }
   });
@@ -391,6 +427,7 @@ $ (function() {
   $("ul").on("click", "li#juliett", function() {
     if (playerTurn%2 === 0) {
       $(".grid").removeClass("inRange");
+      selectedWeapon = "";
       $('#name').html(pTwoCha5.name)
       $('#health').html(pTwoCha5.health + " / " + pTwoCha5.healthTotal)
       $('#accuracy').html(pTwoCha5.accuracy)
@@ -407,16 +444,19 @@ $ (function() {
       selectedWeaponAmmo = "";
       selectedWeaponAmmoUsed = 0;
       weaponDamage = 0;
-      console.log(selectedCharacter);
+      $('#infoDisplay').html(pTwoCha5.name + " selected!" + "<br>" + "Use WASD to move" + "</br>" + "Select the weapon then click on the enemy to attack.");
     } else {
-      selectedEnemy = pTwoCha5
+      selectedEnemy = pTwoCha5;
       $('#selectedEnemy').html(pTwoCha5.name);
       $('#enemyHealth').html(pTwoCha5.health + " / " + pTwoCha5.healthTotal);
       if ($("#"+pTwoCha5.divId).hasClass("inRange")) {
         attackResolve();
-        deathCheck();
+        selectedWeapon = "";
+        $(".grid").removeClass("inRange");
       } else {
-        console.log("you are out of range!")
+        $('#infoDisplay').html("You are out of range! Move closer to attack.");
+        selectedWeapon = "";
+        $(".grid").removeClass("inRange");
       }
     }
   });
@@ -428,6 +468,7 @@ $ (function() {
       case "a":
         if ($('#'+selectedCharacter.divId).prev().is(".pc") === true || $('#'+selectedCharacter.divId).is(".left") === true || selectedCharacter.movement === 0) {
         } else {
+          $(".grid").removeClass("inRange");
           $animation.css("left", "-=100px");
           $("#"+selectedCharacter.divId).prev().attr("id", "new");
           $("#new").next().removeAttr("id");
@@ -435,13 +476,16 @@ $ (function() {
           $("#new").addClass("pc");
           $("#new").attr("id", selectedCharacter.divId);
           selectedCharacter.movement--; 
-          console.log(selectedCharacter.movement)
           $('#movement').html(selectedCharacter.movement + " / " + selectedCharacter.movementMax)
+          if(selectedWeapon !== "") {
+            gridHighlightWeaponRange();
+          }
         }
         break;
       case "w":
         if ($("#"+selectedCharacter.divId).prevAll().eq(29).is(".pc") === true || selectedCharacter.movement === 0) {
         } else {
+          $(".grid").removeClass("inRange");
           $animation.css("top", "-=102px");
           $("#"+selectedCharacter.divId).prevAll().eq(29).attr("id", "new");
           $("#new").nextAll().eq(29).removeAttr("id");
@@ -449,13 +493,16 @@ $ (function() {
           $("#new").addClass("pc");
           $("#new").attr("id", selectedCharacter.divId);
           selectedCharacter.movement--; 
-          console.log(selectedCharacter.movement)
           $('#movement').html(selectedCharacter.movement + " / " + selectedCharacter.movementMax)
+          if(selectedWeapon !== "") {
+            gridHighlightWeaponRange();
+          }
         }
         break;
       case "d":
         if ($('#'+selectedCharacter.divId).next().is(".pc") === true || $('#'+selectedCharacter.divId).is(".right") === true || selectedCharacter.movement === 0) {
         } else {
+          $(".grid").removeClass("inRange");
           $animation.css("left", "+=100px");
           $("#"+selectedCharacter.divId).next().attr("id", "new");
           $("#new").prev().removeAttr("id");
@@ -463,13 +510,16 @@ $ (function() {
           $("#new").addClass("pc");
           $("#new").attr("id", selectedCharacter.divId);
           selectedCharacter.movement--; 
-          console.log(selectedCharacter.movement)
           $('#movement').html(selectedCharacter.movement + " / " + selectedCharacter.movementMax)
+          if(selectedWeapon !== "") {
+            gridHighlightWeaponRange();
+          }
         }
         break;
       case "s":
         if ($("#"+selectedCharacter.divId).nextAll().eq(29).is(".pc") === true || selectedCharacter.movement === 0) {
         } else {
+          $(".grid").removeClass("inRange");
           $animation.css("top", "+=102px");
           $("#"+selectedCharacter.divId).nextAll().eq(29).attr("id", "new");
           $("#new").prevAll().eq(29).removeAttr("id");
@@ -477,15 +527,19 @@ $ (function() {
           $("#new").addClass("pc");
           $("#new").attr("id", selectedCharacter.divId);
           selectedCharacter.movement--; 
-          console.log(selectedCharacter.movement)
           $('#movement').html(selectedCharacter.movement + " / " + selectedCharacter.movementMax)
+          if(selectedWeapon !== "") {
+            gridHighlightWeaponRange();
+          }
         }
         break;
     }
   });
 
 
-// select weapon
+// on click player actions
+
+// attack
 
   $(".selectWeapon").on("click", function() {
     if (selectedCharacter !== "") {
@@ -498,8 +552,8 @@ $ (function() {
         selectedWeaponDamageMin = selectedCharacter.weaponOneDamageMin;
         selectedWeaponAmmo = selectedCharacter.weaponOneAmmo;
         selectedWeaponAmmoUsed = selectedCharacter.weaponOneAmmoUsed;
-      } else if (this.id === "selectWeaponOne" && selectedCharacter.weaponOneAmmo <= 0) {
-        console.log("You are out of ammo for the "+selectedWeapon);
+      } else if (this.id === "selectWeaponOne" && selectedCharacter.weaponOneAmmo <= 0) {        selectedWeapon = selectedCharacter.weaponOne;
+        $('#infoDisplay').html("You are out of Ammo for the " + selectedWeapon + ". Use another weapon");
         selectedWeapon = "";
       }
       if (this.id === "selectWeaponTwo" && selectedCharacter.weaponTwoAmmo >0) {
@@ -511,8 +565,8 @@ $ (function() {
         selectedWeaponDamageMin = selectedCharacter.weaponTwoDamageMin;
         selectedWeaponAmmo = selectedCharacter.weaponTwoAmmo;
         selectedWeaponAmmoUsed = selectedCharacter.weaponTwoAmmoUsed;
-      } else if (this.id === "selectWeaponTwo" && selectedCharacter.weaponTwoAmmo <= 0) {
-        console.log("You are out of ammo for the "+selectedWeapon);
+      } else if (this.id === "selectWeaponTwo" && selectedCharacter.weaponTwoAmmo <= 0) {        selectedWeapon = selectedCharacter.weaponTwo;
+        $('#infoDisplay').html("You are out of Ammo for the " + selectedWeapon + ". Use another weapon");
         selectedWeapon = "";
       }
       if (this.id === "selectWeaponMelee") {
@@ -523,69 +577,63 @@ $ (function() {
         selectedWeaponAmmo = 1;
         selectedWeaponAmmoUsed = 0;
       }
-      console.log("you've clicked on " + selectedWeapon + "!");
     }
   });
 
   var attackResolve = function () {
+    weaponHitChance = selectedCharacter.accuracy - selectedEnemy.evade;
     if (selectedCharacter.attackNumber > 0) {
-      console.log("you've clicked attack!")
-      accuracyChance = Math.round(Math.random()*(selectedCharacter.accuracy*0.25)+(selectedCharacter.accuracy*0.75));
-      console.log(accuracyChance);
-      evadeChance = Math.round(Math.random()*selectedEnemy.evade);
-      console.log(evadeChance);
-      weaponHitChance = accuracyChance - evadeChance;
-      console.log(weaponHitChance);
-      console.log(100/weaponHitChance*(weaponHitChance-selectedEnemy.evade));
-      if ((100/weaponHitChance*(weaponHitChance-selectedEnemy.evade)>Math.round(Math.random()*100))) {
-        if(weaponHitChance >= (selectedCharacter.accuracy)*0.97) {
-          console.log("critical hit!");
-          console.log(selectedWeaponDamageMax);
-          console.log(selectedWeaponDamageMin);
-          console.log(weaponDamage);
-          weaponDamage = (selectedWeaponDamageMin+Math.round(Math.random()*(selectedWeaponDamageMax-selectedWeaponDamageMin)))*1.5;
-          console.log(weaponDamage);
-          selectedEnemy.health = selectedEnemy.health - weaponDamage;
-          selectedWeaponAmmo = selectedWeaponAmmo - selectedWeaponAmmoUsed;
-          $('#selectedEnemy').html(selectedEnemy.name);
-          $('#enemyHealth').html(selectedEnemy.health + " / " + selectedEnemy.healthTotal);
-        } else {
-          console.log("hit!");
-          console.log(selectedWeaponDamageMax);
-          console.log(selectedWeaponDamageMin);
-          console.log(weaponDamage);
-          weaponDamage = selectedWeaponDamageMin+Math.round(Math.random()*(selectedWeaponDamageMax-selectedWeaponDamageMin));
-          console.log(weaponDamage);
-          selectedEnemy.health = selectedEnemy.health - weaponDamage;
-          selectedWeaponAmmo = selectedWeaponAmmo - selectedWeaponAmmoUsed;
-          $('#selectedEnemy').html(selectedEnemy.name);
-          $('#enemyHealth').html(selectedEnemy.health + " / " + selectedEnemy.healthTotal);
+      weaponHitChance = selectedCharacter.accuracy - selectedEnemy.evade;
+      percentage = Math.round(Math.random()*100)
+      $('#infoDisplay').html("You have a " + weaponHitChance + "% chance of hitting the taget.");
+      setTimeout(function(){
+        if (weaponHitChance < percentage) {
+          $('#infoDisplay').html("Missed!");
+        selectedWeaponAmmo = selectedWeaponAmmo - selectedWeaponAmmoUsed;
+        $('#enemyHealth').html(selectedEnemy.health + " / " + selectedEnemy.healthTotal)
         }
-      } else {
-        console.log("Miss!")
-      console.log(selectedEnemy.health);
-      selectedWeaponAmmo = selectedWeaponAmmo - selectedWeaponAmmoUsed;
-      $('#enemyHealth').html(selectedEnemy.health + " / " + selectedEnemy.healthTotal)
-      }
-      if (selectedWeapon === selectedCharacter.weaponOne) {
-        selectedCharacter.weaponOneAmmo = selectedCharacter.weaponOneAmmo - selectedCharacter.weaponOneAmmoUsed;
-        selectedCharacter.attackNumber --;
-        $('#attackNumber').html(selectedCharacter.attackNumber);
-        $('#weaponOneAmmo').html(selectedWeaponAmmo);        
-      } else if (selectedWeapon === selectedCharacter.weaponTwo) {
-        selectedCharacter.weaponTwoAmmo = selectedCharacter.weaponTwoAmmo - selectedCharacter.weaponTwoAmmoUsed;
-        selectedCharacter.attackNumber --;
-        $('#attackNumber').html(selectedCharacter.attackNumber);
-        $('#weaponTwoAmmo').html(selectedWeaponAmmo);
-      }
+        if (weaponHitChance>percentage) {
+          if(weaponHitChance >= (selectedCharacter.accuracy)*0.97) {
+            $('#infoDisplay').html("Critical Hit!");
+            weaponDamage = (selectedWeaponDamageMin+Math.round(Math.random()*(selectedWeaponDamageMax-selectedWeaponDamageMin)))*1.5;
+            setTimeout(function(){
+              $('#infoDisplay').html("Dealt the enemy " + weaponDamage + "!");
+              $('#selectedEnemy').html(selectedEnemy.name);
+              $('#enemyHealth').html(selectedEnemy.health + " / " + selectedEnemy.healthTotal);
+            }, 1000);
+            selectedEnemy.health = selectedEnemy.health - weaponDamage;
+            selectedWeaponAmmo = selectedWeaponAmmo - selectedWeaponAmmoUsed;
+            deathCheck();
+          } else {
+            $('#infoDisplay').html("Hit!");
+            weaponDamage = selectedWeaponDamageMin+Math.round(Math.random()*(selectedWeaponDamageMax-selectedWeaponDamageMin));
+            setTimeout(function(){
+              $('#infoDisplay').html("Dealt the enemy " + weaponDamage + "!");
+              $('#selectedEnemy').html("");
+              $('#enemyHealth').html("");
+            }, 1000);
+            selectedEnemy.health = selectedEnemy.health - weaponDamage;
+            selectedWeaponAmmo = selectedWeaponAmmo - selectedWeaponAmmoUsed;
+            deathCheck();
+          }
+        }
+        if (selectedWeapon === selectedCharacter.weaponOne) {
+          selectedCharacter.weaponOneAmmo = selectedCharacter.weaponOneAmmo - selectedCharacter.weaponOneAmmoUsed;
+          selectedCharacter.attackNumber --;
+          $('#attackNumber').html(selectedCharacter.attackNumber);
+          $('#weaponOneAmmo').html(selectedWeaponAmmo);        
+        } else if (selectedWeapon === selectedCharacter.weaponTwo) {
+          selectedCharacter.weaponTwoAmmo = selectedCharacter.weaponTwoAmmo - selectedCharacter.weaponTwoAmmoUsed;
+          selectedCharacter.attackNumber --;
+          $('#attackNumber').html(selectedCharacter.attackNumber);
+          $('#weaponTwoAmmo').html(selectedWeaponAmmo);
+        }
+      }, 1000);
     } else {
-      console.log("you have no more attacks");
+      $('#infoDisplay').html("You have no more attacks.");
       selectedWeapon = "";
     }
   }
-
-
-  
 
   var deathCheck = function () {
     if (selectedEnemy.health <= 0) {
@@ -607,13 +655,9 @@ $ (function() {
     }
   }
 
-
-
-
   var gridHighlightWeaponRange = function () {
     var currentId = $("#"+selectedCharacter.divId);
     var gridWeaponRange = ranges[selectedWeaponRange-1]
-    console.log(gridWeaponRange)
     $.each(gridWeaponRange, function(i, value) {
       currentId.nextAll().eq(value).addClass("inRange");
       currentId.prevAll().eq(value).addClass("inRange");
@@ -664,6 +708,10 @@ $ (function() {
       playerTurn ++;
     }
   });
+
+// on hover
+
+
 
 
 });
