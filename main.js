@@ -625,18 +625,19 @@ $ (function() {
             deathCheck();
           }
         }
-        if (selectedWeapon === selectedCharacter.weaponOne) {
-          selectedCharacter.weaponOneAmmo = selectedCharacter.weaponOneAmmo - selectedCharacter.weaponOneAmmoUsed;
-          selectedCharacter.attackNumber --;
-          $('#attackNumber').html(selectedCharacter.attackNumber);
-          $('#weaponOneAmmo').html(selectedWeaponAmmo);        
-        } else if (selectedWeapon === selectedCharacter.weaponTwo) {
-          selectedCharacter.weaponTwoAmmo = selectedCharacter.weaponTwoAmmo - selectedCharacter.weaponTwoAmmoUsed;
-          selectedCharacter.attackNumber --;
-          $('#attackNumber').html(selectedCharacter.attackNumber);
-          $('#weaponTwoAmmo').html(selectedWeaponAmmo);
-        }
       }, 1000);
+      if (selectedWeapon === selectedCharacter.weaponOne) {
+        console.log("this part still works!")
+        selectedCharacter.weaponOneAmmo = selectedCharacter.weaponOneAmmo - selectedCharacter.weaponOneAmmoUsed;
+        selectedCharacter.attackNumber --;
+        $('#attackNumber').html(selectedCharacter.attackNumber);
+        $('#weaponOneAmmo').html(selectedWeaponAmmo);        
+      } else if (selectedWeapon === selectedCharacter.weaponTwo) {
+        selectedCharacter.weaponTwoAmmo = selectedCharacter.weaponTwoAmmo - selectedCharacter.weaponTwoAmmoUsed;
+        selectedCharacter.attackNumber --;
+        $('#attackNumber').html(selectedCharacter.attackNumber);
+        $('#weaponTwoAmmo').html(selectedWeaponAmmo);
+      }
     } else {
       $('#infoDisplay').html("You have no more attacks.");
       selectedWeapon = "";
