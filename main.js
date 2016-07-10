@@ -554,7 +554,7 @@ $ (function() {
 
 // attack
 
-  $(".selectWeapon").on("click", function() {
+  ($(".selectWeaponBlue")||$(".selectWeaponRed")).on("click", function() {
     if (selectedCharacter !== "") {
       if (this.id === "selectWeaponOne" && selectedCharacter.weaponOneAmmo >0) {
         $(".grid").removeClass("inRange");
