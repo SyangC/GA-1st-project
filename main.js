@@ -40,13 +40,6 @@ $ (function() {
     this.bonusMovement = bonusMovement;
   }
 
-  var plains = new Terrain (1, 1, 1);
-  var forest = new Terrain (5, 3, 1);
-  var sand = new Terrain ("-5", 1, "-1");
-  var rock = new Terrain ("-5", 3, "-1");
-  var water = new Terrain ("-5", 1, "-1");
-  var ice = new Terrain ("-3", 1, 1);
-
   function Player (name, divId, healthTotal, health, accuracy, attackNumber, attackNumberMax, weaponOne, weaponOneAmmo, weaponOneAmmoUsed, weaponOneRange, weaponOneAccuracy, weaponOneDamageMin, weaponOneDamageMax, weaponTwo, weaponTwoAmmo, weaponTwoAmmoUsed, weaponTwoRange, weaponTwoAccuracy, weaponTwoDamageMin, weaponTwoDamageMax, weaponMelee, weaponMeleeAccuracy, weaponMeleeDamageMin, weaponMeleeDamageMax, defense, movement, movementMax, team, evade){
     this.name = name;
     this.divId = divId;
@@ -83,7 +76,7 @@ $ (function() {
   // actual players
 
 // Team 1
-  var pOneCha1 = new Player("Alpha", "alpha", 100, 100, 80, 2, 2, "Assault Rifle", 30, 3, 5, 75, 20, 40, "Pistol", 60, 3, 3, 65, 10, 25, "Sword", 60, 35, 50, 12, 7, 7, 1, 13);
+  var pOneCha1 = new Player("Alpha", "alpha", 100, 100, 80, 2, 2, "Assault Rifle", 30, 3, 5, 75, 50, 60, "Pistol", 60, 3, 3, 65, 30, 35, "Sword", 60, 35, 40, 12, 7, 7, 1, 13);
 
 
   $("ul").on("click", "li#alpha", function() {
@@ -101,6 +94,7 @@ $ (function() {
       $('#weaponTwoAmmo').html(pOneCha1.weaponTwoAmmo);
       $('#weaponMelee').html(pOneCha1.weaponMelee);
       $('#attackNumber').html(pOneCha1.attackNumber);
+      $('.pcImage').attr("id", pOneCha1.divId+"Image")
       selectedCharacter = pOneCha1;
       selectedWeapon = "";
       selectedWeaponAmmo = 0;
@@ -111,7 +105,9 @@ $ (function() {
       selectedEnemy = pOneCha1;
       $('#selectedEnemy').html(pOneCha1.name);
       $('#enemyHealth').html(pOneCha1.health + " / " + pOneCha1.healthTotal);
+      $('.enemyImage').attr("id", pOneCha1.divId+"Image")
       if ($("#"+pOneCha1.divId).hasClass("inRange")) {
+        terrainEffectsAll()
         attackResolve();
         selectedWeapon = "";
         $(".grid").removeClass("inRange");
@@ -127,7 +123,7 @@ $ (function() {
   });
 
 
-  var pOneCha2 = new Player("Beta", "beta", 100, 100, 80, 2, 2, "Assault Rifle", 30, 3, 5, 75, 20, 40, "Pistol", 60, 3, 3, 65, 10, 25, "Sword", 60, 35, 50, 12, 7, 7, 1, 13);
+  var pOneCha2 = new Player("Beta", "beta", 100, 100, 80, 2, 2, "Assault Rifle", 30, 3, 5, 75, 50, 60, "Pistol", 60, 3, 3, 65, 30, 35, "Sword", 60, 35, 40, 12, 7, 7, 1, 13);
 
 
   $("ul").on("click", "li#beta", function() {
@@ -145,6 +141,7 @@ $ (function() {
       $('#weaponTwoAmmo').html(pOneCha2.weaponTwoAmmo);
       $('#weaponMelee').html(pOneCha2.weaponMelee);
       $('#attackNumber').html(pOneCha2.attackNumber);
+      $('.pcImage').attr("id", pOneCha2.divId+"Image")
       selectedCharacter = pOneCha2;
       selectedWeaponAmmo = "";
       selectedWeaponAmmoUsed = 0;
@@ -154,7 +151,9 @@ $ (function() {
       selectedEnemy = pOneCha2;
       $('#selectedEnemy').html(pOneCha2.name);
       $('#enemyHealth').html(pOneCha2.health + " / " + pOneCha2.healthTotal);
+      $('.enemyImage').attr("id", pOneCha2.divId+"Image")
       if ($("#"+pOneCha2.divId).hasClass("inRange")) {
+        terrainEffectsAll()
         attackResolve();
         selectedWeapon = "";
         $(".grid").removeClass("inRange");
@@ -170,7 +169,7 @@ $ (function() {
   });
 
 
-  var pOneCha3 = new Player("Charlie", "charlie", 100, 100, 80, 2, 2, "Assault Rifle", 30, 3, 5, 75, 20, 40, "Pistol", 60, 3, 3, 65, 10, 25, "Sword", 60, 35, 50, 12, 7, 7, 1, 13);
+  var pOneCha3 = new Player("Charlie", "charlie", 100, 100, 80, 2, 2, "Assault Rifle", 30, 3, 5, 75, 50, 60, "Pistol", 60, 3, 3, 65, 30, 35, "Sword", 60, 35, 40, 12, 7, 7, 1, 13);
 
 
   $("ul").on("click", "li#charlie", function() {
@@ -188,6 +187,7 @@ $ (function() {
       $('#weaponTwoAmmo').html(pOneCha3.weaponTwoAmmo);
       $('#weaponMelee').html(pOneCha3.weaponMelee);
       $('#attackNumber').html(pOneCha3.attackNumber);
+      $('.pcImage').attr("id", pOneCha3.divId+"Image")
       selectedCharacter = pOneCha3;
       selectedWeaponAmmo = "";
       selectedWeaponAmmoUsed = 0;
@@ -197,7 +197,9 @@ $ (function() {
       selectedEnemy = pOneCha3;
       $('#selectedEnemy').html(pOneCha3.name);
       $('#enemyHealth').html(pOneCha3.health + " / " + pOneCha3.healthTotal);
-      if ($("#"+pOneCha3.ideaClass).hasClass("inRange")) {
+      $('.enemyImage').attr("id", pOneCha3.divId+"Image")
+      if ($("#"+pOneCha3.divId).hasClass("inRange")) {
+        terrainEffectsAll()
         attackResolve();
         selectedWeapon = "";
         $(".grid").removeClass("inRange");
@@ -213,7 +215,7 @@ $ (function() {
   });
 
 
-  var pOneCha4 = new Player("Delta", "delta", 65, 65, 100, 2, 2, "Sniper Rifle", 15, 1, 7, 100, 60, 80, "Pistol", 60, 3, 3, 65, 10, 25, "Knife", 60, 25, 40, 7, 10, 10, 1, 15);
+  var pOneCha4 = new Player("Delta", "delta", 65, 65, 100, 2, 2, "Sniper Rifle", 15, 1, 7, 100, 65, 75, "Pistol", 60, 3, 3, 65, 30, 35, "Knife", 60, 35, 40, 7, 10, 10, 1, 15);
 
 
   $("ul").on("click", "li#delta", function() {
@@ -231,6 +233,7 @@ $ (function() {
       $('#weaponTwoAmmo').html(pOneCha4.weaponTwoAmmo);
       $('#weaponMelee').html(pOneCha4.weaponMelee);
       $('#attackNumber').html(pOneCha4.attackNumber);
+      $('.pcImage').attr("id", pOneCha4.divId+"Image")
       selectedCharacter = pOneCha4;
       selectedWeaponAmmo = "";
       selectedWeaponAmmoUsed = 0;
@@ -240,7 +243,9 @@ $ (function() {
       selectedEnemy = pOneCha4;
       $('#selectedEnemy').html(pOneCha4.name);
       $('#enemyHealth').html(pOneCha4.health + " / " + pOneCha4.healthTotal);
+      $('.enemyImage').attr("id", pOneCha4.divId+"Image")
       if ($("#"+pOneCha4.divId).hasClass("inRange")) {
+        terrainEffectsAll()
         attackResolve();
         selectedWeapon = "";
         $(".grid").removeClass("inRange");
@@ -256,7 +261,7 @@ $ (function() {
   });
 
 
-  var pOneCha5 = new Player("Echo", "echo", 150, 150, 60, 2, 2, "Minigun", 210, 15, 3, 50, 70, 80, "Rocket Launcher", 2, 1, 4, 70, 90, 120, "Fists", 40, 30, 17, 60, 4, 4, 1, 5);
+  var pOneCha5 = new Player("Echo", "echo", 150, 150, 60, 2, 2, "Minigun", 210, 15, 3, 50, 90, 110, "Rocket Launcher", 2, 1, 4, 70, 130, 150, "Fists", 40, 30, 35, 17, 4, 4, 1, 5);
 
 
   $("ul").on("click", "li#echo", function() {
@@ -274,6 +279,7 @@ $ (function() {
       $('#weaponTwoAmmo').html(pOneCha5.weaponTwoAmmo);
       $('#weaponMelee').html(pOneCha5.weaponMelee);
       $('#attackNumber').html(pOneCha5.attackNumber);
+      $('.pcImage').attr("id", pOneCha5.divId+"Image")
       selectedCharacter = pOneCha5;
       selectedWeaponAmmo = "";
       selectedWeaponAmmoUsed = 0;
@@ -283,7 +289,9 @@ $ (function() {
       selectedEnemy = pOneCha5;
       $('#selectedEnemy').html(pOneCha5.name);
       $('#enemyHealth').html(pOneCha5.health + " / " + pOneCha5.healthTotal);
+      $('.enemyImage').attr("id", pOneCha5.divId+"Image")
       if ($("#"+pOneCha5.divId).hasClass("inRange")) {
+        terrainEffectsAll()
         attackResolve();
         selectedWeapon = "";
         $(".grid").removeClass("inRange");
@@ -301,7 +309,7 @@ $ (function() {
 
   // Team 2
 
-  var pTwoCha1 = new Player("Foxtrot", "foxtrot", 100, 100, 80, 2, 2, "Assault Rifle", 30, 3, 5, 75, 20, 40, "Pistol", 60, 3, 3, 65, 10, 25, "Sword", 60, 35, 50, 12, 7, 7, 1, 13);
+  var pTwoCha1 = new Player("Foxtrot", "foxtrot", 100, 100, 80, 2, 2, "Assault Rifle", 30, 3, 5, 75, 50, 60, "Pistol", 60, 3, 3, 65, 30, 35, "Sword", 60, 35, 40, 12, 7, 7, 1, 13);
 
 
   $("ul").on("click", "li#foxtrot", function() {
@@ -319,6 +327,7 @@ $ (function() {
       $('#weaponTwoAmmo').html(pTwoCha1.weaponTwoAmmo);
       $('#weaponMelee').html(pTwoCha1.weaponMelee);
       $('#attackNumber').html(pTwoCha1.attackNumber);
+      $('.pcImage').attr("id", pTwoCha1.divId+"Image")
       selectedCharacter = pTwoCha1;
       selectedWeaponAmmo = "";
       selectedWeaponAmmoUsed = 0;
@@ -328,7 +337,9 @@ $ (function() {
       selectedEnemy = pTwoCha1;
       $('#selectedEnemy').html(pTwoCha1.name);
       $('#enemyHealth').html(pTwoCha1.health + " / " + pTwoCha1.healthTotal);
+      $('.enemyImage').attr("id", pTwoCha1.divId+"Image")
       if ($("#"+pTwoCha1.divId).hasClass("inRange")) {
+        terrainEffectsAll()
         attackResolve();
         selectedWeapon = "";
         $(".grid").removeClass("inRange");
@@ -344,7 +355,7 @@ $ (function() {
   });
 
 
-  var pTwoCha2 = new Player("Gamma", "gamma", 100, 100, 80, 2, 2, "Assault Rifle", 30, 3, 5, 75, 20, 40, "Pistol", 60, 3, 3, 65, 10, 25, "Sword", 60, 35, 50, 12, 7, 7, 1, 13);
+  var pTwoCha2 = new Player("Gamma", "gamma", 100, 100, 80, 2, 2, "Assault Rifle", 30, 3, 5, 75, 50, 60, "Pistol", 60, 3, 3, 65, 30, 35, "Sword", 60, 35, 40, 12, 7, 7, 1, 13);
 
 
   $("ul").on("click", "li#gamma", function() {
@@ -362,6 +373,7 @@ $ (function() {
       $('#weaponTwoAmmo').html(pTwoCha2.weaponTwoAmmo);
       $('#weaponMelee').html(pTwoCha2.weaponMelee);
       $('#attackNumber').html(pTwoCha2.attackNumber);
+      $('.pcImage').attr("id", pTwoCha2.divId+"Image")
       selectedCharacter = pTwoCha2;
       selectedWeapon = "";
       selectedWeaponAmmo = "";
@@ -372,7 +384,9 @@ $ (function() {
       selectedEnemy = pTwoCha2;
       $('#selectedEnemy').html(pTwoCha2.name);
       $('#enemyHealth').html(pTwoCha2.health + " / " + pTwoCha2.healthTotal);
+      $('.enemyImage').attr("id", pTwoCha2.divId+"Image")
       if ($("#"+pTwoCha2.divId).hasClass("inRange")) {
+        terrainEffectsAll()
         attackResolve();
         selectedWeapon = "";
         $(".grid").removeClass("inRange");
@@ -406,6 +420,7 @@ $ (function() {
       $('#weaponTwoAmmo').html(pTwoCha3.weaponTwoAmmo);
       $('#weaponMelee').html(pTwoCha3.weaponMelee);
       $('#attackNumber').html(pTwoCha3.attackNumber);
+      $('.pcImage').attr("id", pTwoCha3.divId+"Image")
       selectedCharacter = pTwoCha3;
       selectedWeapon = "";
       selectedWeaponAmmo = "";
@@ -416,7 +431,9 @@ $ (function() {
       selectedEnemy = pTwoCha3;
       $('#selectedEnemy').html(pTwoCha3.name);
       $('#enemyHealth').html(pTwoCha3.health + " / " + pTwoCha3.healthTotal);
+      $('.enemyImage').attr("id", pTwoCha3.divId+"Image")
       if ($("#"+pTwoCha3.divId).hasClass("inRange")) {
+        terrainEffectsAll()
         attackResolve();
         selectedWeapon = "";
         $(".grid").removeClass("inRange");
@@ -432,7 +449,7 @@ $ (function() {
   });
 
 
-  var pTwoCha4 = new Player("Indigo", "indigo", 65, 65, 100, 2, 2, "Sniper Rifle", 15, 1, 7, 100, 60, 80, "Pistol", 60, 3, 3, 65, 10, 25, "Knife", 60, 25, 40, 7, 10, 10, 1, 15);
+  var pTwoCha4 = new Player("Indigo", "indigo", 65, 65, 100, 2, 2, "Sniper Rifle", 15, 1, 7, 100, 65, 75, "Pistol", 60, 3, 3, 65, 30, 35, "Knife", 60, 35, 40, 7, 10, 10, 1, 15);
 
 
   $("ul").on("click", "li#indigo", function() {
@@ -450,6 +467,7 @@ $ (function() {
       $('#weaponTwoAmmo').html(pTwoCha4.weaponTwoAmmo);
       $('#weaponMelee').html(pTwoCha4.weaponMelee);
       $('#attackNumber').html(pTwoCha4.attackNumber);
+      $('.pcImage').attr("id", pTwoCha4.divId+"Image")
       selectedCharacter = pTwoCha4;
       selectedWeapon = "";
       selectedWeaponAmmo = "";
@@ -460,7 +478,9 @@ $ (function() {
       selectedEnemy = pTwoCha4;
       $('#selectedEnemy').html(pTwoCha4.name);
       $('#enemyHealth').html(pTwoCha4.health + " / " + pTwoCha4.healthTotal);
+      $('.enemyImage').attr("id", pTwoCha4.divId+"Image")
       if ($("#"+pTwoCha4.divId).hasClass("inRange")) {
+        terrainEffectsAll()
         attackResolve();
         selectedWeapon = "";
         $(".grid").removeClass("inRange");
@@ -476,7 +496,7 @@ $ (function() {
   });
 
 
-  var pTwoCha5 = new Player("Juliett", "juliett", 150, 150, 60, 2, 2, "Minigun", 210, 15, 3, 50, 70, 80, "Rocket Launcher", 2, 1, 4, 70, 90, 120, "Fists", 40, 30, 40, 17, 4, 4, 1, 5);
+  var pTwoCha5 = new Player("Juliett", "juliett", 150, 150, 60, 2, 2, "Minigun", 210, 15, 3, 50, 90, 110, "Rocket Launcher", 2, 1, 4, 70, 130, 150, "Fists", 40, 30, 35, 17, 4, 4, 1, 5);
 
 
   $("ul").on("click", "li#juliett", function() {
@@ -494,6 +514,7 @@ $ (function() {
       $('#weaponTwoAmmo').html(pTwoCha5.weaponTwoAmmo);
       $('#weaponMelee').html(pTwoCha5.weaponMelee);
       $('#attackNumber').html(pTwoCha5.attackNumber);
+      $('.pcImage').attr("id", pTwoCha5.divId+"Image")
       selectedCharacter = pTwoCha5;
       selectedWeapon = "";
       selectedWeaponAmmo = "";
@@ -504,7 +525,9 @@ $ (function() {
       selectedEnemy = pTwoCha5;
       $('#selectedEnemy').html(pTwoCha5.name);
       $('#enemyHealth').html(pTwoCha5.health + " / " + pTwoCha5.healthTotal);
+      $('.enemyImage').attr("id", pTwoCha5.divId+"Image")
       if ($("#"+pTwoCha5.divId).hasClass("inRange")) {
+        terrainEffectsAll()
         attackResolve();
         selectedWeapon = "";
         $(".grid").removeClass("inRange");
@@ -594,9 +617,6 @@ $ (function() {
     }
   });
 
-
-// on click player actions
-
 // attack
 
   ($(".selectWeaponBlue")||$(".selectWeaponRed")).on("click", function() {
@@ -682,7 +702,6 @@ $ (function() {
         }
       }, 1000);
       if (selectedWeapon === selectedCharacter.weaponOne) {
-        console.log("this part still works!")
         selectedCharacter.weaponOneAmmo = selectedCharacter.weaponOneAmmo - selectedCharacter.weaponOneAmmoUsed;
         selectedCharacter.attackNumber --;
         $('#attackNumber').html(selectedCharacter.attackNumber);
@@ -728,35 +747,48 @@ $ (function() {
     });
   }
 
+  var plains = new Terrain (1, 1, 1);
+  var forest = new Terrain (5, 3, 1);
+  var sand = new Terrain (-5, 1, -1);
+  var rock = new Terrain (-5, 3, -1);
+  var water = new Terrain (-5, 1, -1);
+  var ice = new Terrain (-3, 1, 1);
+
   var terrainEffectsAll = function() {
-    if ($("#"+selectedEnemy.divID).hasClass("plains")) {
-      terrainEffectsDefense = this.bonusDefense
-      terrainEffectsEvade = this.bonusEvade
+    if ($("#"+selectedEnemy.divId).hasClass("plains") === true) {
+      terrainEffectsDefense = plains.bonusDefense
+      terrainEffectsEvade = plains.bonusEvade
+      terrainEffectsMovement = plains.bonusMovement
       console.log(terrainEffectsDefense)
       console.log(terrainEffectsEvade)
-    } else if ($("#"+selectedEnemy.divID).hasClass("forest")) {
-      terrainEffectsDefense = this.bonusDefense
-      terrainEffectsEvade = this.bonusEvade
+    } else if ($("#"+selectedEnemy.divId).hasClass("forest") === true) {
+      terrainEffectsDefense = forest.bonusDefense
+      terrainEffectsEvade = forest.bonusEvade
+      terrainEffectsMovement = plains.bonusMovement
       console.log(terrainEffectsDefense)
       console.log(terrainEffectsEvade)
-    } else if ($("#"+selectedEnemy.divID).hasClass("sand")) {
-      terrainEffectsDefense = this.bonusDefense
-      terrainEffectsEvade = this.bonusEvade
+    } else if ($("#"+selectedEnemy.divId).hasClass("sand") === true) {
+      terrainEffectsDefense = sand.bonusDefense
+      terrainEffectsEvade = sand.bonusEvade
+      terrainEffectsMovement = plains.bonusMovement
       console.log(terrainEffectsDefense)
       console.log(terrainEffectsEvade)
-    } else if ($("#"+selectedEnemy.divID).hasClass("rock")) {
-      terrainEffectsDefense = this.bonusDefense
-      terrainEffectsEvade = this.bonusEvade
+    } else if ($("#"+selectedEnemy.divId).hasClass("rock") === true) {
+      terrainEffectsDefense = rock.bonusDefense
+      terrainEffectsEvade = rock.bonusEvade
+      terrainEffectsMovement = plains.bonusMovement
       console.log(terrainEffectsDefense)
       console.log(terrainEffectsEvade)
-    } else if ($("#"+selectedEnemy.divID).hasClass("water")) {
-      terrainEffectsDefense = this.bonusDefense
-      terrainEffectsEvade = this.bonusEvade
+    } else if ($("#"+selectedEnemy.divId).hasClass("water") === true) {
+      terrainEffectsDefense = water.bonusDefense
+      terrainEffectsEvade = water.bonusEvade
+      terrainEffectsMovement = plains.bonusMovement
       console.log(terrainEffectsDefense)
       console.log(terrainEffectsEvade)
-    } else if ($("#"+selectedEnemy.divID).hasClass("ice")) {
-      terrainEffectsDefense = this.bonusDefense
-      terrainEffectsEvade = this.bonusEvade
+    } else if ($("#"+selectedEnemy.divId).hasClass("ice") === true) {
+      terrainEffectsDefense = ice.bonusDefense
+      terrainEffectsEvade = ice.bonusEvade
+      terrainEffectsMovement = plains.bonusMovement
       console.log(terrainEffectsDefense)
       console.log(terrainEffectsEvade)
     }
@@ -817,6 +849,21 @@ $ (function() {
   });
 
 // on hover
+
+
+
+
+
+
+
+
+
+
+
+//  welcome page
+
+
+
 
 
 

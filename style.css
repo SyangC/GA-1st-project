@@ -31,6 +31,7 @@
   margin-left:150px;
   outline: 0;
   font-family: "scorched earth";
+  color: white;
 }
 
 .selectWeaponBlue {
@@ -39,6 +40,7 @@
   border-radius: 45px;
   background-color: blue;
   font-family: "scorched earth";
+  color: white;
 }
 
 /*player - red*/
@@ -74,6 +76,7 @@
   margin-left:150px;
   outline: 0;
   font-family: "scorched earth";
+  color: white;
 }
 
 .selectWeaponRed {
@@ -82,6 +85,7 @@
   border-radius: 45px;
   background-color: red;
   font-family: "scorched earth";
+  color: white;
 }
 
 
@@ -159,8 +163,18 @@ td {
   background-size: cover;
 }
 
+#alphaImage {
+  background: url("10509651_918383658188721_7841373519136665766_n.jpg") center no-repeat;
+  background-size: cover;
+}
+
 #beta {
   background: url("icon_xl.png") center no-repeat;
+  background-size: cover;
+}
+
+#betaImage {
+  background: url("110462872_918382554855498_8322994088999754416_n.jpg") center no-repeat;
   background-size: cover;
 }
 
@@ -169,8 +183,18 @@ td {
   background-size: cover;
 }
 
+#charlieImage {
+  background: url("10429317_918382291522191_7594195892058646208_n.jpg") center no-repeat;
+  background-size: cover;
+}
+
 #delta {
   background: url("icon_xl.png") center no-repeat;
+  background-size: cover;
+}
+
+#deltaImage {
+  background: url("10359411_889985074361913_6360971079605344540_n.jpg") center no-repeat;
   background-size: cover;
 }
 
@@ -179,8 +203,18 @@ td {
   background-size: cover;
 }
 
+#echoImage {
+  background: url("10310091_889983264362094_2041784058102440660_n.jpg") center no-repeat;
+  background-size: cover;
+}
+
 #foxtrot {
   background: url("Image-Icon-Megaman-Helmet-Protoman.png") center no-repeat;
+  background-size: cover;
+}
+
+#foxtrotImage {
+  background: url("1463315_781724858521269_1645806329_n.jpg") center no-repeat;
   background-size: cover;
 }
 
@@ -189,8 +223,18 @@ td {
   background-size: cover;
 }
 
+#gammaImage {
+  background: url("960233_781723595188062_520901666_n.jpg") center no-repeat;
+  background-size: cover;
+}
+
 #hotel {
   background: url("Image-Icon-Megaman-Helmet-Protoman.png") center no-repeat;
+  background-size: cover;
+}
+
+#hotelImage {
+  background: url("1480683_781724761854612_2045254585_n.jpg") center no-repeat;
   background-size: cover;
 }
 
@@ -199,8 +243,19 @@ td {
   background-size: cover;
 }
 
+#indigoImage {
+  background: url("1466268_781725021854586_227228574_n.jpg") center no-repeat;
+  background-size: cover;
+}
+
 #juliett{
   background: url("Image-Icon-Megaman-Helmet-Protoman.png") center no-repeat;
+  background-size: cover;
+  opacity: 1;
+}
+
+#juliettImage{
+  background: url("998961_850228821670872_1501083309_n.jpg") center no-repeat;
   background-size: cover;
   opacity: 1;
 }
