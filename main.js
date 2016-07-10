@@ -16,13 +16,14 @@ $ (function() {
   var selectedWeaponDamageMax = 0;
   var selectedWeaponDamageMin = 0;
   var currentId = "";
-  var weaponHitChance = 0;
+  var selectedWeaponHitChance = 0;
+  var selectedWeaponAccuracy = 0;
   var ranges = [[0, 29], [], [0, 1, 2, 27, 28, 29, 30, 31, 58, 59, 60, 89], [0,1,2,3,26,27,28,29,30,31,32,57,58,59,60,61,88,89,90,119],[0,1,2,3,4,25,26,27,28,29,30,31,32,33,56,57,58,59,60,61,62,87,88,89,90,91,118,119,120,149],[],[0,1,2,3,4,5,6,23,24,25,26,27,28,29,30,31,32,33,34,35,54,55,56,57,58,59,60,61,62,63,64,85,86,87,88,89,90,91,92,93,116,117,118,119,120,121,122,147,148,149,150,151,178,179,180,209]];
 
   // create player consturction function
   
 
-  function Player (name, divId, healthTotal, health, accuracy, attackNumber, attackNumberMax, weaponOne, weaponOneAmmo, weaponOneAmmoUsed, weaponOneRange, weaponOneDamageMin, weaponOneDamageMax, weaponTwo, weaponTwoAmmo, weaponTwoAmmoUsed, weaponTwoRange, weaponTwoDamageMin, weaponTwoDamageMax, weaponMelee, weaponMeleeDamageMin, weaponMeleeDamageMax, defense, movement, movementMax, team, evade){
+  function Player (name, divId, healthTotal, health, accuracy, attackNumber, attackNumberMax, weaponOne, weaponOneAmmo, weaponOneAmmoUsed, weaponOneRange, weaponOneAccuracy, weaponOneDamageMin, weaponOneDamageMax, weaponTwo, weaponTwoAmmo, weaponTwoAmmoUsed, weaponTwoRange, weaponTwoAccuracy, weaponTwoDamageMin, weaponTwoDamageMax, weaponMelee, weaponMeleeAccuracy, weaponMeleeDamageMin, weaponMeleeDamageMax, defense, movement, movementMax, team, evade){
     this.name = name;
     this.divId = divId;
     this.healthTotal = healthTotal;
@@ -34,15 +35,18 @@ $ (function() {
     this.weaponOneAmmo = weaponOneAmmo;
     this.weaponOneAmmoUsed = weaponOneAmmoUsed; 
     this.weaponOneRange = weaponOneRange;
+    this.weaponOneAccuracy = weaponOneAccuracy;
     this.weaponOneDamageMin = weaponOneDamageMin;
     this.weaponOneDamageMax = weaponOneDamageMax;
     this.weaponTwo = weaponTwo;
     this.weaponTwoAmmo = weaponTwoAmmo;
     this.weaponTwoAmmoUsed = weaponTwoAmmoUsed;
     this.weaponTwoRange = weaponTwoRange;
+    this.weaponTwoAccuracy = weaponTwoAccuracy;
     this.weaponTwoDamageMin = weaponTwoDamageMin;
     this.weaponTwoDamageMax = weaponTwoDamageMax;
     this.weaponMelee = weaponMelee;
+    this.weaponMeleeAccuracy = weaponMeleeAccuracy;
     this.weaponMeleeDamageMin = weaponMeleeDamageMin;
     this.weaponMeleeDamageMax = weaponMeleeDamageMax;
     this.defense = defense;
@@ -55,7 +59,7 @@ $ (function() {
   // actual players
 
 // Team 1
-  var pOneCha1 = new Player("Alpha", "alpha", 100, 100, 80, 2, 2, "Assault Rifle", 30, 6, 5, 20, 40, "Pistol", 60, 3, 3, 10, 25, "Sword", 35, 50, 30, 7, 7, 1, 13);
+  var pOneCha1 = new Player("Alpha", "alpha", 100, 100, 80, 2, 2, "Assault Rifle", 30, 3, 5, 75, 10, 13, "Pistol", 60, 3, 3, 65, 5, 8, "Sword", 30, 40, 50, 30, 7, 7, 1, 13);
 
 
   $("ul").on("click", "li#alpha", function() {
@@ -96,7 +100,7 @@ $ (function() {
   });
 
 
-  var pOneCha2 = new Player("Beta", "beta", 65, 65, 100, 2, 2, "Sniper Rifle", 15, 1, 7, 60, 80, "Pistol", 60, 3, 3, 10, 25, "Knife", 25, 40, 15, 10, 10, 1, 15);
+  var pOneCha2 = new Player("Beta", "beta", 100, 100, 80, 2, 2, "Assault Rifle", 30, 3, 5, 75, 10, 13, "Pistol", 60, 3, 3, 65, 5, 8, "Sword", 30, 40, 50, 30, 7, 7, 1, 13);
 
 
   $("ul").on("click", "li#beta", function() {
@@ -136,7 +140,7 @@ $ (function() {
   });
 
 
-  var pOneCha3 = new Player("Charlie", "charlie", 150, 150, 60, 2, 2, "Minigun", 200, 15, 3, 50, 60, "Rocket Launcher", 2, 1, 4, 90, 120, "Fists", 15, 30, 60, 4, 4, 1, 5);
+  var pOneCha3 = new Player("Charlie", "charlie", 100, 100, 80, 2, 2, "Assault Rifle", 30, 3, 5, 75, 10, 13, "Pistol", 60, 3, 3, 65, 5, 8, "Sword", 30, 40, 50, 30, 7, 7, 1, 13);
 
 
   $("ul").on("click", "li#charlie", function() {
@@ -176,7 +180,7 @@ $ (function() {
   });
 
 
-  var pOneCha4 = new Player("Delta", "delta", 65, 65, 100, 2, 2, "Sniper Rifle", 15, 1, 7, 60, 80, "Pistol", 60, 3, 3, 10, 25, "Knife", 25, 40, 15, 10, 10, 1, 15);
+  var pOneCha4 = new Player("Delta", "delta", 65, 65, 100, 2, 2, "Sniper Rifle", 15, 1, 7, 100, 70, 85, "Pistol", 60, 3, 3, 65, 5, 8, "Knife", 60, 20, 30, 15, 10, 10, 1, 15);
 
 
   $("ul").on("click", "li#delta", function() {
@@ -216,7 +220,7 @@ $ (function() {
   });
 
 
-  var pOneCha5 = new Player("Echo", "echo", 150, 150, 60, 2, 2, "Minigun", 200, 15, 3, 50, 60, "Rocket Launcher", 2, 1, 4, 90, 120, "Fists", 15, 30, 60, 4, 4, 1, 5);
+  var pOneCha5 = new Player("Echo", "echo", 150, 150, 60, 2, 2, "Minigun", 210, 15, 3, 50, 8, 10, "Rocket Launcher", 2, 1, 4, 70, 90, 120, "Fists", 40, 30, 40, 60, 4, 4, 1, 5);
 
 
   $("ul").on("click", "li#echo", function() {
@@ -258,7 +262,7 @@ $ (function() {
 
   // Team 2
 
-  var pTwoCha1 = new Player("Foxtrot", "foxtrot", 100, 100, 80, 2, 2, "Assault Rifle", 30, 6, 5, 20, 40, "Pistol", 60, 3, 3, 10, 25, "Sword", 35, 50, 30, 7, 7, 1, 5);
+  var pTwoCha1 = new Player("Foxtrot", "foxtrot", 100, 100, 80, 2, 2, "Assault Rifle", 30, 3, 5, 75, 10, 13, "Pistol", 60, 3, 3, 65, 5, 8, "Sword", 30, 40, 50, 30, 7, 7, 1, 13);
 
 
   $("ul").on("click", "li#foxtrot", function() {
@@ -298,7 +302,7 @@ $ (function() {
   });
 
 
-  var pTwoCha2 = new Player("Gamma", "gamma", 65, 65, 100, 2, 2, "Sniper Rifle", 15, 1, 7, 60, 80, "Pistol", 60, 3, 3, 10, 25, "Knife", 25, 40, 15, 10, 10, 1, 15);
+  var pTwoCha2 = new Player("Gamma", "gamma", 100, 100, 80, 2, 2, "Assault Rifle", 30, 3, 5, 75, 10, 13, "Pistol", 60, 3, 3, 65, 5, 8, "Sword", 30, 40, 50, 30, 7, 7, 1, 13);
 
 
   $("ul").on("click", "li#gamma", function() {
@@ -339,7 +343,7 @@ $ (function() {
   });
 
 
-  var pTwoCha3 = new Player("Hotel", "hotel", 150, 150, 60, 2, 2, "Minigun", 200, 15, 3, 50, 60, "Rocket Launcher", 2, 1, 4, 90, 120, "Fists", 15, 30, 60, 4, 4, 1, 5);
+  var pTwoCha3 = new Player("Hotel", "hotel", 100, 100, 80, 2, 2, "Assault Rifle", 30, 3, 5, 75, 10, 13, "Pistol", 60, 3, 3, 65, 5, 8, "Sword", 30, 40, 50, 30, 7, 7, 1, 13);
 
 
   $("ul").on("click", "li#hotel", function() {
@@ -380,7 +384,7 @@ $ (function() {
   });
 
 
-  var pTwoCha4 = new Player("Indigo", "indigo", 65, 65, 100, 2, 2, "Sniper Rifle", 15, 1, 7, 60, 80, "Pistol", 60, 3, 3, 10, 25, "Knife", 25, 40, 15, 10, 10, 1, 15);
+  var pTwoCha4 = new Player("Indigo", "indigo", 65, 65, 100, 2, 2, "Sniper Rifle", 15, 1, 7, 100, 70, 85, "Pistol", 60, 3, 3, 65, 5, 8, "Knife", 60, 20, 30, 15, 10, 10, 1, 15);
 
 
   $("ul").on("click", "li#indigo", function() {
@@ -421,7 +425,7 @@ $ (function() {
   });
 
 
-  var pTwoCha5 = new Player("Juliett", "juliett", 150, 150, 60, 2, 2, "Minigun", 200, 15, 3, 50, 60, "Rocket Launcher", 2, 1, 4, 90, 120, "Fists", 15, 30, 60, 4, 4, 1, 5);
+  var pTwoCha5 = new Player("Juliett", "juliett", 150, 150, 60, 2, 2, "Minigun", 210, 15, 3, 50, 8, 10, "Rocket Launcher", 2, 1, 4, 70, 90, 120, "Fists", 40, 30, 40, 60, 4, 4, 1, 5);
 
 
   $("ul").on("click", "li#juliett", function() {
@@ -545,6 +549,7 @@ $ (function() {
     if (selectedCharacter !== "") {
       if (this.id === "selectWeaponOne" && selectedCharacter.weaponOneAmmo >0) {
         $(".grid").removeClass("inRange");
+        selectedWeaponAccuracy = selectedCharacter.weaponOneAccuracy;
         selectedWeaponRange = selectedCharacter.weaponOneRange;
         gridHighlightWeaponRange();
         selectedWeapon = selectedCharacter.weaponOne;
@@ -558,6 +563,7 @@ $ (function() {
       }
       if (this.id === "selectWeaponTwo" && selectedCharacter.weaponTwoAmmo >0) {
         $(".grid").removeClass("inRange");
+        selectedWeaponAccuracy = selectedCharacter.weaponTwoAccuracy;
         selectedWeaponRange = selectedCharacter.weaponTwoRange;
         gridHighlightWeaponRange();
         selectedWeapon = selectedCharacter.weaponTwo;
@@ -570,6 +576,8 @@ $ (function() {
         selectedWeapon = "";
       }
       if (this.id === "selectWeaponMelee") {
+        $(".grid").removeClass("inRange");
+        selectedWeaponAccuracy = selectedCharacter.weaponMeleeAccuracy;
         selectedWeaponRange = 1;
         gridHighlightWeaponRange();
         selectedWeaponDamageMax = selectedCharacter.weaponTwoDamageMax;
@@ -581,59 +589,87 @@ $ (function() {
   });
 
   var attackResolve = function () {
-    weaponHitChance = selectedCharacter.accuracy - selectedEnemy.evade;
+    selectedWeaponHitChance = selectedCharacter.accuracy - selectedEnemy.evade;
     if (selectedCharacter.attackNumber > 0) {
-      weaponHitChance = selectedCharacter.accuracy - selectedEnemy.evade;
-      percentage = Math.round(Math.random()*100)
-      $('#infoDisplay').html("You have a " + weaponHitChance + "% chance of hitting the taget.");
-      setTimeout(function(){
-        if (weaponHitChance < percentage) {
-          $('#infoDisplay').html("Missed!");
-        selectedWeaponAmmo = selectedWeaponAmmo - selectedWeaponAmmoUsed;
-        $('#enemyHealth').html(selectedEnemy.health + " / " + selectedEnemy.healthTotal)
+      var totalHits = 0;
+      var totalMisses = 0;
+      var totalCrits = 0;
+      var bulletHit = "N"
+      var bulletCrit = "N"
+      var bulletMiss = "N"
+      selectedWeaponHitChance = (selectedCharacter.accuracy+selectedWeaponAccuracy)/2 - selectedEnemy.evade;
+      $('#infoDisplay').html("You have a " + selectedWeaponHitChance + "% chance of hitting the taget.");
+      for (var i = 0; i<=(selectedWeaponAmmoUsed-1); i++) {
+        percentage = (Math.round(Math.random()*100))-(0.02*i)
+        console.log(percentage)
+        if (selectedWeaponHitChance < percentage) {
+          console.log("Miss")
+          bulletMiss="Y";
+          bulletHit="N";
+          bulletCrit="N" 
+          $('#enemyHealth').html(selectedEnemy.health + " / " + selectedEnemy.healthTotal)
         }
-        if (weaponHitChance>percentage) {
-          if(weaponHitChance >= (selectedCharacter.accuracy)*0.97) {
-            $('#infoDisplay').html("Critical Hit!");
+        if (selectedWeaponHitChance > percentage) {
+          if(Math.round(Math.random()*100) > 97) {
+            console.log("Crit")
             weaponDamage = (selectedWeaponDamageMin+Math.round(Math.random()*(selectedWeaponDamageMax-selectedWeaponDamageMin)))*1.5;
-            setTimeout(function(){
-              $('#infoDisplay').html("Dealt the enemy " + weaponDamage + "!");
-              $('#selectedEnemy').html(selectedEnemy.name);
-              $('#enemyHealth').html(selectedEnemy.health + " / " + selectedEnemy.healthTotal);
-            }, 1000);
+            bulletMiss="N";
+            bulletHit="N";
+            bulletCrit="Y";
             selectedEnemy.health = selectedEnemy.health - weaponDamage;
-            selectedWeaponAmmo = selectedWeaponAmmo - selectedWeaponAmmoUsed;
-            deathCheck();
-          } else {
-            $('#infoDisplay').html("Hit!");
+            $('#enemyHealth').html(selectedEnemy.health + " / " + selectedEnemy.healthTotal);
+          }
+          if (selectedWeaponHitChance > percentage) {
+            console.log("Hit")
             weaponDamage = selectedWeaponDamageMin+Math.round(Math.random()*(selectedWeaponDamageMax-selectedWeaponDamageMin));
-            setTimeout(function(){
-              $('#infoDisplay').html("Dealt the enemy " + weaponDamage + "!");
-              $('#selectedEnemy').html("");
-              $('#enemyHealth').html("");
-            }, 1000);
+            bulletMiss="N";
+            bulletHit="Y";
+            bulletCrit="N"
             selectedEnemy.health = selectedEnemy.health - weaponDamage;
-            selectedWeaponAmmo = selectedWeaponAmmo - selectedWeaponAmmoUsed;
-            deathCheck();
+            $('#enemyHealth').html(selectedEnemy.health + " / " + selectedEnemy.healthTotal);
           }
         }
+        if (bulletHit === "Y") {
+          totalHits ++;
+          setTimeout(function() {
+            $('#infoDisplay').html("Hit for " + weaponDamage + "<br>" + "Total Crits = " + totalCrits + "<br>" + "Total Hits = " + totalHits + "<br>" + "Total Misses = " + totalMisses);
+            selectedEnemy.health = selectedEnemy.health - weaponDamage;
+          }, (500));
+        } else if (bulletCrit === "Y") {
+          totalCrits ++;
+          setTimeout(function() {
+            $('#infoDisplay').html("Critical hit for " + weaponDamage + "<br>" + "Total Crits = " + totalCrits + "<br>" + "Total Hits = " + totalHits + "<br>" + "Total Misses = " + totalMisses);
+          }, (500));
+        } else {
+          totalMisses++;
+          setTimeout(function() {
+            $('#infoDisplay').html("Missed!" + "<br>" + "Total Crits = " + totalCrits + "<br>" + "Total Hits = " + totalHits + "<br>" + "Total Misses = " + totalMisses);
+          }, (500));
+        }
+        selectedWeaponAmmo--;
+        $('#selectedEnemy').html(selectedEnemy.name);
+        selectedEnemy.health = selectedEnemy.health - weaponDamage;
+        $('#enemyHealth').html(selectedEnemy.health + " / " + selectedEnemy.healthTotal);
         if (selectedWeapon === selectedCharacter.weaponOne) {
           selectedCharacter.weaponOneAmmo = selectedCharacter.weaponOneAmmo - selectedCharacter.weaponOneAmmoUsed;
-          selectedCharacter.attackNumber --;
           $('#attackNumber').html(selectedCharacter.attackNumber);
           $('#weaponOneAmmo').html(selectedWeaponAmmo);        
         } else if (selectedWeapon === selectedCharacter.weaponTwo) {
           selectedCharacter.weaponTwoAmmo = selectedCharacter.weaponTwoAmmo - selectedCharacter.weaponTwoAmmoUsed;
-          selectedCharacter.attackNumber --;
           $('#attackNumber').html(selectedCharacter.attackNumber);
           $('#weaponTwoAmmo').html(selectedWeaponAmmo);
         }
-      }, 1000);
+        setTimeout(function(){
+          deathCheck();
+        }, 500);
+      }
     } else {
       $('#infoDisplay').html("You have no more attacks.");
       selectedWeapon = "";
     }
+    attackNumber--;
   }
+
 
   var deathCheck = function () {
     if (selectedEnemy.health <= 0) {
