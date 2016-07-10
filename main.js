@@ -27,10 +27,18 @@ $ (function() {
   var currentId = "";
   var selectedWeaponHitChance = 0;
   var selectedWeaponAccuracy = 0;
-  var ranges = [[0, 29], [], [0, 1, 2, 27, 28, 29, 30, 31, 58, 59, 60, 89], [0,1,2,3,26,27,28,29,30,31,32,57,58,59,60,61,88,89,90,119],[0,1,2,3,4,25,26,27,28,29,30,31,32,33,56,57,58,59,60,61,62,87,88,89,90,91,118,119,120,149],[],[0,1,2,3,4,5,6,23,24,25,26,27,28,29,30,31,32,33,34,35,54,55,56,57,58,59,60,61,62,63,64,85,86,87,88,89,90,91,92,93,116,117,118,119,120,121,122,147,148,149,150,151,178,179,180,209]];
+  var terrainEffectsEvade = 1;
+  var terrainEffectsDefense = 1;
+  var terrainEffectsMovement = 1;
+  var ranges = [[0, 29], [0, 1, 28,29,30,59], [0, 1, 2, 27, 28, 29, 30, 31, 58, 59, 60, 89], [0,1,2,3,26,27,28,29,30,31,32,57,58,59,60,61,88,89,90,119],[0,1,2,3,4,25,26,27,28,29,30,31,32,33,56,57,58,59,60,61,62,87,88,89,90,91,118,119,120,149],[],[0,1,2,3,4,5,6,23,24,25,26,27,28,29,30,31,32,33,34,35,54,55,56,57,58,59,60,61,62,63,64,85,86,87,88,89,90,91,92,93,116,117,118,119,120,121,122,147,148,149,150,151,178,179,180,209]];
 
   // create player consturction function
   
+  function Terrain (bonusEvade, bonusDefense, bonusMovement) {
+    this.bonusEvade = bonusEvade;
+    this.bonusDefense = bonusDefense;
+    this.bonusMovement = bonusMovement;
+  }
 
   function Player (name, divId, healthTotal, health, accuracy, attackNumber, attackNumberMax, weaponOne, weaponOneAmmo, weaponOneAmmoUsed, weaponOneRange, weaponOneAccuracy, weaponOneDamageMin, weaponOneDamageMax, weaponTwo, weaponTwoAmmo, weaponTwoAmmoUsed, weaponTwoRange, weaponTwoAccuracy, weaponTwoDamageMin, weaponTwoDamageMax, weaponMelee, weaponMeleeAccuracy, weaponMeleeDamageMin, weaponMeleeDamageMax, defense, movement, movementMax, team, evade){
     this.name = name;
@@ -105,6 +113,9 @@ $ (function() {
         selectedWeapon = "";
         $(".grid").removeClass("inRange");
       }
+      terrainEffectsMovement = 1;
+      terrainEffectsDefense = 1;
+      terrainEffectsEvade = 1;
     }
   });
 
@@ -145,6 +156,9 @@ $ (function() {
         selectedWeapon = "";
         $(".grid").removeClass("inRange");
       }
+      terrainEffectsMovement = 1;
+      terrainEffectsDefense = 1;
+      terrainEffectsEvade = 1;
     }
   });
 
@@ -185,6 +199,9 @@ $ (function() {
         selectedWeapon = "";
         $(".grid").removeClass("inRange");
       }
+      terrainEffectsMovement = 1;
+      terrainEffectsDefense = 1;
+      terrainEffectsEvade = 1;
     }
   });
 
@@ -225,6 +242,9 @@ $ (function() {
         selectedWeapon = "";
         $(".grid").removeClass("inRange");
       }
+      terrainEffectsMovement = 1;
+      terrainEffectsDefense = 1;
+      terrainEffectsEvade = 1;
     }
   });
 
@@ -265,6 +285,9 @@ $ (function() {
         selectedWeapon = "";
         $(".grid").removeClass("inRange");
       }
+      terrainEffectsMovement = 1;
+      terrainEffectsDefense = 1;
+      terrainEffectsEvade = 1;
     }
   });
 
@@ -307,6 +330,9 @@ $ (function() {
         selectedWeapon = "";
         $(".grid").removeClass("inRange");
       }
+      terrainEffectsMovement = 1;
+      terrainEffectsDefense = 1;
+      terrainEffectsEvade = 1;
     }
   });
 
@@ -348,6 +374,9 @@ $ (function() {
         selectedWeapon = "";
         $(".grid").removeClass("inRange");
       }
+      terrainEffectsMovement = 1;
+      terrainEffectsDefense = 1;
+      terrainEffectsEvade = 1;
     }
   });
 
@@ -389,6 +418,9 @@ $ (function() {
         selectedWeapon = "";
         $(".grid").removeClass("inRange");
       }
+      terrainEffectsMovement = 1;
+      terrainEffectsDefense = 1;
+      terrainEffectsEvade = 1;
     }
   });
 
@@ -430,6 +462,9 @@ $ (function() {
         selectedWeapon = "";
         $(".grid").removeClass("inRange");
       }
+      terrainEffectsMovement = 1;
+      terrainEffectsDefense = 1;
+      terrainEffectsEvade = 1;
     }
   });
 
@@ -471,6 +506,9 @@ $ (function() {
         selectedWeapon = "";
         $(".grid").removeClass("inRange");
       }
+      terrainEffectsMovement = 1;
+      terrainEffectsDefense = 1;
+      terrainEffectsEvade = 1;
     }
   });
 
@@ -600,6 +638,7 @@ $ (function() {
   var attackResolve = function () {
     selectedWeaponHitChance = selectedCharacter.accuracy - selectedEnemy.evade;
     if (selectedCharacter.attackNumber > 0) {
+
       selectedWeaponHitChance = (selectedCharacter.accuracy+selectedWeaponAccuracy)/2 - selectedEnemy.evade;
       percentage = Math.round(Math.random()*100)
       $('#infoDisplay').html("You have a " + selectedWeaponHitChance + "% chance of hitting the taget.");
@@ -612,7 +651,7 @@ $ (function() {
         if (selectedWeaponHitChance>percentage) {
           if(selectedWeaponHitChance >= (selectedCharacter.accuracy)*0.97) {
             $('#infoDisplay').html("Critical Hit!");
-            weaponDamage = (selectedWeaponDamageMin+Math.round(Math.random()*(selectedWeaponDamageMax-selectedWeaponDamageMin)))*1.5;
+            weaponDamage = ((selectedWeaponDamageMin+Math.round(Math.random()*(selectedWeaponDamageMax-selectedWeaponDamageMin)))*1.5)-selectedCharacter.defense;
             setTimeout(function(){
               $('#infoDisplay').html("Dealt the enemy " + weaponDamage + "!");
               $('#selectedEnemy').html(selectedEnemy.name);
@@ -623,7 +662,7 @@ $ (function() {
             deathCheck();
           } else {
             $('#infoDisplay').html("Hit!");
-            weaponDamage = selectedWeaponDamageMin+Math.round(Math.random()*(selectedWeaponDamageMax-selectedWeaponDamageMin));
+            weaponDamage = (selectedWeaponDamageMin+Math.round(Math.random()*(selectedWeaponDamageMax-selectedWeaponDamageMin)))-selectedCharacter.defense;
             setTimeout(function(){
               $('#infoDisplay').html("Dealt the enemy " + weaponDamage + "!");
               $('#selectedEnemy').html(selectedEnemy.name);
@@ -682,6 +721,49 @@ $ (function() {
     });
   }
 
+
+
+
+  var plains = new Terrain (1, 1, 1);
+  var forest = new Terrain (7, 5, 1);
+  var sand = new Terrain (-10, 1, -1);
+  var rock = new Terrain (-5, +7, -1);
+  var water = new Terrain (-5, 3, -2);
+  var ice = new Terrain (-3, 1, 1);
+
+  var terrainEffectsAll = function() {
+    if ($("#"+selectedEnemy.divID).attr("class", "plains")) {
+      terrainEffectsDefense = plains.bonusDefense
+      terrainEffectsEvade = plains.bonusDefense
+      console.log(terrainEffectsDefense)
+      console.log(terrainEffectsEvade)
+    } else if ($("#"+selectedEnemy.divID).attr("class", "forest")) {
+      terrainEffectsDefense = forest.bonusDefense
+      terrainEffectsEvade = forest.bonusDefense
+      console.log(terrainEffectsDefense)
+      console.log(terrainEffectsEvade)
+    } else if ($("#"+selectedEnemy.divID).attr("class", "sand")) {
+      terrainEffectsDefense = sand.bonusDefense
+      terrainEffectsEvade = sand.bonusDefense
+      console.log(terrainEffectsDefense)
+      console.log(terrainEffectsEvade)
+    } else if ($("#"+selectedEnemy.divID).attr("class", "rock")) {
+      terrainEffectsDefense = rock.bonusDefense
+      terrainEffectsEvade = rock.bonusDefense
+      console.log(terrainEffectsDefense)
+      console.log(terrainEffectsEvade)
+    } else if ($("#"+selectedEnemy.divID).attr("class", "water")) {
+      terrainEffectsDefense = water.bonusDefense
+      terrainEffectsEvade = water.bonusDefense
+      console.log(terrainEffectsDefense)
+      console.log(terrainEffectsEvade)
+    } else if ($("#"+selectedEnemy.divID).attr("class", "ice")) {
+      terrainEffectsDefense = ice.bonusDefense
+      terrainEffectsEvade = ice.bonusDefense
+      console.log(terrainEffectsDefense)
+      console.log(terrainEffectsEvade)
+    }
+  }
 // switch turn
 
   $("#endTurn").on("click", function() {
