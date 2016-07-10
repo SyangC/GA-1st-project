@@ -702,15 +702,21 @@ $ (function() {
         }
       }, 1000);
       if (selectedWeapon === selectedCharacter.weaponOne) {
+        console.log(selectedCharacter.weaponOneAmmo);
+        console.log(selectedCharacter.weaponOneAmmoUsed);
         selectedCharacter.weaponOneAmmo = selectedCharacter.weaponOneAmmo - selectedCharacter.weaponOneAmmoUsed;
         selectedCharacter.attackNumber --;
+        console.log(selectedCharacter.attackNumber);
         $('#attackNumber').html(selectedCharacter.attackNumber);
-        $('#weaponOneAmmo').html(selectedWeaponAmmo);        
+        $('#weaponOneAmmo').html(selectedCharacter.weaponOneAmmo);        
       } else if (selectedWeapon === selectedCharacter.weaponTwo) {
+        console.log(selectedCharacter.weaponOneAmmo);
+        console.log(selectedCharacter.weaponOneAmmoUsed);
         selectedCharacter.weaponTwoAmmo = selectedCharacter.weaponTwoAmmo - selectedCharacter.weaponTwoAmmoUsed;
         selectedCharacter.attackNumber --;
+        console.log(selectedCharacter.attackNumber);
         $('#attackNumber').html(selectedCharacter.attackNumber);
-        $('#weaponTwoAmmo').html(selectedWeaponAmmo);
+        $('#weaponTwoAmmo').html(selectedCharacter.weaponOneAmmo);
       }
     } else {
       $('#infoDisplay').html("You have no more attacks.");
@@ -798,6 +804,8 @@ $ (function() {
   $("#endTurn").on("click", function() {
     $(".grid").removeClass("inRange");
     selectedEnemy = "";
+    $('.pcImage').attr("")
+    $('.enemyImage').attr("")
     $('#selectedEnemy').html("Enemy");
     $('#enemyHealth').html("");
     selectedCharacter = "";
