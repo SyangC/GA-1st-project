@@ -2,6 +2,15 @@ console.log("main.js has loaded")
 
 $ (function() {
 
+  $.fn.extend({
+      animateCss: function (animationName) {
+          var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+          $(this).addClass('animated ' + animationName).one(animationEnd, function() {
+              $(this).removeClass('animated ' + animationName);
+          });
+      }
+  });
+
   var $animation = $('#pcmovement');
   var selectedCharacter = "";
   var selectedEnemy = "";
@@ -703,6 +712,11 @@ $ (function() {
       pOneCha5.movement = pOneCha5.movementMax;
       pOneCha5.attackNumber = pOneCha5.attackNumberMax;
       playerTurn ++;
+      $('main').animateCss('flash');
+      setTimeout(function(){
+        $(".blue").attr("class", "red");
+        $(".selectWeaponBlue").attr("class", "selectWeaponRed");
+      }, 700);
     } else {
       pTwoCha1.movement = pTwoCha1.movementMax;
       pTwoCha1.attackNumber = pTwoCha1.attackNumberMax;
@@ -715,6 +729,11 @@ $ (function() {
       pTwoCha5.movement = pTwoCha5.movementMax;
       pTwoCha5.attackNumber = pTwoCha5.attackNumberMax;
       playerTurn ++;
+      $('main').animateCss('flash');
+      setTimeout(function(){
+        $(".red").attr("class", "blue");
+        $(".selectWeaponRed").attr("class", "selectWeaponBlue");
+      }, 700);
     }
   });
 
