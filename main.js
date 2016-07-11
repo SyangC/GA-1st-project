@@ -43,8 +43,8 @@ $ (function() {
   var pTwoCha3Name = "Vanari";
   var pTwoCha4Name = "Badger";
   var pTwoCha5Name = "Rurik";
-  var teamOneColour = "";
-  var teamTwoColour = "";
+  var teamOneColour = "blue";
+  var teamTwoColour = "red";
 
 // welcome page character and team cutomisation
 
