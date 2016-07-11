@@ -28,7 +28,7 @@
   width:100px;
   height: 50px;
   border-radius: 45px;
-  margin-left:150px;
+  margin-left:175px;
   outline: 0;
   font-family: "scorched earth";
   color: white;
@@ -41,6 +41,7 @@
   background-color: blue;
   font-family: "scorched earth";
   color: white;
+  outline: 0;
 }
 
 table#teamOneChoice.blue {
@@ -91,7 +92,7 @@ table#teamTwoChoice.blue {
   width:100px;
   height: 50px;
   border-radius: 45px;
-  margin-left:150px;
+  margin-left:175px;
   outline: 0;
   font-family: "scorched earth";
   color: white;
@@ -104,6 +105,7 @@ table#teamTwoChoice.blue {
   background-color: red;
   font-family: "scorched earth";
   color: white;
+  outline: 0;
 }
 
 table#teamOneChoice.red {
@@ -154,7 +156,7 @@ table#teamTwoChoice.red {
   width:100px;
   height: 50px;
   border-radius: 45px;
-  margin-left:150px;
+  margin-left:175px;
   outline: 0;
   font-family: "scorched earth";
   color: white;
@@ -167,6 +169,7 @@ table#teamTwoChoice.red {
   background-color: purple;
   font-family: "scorched earth";
   color: white;
+  outline: 0;
 }
 
 table#teamOneChoice.purple {
@@ -217,7 +220,7 @@ table#teamTwoChoice.purple {
   width:100px;
   height: 50px;
   border-radius: 45px;
-  margin-left:150px;
+  margin-left:175px;
   outline: 0;
   font-family: "scorched earth";
   color: white;
@@ -230,6 +233,7 @@ table#teamTwoChoice.purple {
   background-color: green;
   font-family: "scorched earth";
   color: white;
+  outline: 0;
 }
 
 table#teamOneChoice.green {
@@ -280,7 +284,7 @@ table#teamTwoChoice.green {
   width:100px;
   height: 50px;
   border-radius: 45px;
-  margin-left:150px;
+  margin-left:175px;
   outline: 0;
   font-family: "scorched earth";
   color: white;
@@ -293,6 +297,7 @@ table#teamTwoChoice.green {
   background-color: orange;
   font-family: "scorched earth";
   color: white;
+  outline: 0;
 }
 
 table#teamOneChoice.orange {
@@ -343,7 +348,7 @@ table#teamTwoChoice.orange {
   width:100px;
   height: 50px;
   border-radius: 45px;
-  margin-left:150px;
+  margin-left:175px;
   outline: 0;
   font-family: "scorched earth";
   color: grey;
@@ -356,6 +361,7 @@ table#teamTwoChoice.orange {
   background-color: yellow;
   font-family: "scorched earth";
   color: grey;
+  outline: 0;
 }
 
 table#teamOneChoice.yellow {
@@ -570,7 +576,7 @@ td {
 }
 
 #infoDisplay {
-  height:85px;
+  height:140px;
   width: 300px;
   border: 1px solid;
   margin-left:1px;
@@ -604,11 +610,6 @@ td {
 
 .ice {
   background: url("ice.png") center no-repeat;
-  background-size: cover;
-}
-
-body {
-  background: url("dystopian-abandoned-cities-dubai-1024x588.jpg") center no-repeat fixed;
   background-size: cover;
 }
 
@@ -691,5 +692,25 @@ h1 {
 
 #enemyHealthBar {
   margin-top:190px;
+}
 
+body#first {
+  background: url("dystopian-abandoned-cities-dubai-1024x588.jpg") center no-repeat fixed;
+  background-size: cover;
+}
+
+#finalScreenDisplay {
+  text-transform:capitalize;
+}
+
+#restart {
+  float:left;
+  margin-left:50px;
+  background-color: grey;
+  border-radius: 45px;
+  width:100px;
+  height: 50px;
+  color: white;
+  font-family: "scorched earth";
+  outline: 0;
 }

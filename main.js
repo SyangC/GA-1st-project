@@ -55,44 +55,50 @@ $ (function() {
   var colourIndex = 0;
   var teamColours = ["red", "blue", "green", "purple", "yellow", "orange"]
 
-  $("#teamOneColourPrev").on("click", function() {
+  var colourPrev = function() {
     colourIndex++;
     if (colourIndex === teamColours.length) {
         colourIndex = 0;
     }
+  }
+
+  var colourNext = function() {
+    colourIndex--;
+    if (colourIndex === -1) {
+        colourIndex = teamColours.length-1;
+    }
+  }
+
+  var teamOneColourChoice = function () {
     $("#teamOneColourChoice").html(teamColours[colourIndex]);
     $("#teamOneChoice").attr("class", teamColours[colourIndex]);
     teamOneColour = teamColours[colourIndex];
+  }
+
+  var teamTwoColourChoice = function () {
+    $("#teamTwoColourChoice").html(teamColours[colourIndex]);
+    $("#teamTwoChoice").attr("class", teamColours[colourIndex]);
+    teamTwoColour = teamColours[colourIndex];
+  }
+
+  $("#teamOneColourPrev").on("click", function() {
+    colourPrev();
+    teamOneColourChoice();
   });
 
   $("#teamOneColourNext").on("click", function() {
-    colourIndex--;
-    if (colourIndex === -1) {
-        colourIndex = teamColours.length-1;
-    }
-    $("#teamOneColourChoice").html(teamColours[colourIndex]);
-    $("#teamOneChoice").attr("class", teamColours[colourIndex]);
-    teamOneColour = teamColours[colourIndex];
+    colourNext();
+    teamOneColourChoice();
   });
 
   $("#teamTwoColourPrev").on("click", function() {
-    colourIndex++;
-    if (colourIndex === teamColours.length) {
-        colourIndex = 0;
-    }
-    $("#teamTwoColourChoice").html(teamColours[colourIndex]);
-    $("#teamTwoChoice").attr("class", teamColours[colourIndex]);
-    teamTwoColour = teamColours[colourIndex];
+    colourPrev();
+    teamTwoColourChoice();
   });
 
   $("#teamTwoColourNext").on("click", function() {
-    colourIndex--;
-    if (colourIndex === -1) {
-        colourIndex = teamColours.length-1;
-    }
-    $("#teamTwoColourChoice").html(teamColours[colourIndex]);
-    $("#teamTwoChoice").attr("class", teamColours[colourIndex]);
-    teamTwoColour = teamColours[colourIndex];
+    colourNext();
+    teamTwoColourChoice();
   });
 
 // welcome page transform
@@ -128,9 +134,7 @@ $ (function() {
     
     var pOneCha1 = new Player(pOneCha1Name, "alpha", 100, 100, 80, 2, 2, "sound/assault rifle.wav", "Assault Rifle", 30, 3, 5, 75, 50, 60, "sound/handgun.wav", "Pistol", 60, 3, 3, 65, 30, 35, "sound/sword.wav", "Sword", 60, 35, 40, 12, 7, 7, 1, 13);
 
-
     var pOneCha2 = new Player(pOneCha2Name, "beta", 100, 100, 80, 2, 2, "sound/assault rifle.wav", "Assault Rifle", 30, 3, 5, 75, 50, 60, "sound/handgun.wav", "Pistol", 60, 3, 3, 65, 30, 35, "sound/sword.wav", "Sword", 60, 35, 40, 12, 7, 7, 1, 13);
-
 
     var pOneCha3 = new Player(pOneCha3Name, "charlie", 100, 100, 80, 2, 2, "sound/assault rifle.wav", "Assault Rifle", 30, 3, 5, 75, 50, 60, "sound/handgun.wav", "Pistol", 60, 3, 3, 65, 30, 35, "sound/sword.wav", "Sword", 60, 35, 40, 12, 7, 7, 1, 13);
 
@@ -149,8 +153,6 @@ $ (function() {
     var pTwoCha4 = new Player(pTwoCha4Name, "indigo", 65, 65, 100, 2, 2, "sound/sniper rifle.wav", "Sniper Rifle", 15, 1, 7, 100, 65, 75, "sound/handgun.wav", "Pistol", 60, 3, 3, 65, 30, 35, "sound/sword.wav", "Knife", 60, 35, 40, 7, 10, 10, 1, 15);
 
     var pTwoCha5 = new Player(pTwoCha5Name, "juliett", 150, 150, 60, 2, 2, "sound/minigun.wav", "Minigun", 210, 15, 3, 50, 90, 110, "sound/rocket.wav", "Rocket Launcher", 2, 1, 4, 70, 130, 150, "sound/punch.wav", "Fists", 40, 30, 35, 17, 4, 4, 1, 5);
-
-
 
     function Terrain (divClass, bonusEvade, bonusDefense, bonusMovement, sound) {
       this.divClass = divClass
@@ -225,6 +227,7 @@ $ (function() {
       $('#selectedEnemy').html(selectedEnemy.name);
       $('#enemyHealth').html(selectedEnemy.health + " / " + selectedEnemy.healthTotal);
       $('.enemyImage').attr("id", selectedEnemy.divId+"Image")
+      enemyHealthBar.value = (100/selectedEnemy.healthTotal*selectedEnemy.health);
       if ($("#"+selectedEnemy.divId).hasClass("inRange")) {
         attackResolve();
         selectedWeapon = "";
@@ -236,10 +239,6 @@ $ (function() {
       }
     }
 
-    // team 1
-    
-
-
     $("ul").on("click", "li#alpha", function() {
       if (playerTurn%2 !== 0) {
         selectedCharacter = pOneCha1;
@@ -249,8 +248,6 @@ $ (function() {
         enemySelect();
       }
     });
-
-
 
     $("ul").on("click", "li#beta", function() {
       if (playerTurn%2 !== 0) {
@@ -262,7 +259,6 @@ $ (function() {
       }
     });
 
-
     $("ul").on("click", "li#charlie", function() {
       if (playerTurn%2 !== 0) {
         selectedCharacter = pOneCha3;
@@ -272,8 +268,6 @@ $ (function() {
         enemySelect();
       }
     });
-
-
 
     $("ul").on("click", "li#delta", function() {
       if (playerTurn%2 !== 0) {
@@ -285,8 +279,6 @@ $ (function() {
       }
     });
 
-
-
     $("ul").on("click", "li#echo", function() {
       if (playerTurn%2 !== 0) {
         selectedCharacter = pOneCha5;
@@ -296,10 +288,6 @@ $ (function() {
         enemySelect();
       }
     });
-
-
-    // Team 2
-
 
     $("ul").on("click", "li#foxtrot", function() {
       if (playerTurn%2 === 0) {
@@ -321,8 +309,6 @@ $ (function() {
       }
     });
 
-
-
     $("ul").on("click", "li#hotel", function() {
       if (playerTurn%2 === 0) {
         selectedCharacter = pTwoCha3;
@@ -333,8 +319,6 @@ $ (function() {
       }
     });
 
-
-
     $("ul").on("click", "li#indigo", function() {
       if (playerTurn%2 === 0) {
         selectedCharacter = pTwoCha4;
@@ -344,9 +328,6 @@ $ (function() {
         enemySelect();
       }
     });
-
-
-
 
     $("ul").on("click", "li#juliett", function() {
       if (playerTurn%2 === 0) {
@@ -590,7 +571,7 @@ $ (function() {
                 $('#enemyHealth').html(selectedEnemy.health + " / " + selectedEnemy.healthTotal);
               }, 1000);
               selectedEnemy.health = selectedEnemy.health - weaponDamage;
-              enemyHealthBar.value = (100/selectedenemy.healthTotal*selectedEnemy.health);
+              enemyHealthBar.value = (100/selectedEnemy.healthTotal*selectedEnemy.health);
               console.log(enemyHealthBar.value);
               selectedWeaponAmmo = selectedWeaponAmmo - selectedWeaponAmmoUsed;
               deathCheck();
@@ -641,16 +622,28 @@ $ (function() {
         if (playerTurn%2 !== 0) {
           teamTwoRemainingCha --;
           if (teamTwoRemainingCha === 0) {
-            alert("Team One has won!")
-          }
+            victory();
+          };
         } else {
           teamOneRemainingCha --;
           if (teamOneRemainingCha === 0) {
-            alert("Team Two has won!")
-          }
+            victory();
+          };
         }
       }
     }
+
+    var victory = function() {
+      if (teamTwoRemainingCha === 0) {
+        $("#inforDisplay").html(teamOneColour+" team has won!" + "<br><br><br>" + "...and the " + teamTwoColour+ " team was also there.");
+      } else if (teamOneRemainingCha === 0) {
+        $("#inforDisplay").html(teamTwoColour+" team has won!" + "<br><br><br>" + "...and the " + teamOneColour+ " team was also there.");
+      }
+    };
+
+    $("#restart").on("click", function() {
+      location.reload();
+    })
 
     var gridHighlightWeaponRange = function () {
       var currentId = $("#"+selectedCharacter.divId);
@@ -709,6 +702,7 @@ $ (function() {
         terrainEffectsMovement = ice.bonusMovement
       }
     }
+
   // switch turn
 
     $("#endTurn").on("click", function() {
@@ -765,37 +759,5 @@ $ (function() {
         }, 700);
       }
     });
-
-// on hover
-
   });
-
-//  welcome page
-
-
 });
-
-
-// });
-
-// 1 - create game board
-// need a large grid board - create a 4x4 grid to test game in the beginning. Will be easy to increase size
-// (non-priority)create a random number generator to be able to change the terrain of the map
-
-// 2 create player element
-// constructor function for pc pieces
-// see how player movement works on board. Most likely on arrow key press down, with animation and changing div boxes of the original div and the destination div
-// will set a variable to each grid as having a pc there or not. This is to prevent other pcs entering the same space.
-
-// 3 create all player stats parameters (i.e. health)
-// We will need some attributes for pcs, with the player needing a health bar.
-
-// 4 create different player actions (attack/dodge...etc).
-// This can have some animations, but this is optional based on how much time I have.
-// This then will need to see how the actions can affect the other pc character
-
-// 5 create switching user turns
-// If I have time (doubtful) then an AI might be a good idea
-// 6 create win functions
-
-// 7 create user interface (i.e. menu) and the rest of the styling
