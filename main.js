@@ -98,9 +98,22 @@ $ (function() {
 // welcome page transform
 
   $("#teamsConfirmed").on("click", function() {
-      if (teamOneColour === teamTwoColour) {
-        $("#homeMenu").animateCss("shake");
-      } else {
+    if (teamOneColour === teamTwoColour) {
+      $("#homeMenu").animateCss("shake");
+    } else {
+      pOneCha1Name = $("#pOneCha1Name").val() || pOneCha1Name;
+      pOneCha2Name = $("#pOneCha2Name").val() || pOneCha2Name;
+      pOneCha3Name = $("#pOneCha3Name").val() || pOneCha3Name;
+      pOneCha4Name = $("#pOneCha4Name").val() || pOneCha4Name;
+      pOneCha5Name = $("#pOneCha5Name").val() || pOneCha5Name;
+      pTwoCha1Name = $("#pTwoCha1Name").val() || pTwoCha1Name;
+      pTwoCha2Name = $("#pTwoCha2Name").val() || pTwoCha2Name;
+      pTwoCha3Name = $("#pTwoCha3Name").val() || pTwoCha3Name;
+      pTwoCha4Name = $("#pTwoCha4Name").val() || pTwoCha4Name;
+      pTwoCha5Name = $("#pTwoCha5Name").val() || pTwoCha4Name;
+      $(".blue").attr("class", teamOneColour);
+      $(".blueSelectWeapon").attr("class", teamOneColour+"SelectWeapon");
+      console.log($("#pOneCha1Name").val());
       setTimeout(function(){
         $("#homeMenu").animateCss("fadeOut");
         $("#homeMenu").addClass("invisible");
@@ -109,41 +122,35 @@ $ (function() {
         $("main").animateCss("fadeIn");
         $("main").removeClass("invisible");
       }, 500);
-      if ($("#pOneCha1Name").val()!=="") {
-        pOneCha1Name = $("#pOneCha1Name").val();
-      }
-      if ($("#pOneCha2Name").val()!=="") {
-        pOneCha2Name = $("#pOneCha2Name").val();
-      }
-      if ($("#pOneCha3Name").val()!=="") {
-        pOneCha3Name = $("#pOneCha3Name").val();
-      }
-      if ($("#pOneCha4Name").val()!=="") {
-        pOneCha4Name = $("#pOneCha4Name").val();
-      }
-      if ($("#pOneCha5Name").val()!=="") {
-        pOneCha5Name = $("#pOneCha5Name").val();
-      }
-      if ($("#pTwoCha1Name").val()!=="") {
-        pTwoCha1Name = $("#pTwoCha1Name").val();
-      }
-      if ($("#pTwoCha2Name").val()!=="") {
-        pTwoCha2Name = $("#pTwoCha2Name").val();
-      }
-      if ($("#pTwoCha3Name").val()!=="") {
-        pTwoCha3Name = $("#pTwoCha3Name").val();
-      }
-      if ($("#pTwoCha4Name").val()!=="") {
-        pTwoCha4Name = $("#pTwoCha4Name").val();
-      }
-      if ($("#pTwoCha5Name").val()!=="") {
-        pTwoCha5Name = $("#pTwoCha5Name").val();
-      }
-      $(".blue").attr("class", teamOneColour);
-      $(".blueSelectWeapon").attr("class", teamOneColour+"SelectWeapon");
-      }
-    });
+    }
     // constructor functions
+
+    
+    var pOneCha1 = new Player(pOneCha1Name, "alpha", 100, 100, 80, 2, 2, "sound/assault rifle.wav", "Assault Rifle", 30, 3, 5, 75, 50, 60, "sound/handgun.wav", "Pistol", 60, 3, 3, 65, 30, 35, "sound/sword.wav", "Sword", 60, 35, 40, 12, 7, 7, 1, 13);
+
+
+    var pOneCha2 = new Player(pOneCha2Name, "beta", 100, 100, 80, 2, 2, "sound/assault rifle.wav", "Assault Rifle", 30, 3, 5, 75, 50, 60, "sound/handgun.wav", "Pistol", 60, 3, 3, 65, 30, 35, "sound/sword.wav", "Sword", 60, 35, 40, 12, 7, 7, 1, 13);
+
+
+    var pOneCha3 = new Player(pOneCha3Name, "charlie", 100, 100, 80, 2, 2, "sound/assault rifle.wav", "Assault Rifle", 30, 3, 5, 75, 50, 60, "sound/handgun.wav", "Pistol", 60, 3, 3, 65, 30, 35, "sound/sword.wav", "Sword", 60, 35, 40, 12, 7, 7, 1, 13);
+
+    var pOneCha4 = new Player(pOneCha4Name, "delta", 65, 65, 100, 2, 2, "sound/sniper rifle.wav", "Sniper Rifle", 15, 1, 7, 100, 65, 75, "sound/handgun.wav", "Pistol", 60, 3, 3, 65, 30, 35, "sound/sword.wav", "Knife", 60, 35, 40, 7, 10, 10, 1, 15);
+
+    var pOneCha5 = new Player(pOneCha5Name, "echo", 150, 150, 60, 2, 2, "sound/minigun.wav", "Minigun", 210, 15, 3, 50, 90, 110, "sound/rocket.wav", "Rocket Launcher", 2, 1, 4, 70, 130, 150, "sound/punch.wav", "Fists", 40, 30, 35, 17, 4, 4, 1, 5);
+
+    var pTwoCha1 = new Player(pTwoCha1Name, "foxtrot", 100, 100, 80, 2, 2, "sound/assault rifle.wav", "Assault Rifle", 30, 3, 5, 75, 50, 60, "sound/handgun.wav", "Pistol", 60, 3, 3, 65, 30, 35, "sound/sword.wav", "Sword", 60, 35, 40, 12, 7, 7, 1, 13);
+
+
+    var pTwoCha2 = new Player(pTwoCha2Name, "gamma", 100, 100, 80, 2, 2, "sound/assault rifle.wav", "Assault Rifle", 30, 3, 5, 75, 50, 60, "sound/handgun.wav", "Pistol", 60, 3, 3, 65, 30, 35, "sound/sword.wav", "Sword", 60, 35, 40, 12, 7, 7, 1, 13);
+
+
+    var pTwoCha3 = new Player(pTwoCha3Name, "hotel", 100, 100, 80, 2, 2, "sound/assault rifle.wav", "Assault Rifle", 30, 3, 5, 75, 20, 40, "sound/handgun.wav", "Pistol", 60, 3, 3, 65, 10, 25, "sound/sword.wav", "Sword", 60, 35, 50, 12, 7, 7, 1, 13);
+
+    var pTwoCha4 = new Player(pTwoCha4Name, "indigo", 65, 65, 100, 2, 2, "sound/sniper rifle.wav", "Sniper Rifle", 15, 1, 7, 100, 65, 75, "sound/handgun.wav", "Pistol", 60, 3, 3, 65, 30, 35, "sound/sword.wav", "Knife", 60, 35, 40, 7, 10, 10, 1, 15);
+
+    var pTwoCha5 = new Player(pTwoCha5Name, "juliett", 150, 150, 60, 2, 2, "sound/minigun.wav", "Minigun", 210, 15, 3, 50, 90, 110, "sound/rocket.wav", "Rocket Launcher", 2, 1, 4, 70, 130, 150, "sound/punch.wav", "Fists", 40, 30, 35, 17, 4, 4, 1, 5);
+
+
 
     function Terrain (divClass, bonusEvade, bonusDefense, bonusMovement, sound) {
       this.divClass = divClass
@@ -231,7 +238,7 @@ $ (function() {
 
     // team 1
     
-    var pOneCha1 = new Player(pOneCha1Name, "alpha", 100, 100, 80, 2, 2, "sound/assault rifle.wav", "Assault Rifle", 30, 3, 5, 75, 50, 60, "sound/handgun.wav", "Pistol", 60, 3, 3, 65, 30, 35, "sound/sword.wav", "Sword", 60, 35, 40, 12, 7, 7, 1, 13);
+
 
     $("ul").on("click", "li#alpha", function() {
       if (playerTurn%2 !== 0) {
@@ -243,8 +250,6 @@ $ (function() {
       }
     });
 
-
-    var pOneCha2 = new Player(pOneCha2Name, "beta", 100, 100, 80, 2, 2, "sound/assault rifle.wav", "Assault Rifle", 30, 3, 5, 75, 50, 60, "sound/handgun.wav", "Pistol", 60, 3, 3, 65, 30, 35, "sound/sword.wav", "Sword", 60, 35, 40, 12, 7, 7, 1, 13);
 
 
     $("ul").on("click", "li#beta", function() {
@@ -258,9 +263,6 @@ $ (function() {
     });
 
 
-    var pOneCha3 = new Player(pOneCha3Name, "charlie", 100, 100, 80, 2, 2, "sound/assault rifle.wav", "Assault Rifle", 30, 3, 5, 75, 50, 60, "sound/handgun.wav", "Pistol", 60, 3, 3, 65, 30, 35, "sound/sword.wav", "Sword", 60, 35, 40, 12, 7, 7, 1, 13);
-
-
     $("ul").on("click", "li#charlie", function() {
       if (playerTurn%2 !== 0) {
         selectedCharacter = pOneCha3;
@@ -271,8 +273,6 @@ $ (function() {
       }
     });
 
-
-    var pOneCha4 = new Player(pOneCha4Name, "delta", 65, 65, 100, 2, 2, "sound/sniper rifle.wav", "Sniper Rifle", 15, 1, 7, 100, 65, 75, "sound/handgun.wav", "Pistol", 60, 3, 3, 65, 30, 35, "sound/sword.wav", "Knife", 60, 35, 40, 7, 10, 10, 1, 15);
 
 
     $("ul").on("click", "li#delta", function() {
@@ -285,8 +285,6 @@ $ (function() {
       }
     });
 
-
-    var pOneCha5 = new Player(pOneCha5Name, "echo", 150, 150, 60, 2, 2, "sound/minigun.wav", "Minigun", 210, 15, 3, 50, 90, 110, "sound/rocket.wav", "Rocket Launcher", 2, 1, 4, 70, 130, 150, "sound/punch.wav", "Fists", 40, 30, 35, 17, 4, 4, 1, 5);
 
 
     $("ul").on("click", "li#echo", function() {
@@ -302,8 +300,6 @@ $ (function() {
 
     // Team 2
 
-    var pTwoCha1 = new Player(pTwoCha1Name, "foxtrot", 100, 100, 80, 2, 2, "sound/assault rifle.wav", "Assault Rifle", 30, 3, 5, 75, 50, 60, "sound/handgun.wav", "Pistol", 60, 3, 3, 65, 30, 35, "sound/sword.wav", "Sword", 60, 35, 40, 12, 7, 7, 1, 13);
-
 
     $("ul").on("click", "li#foxtrot", function() {
       if (playerTurn%2 === 0) {
@@ -315,10 +311,6 @@ $ (function() {
       }
     });
 
-
-    var pTwoCha2 = new Player(pTwoCha2Name, "gamma", 100, 100, 80, 2, 2, "sound/assault rifle.wav", "Assault Rifle", 30, 3, 5, 75, 50, 60, "sound/handgun.wav", "Pistol", 60, 3, 3, 65, 30, 35, "sound/sword.wav", "Sword", 60, 35, 40, 12, 7, 7, 1, 13);
-
-
     $("ul").on("click", "li#gamma", function() {
       if (playerTurn%2 === 0) {
         selectedCharacter = pTwoCha2;
@@ -329,8 +321,6 @@ $ (function() {
       }
     });
 
-
-    var pTwoCha3 = new Player(pTwoCha3Name, "hotel", 100, 100, 80, 2, 2, "sound/assault rifle.wav", "Assault Rifle", 30, 3, 5, 75, 20, 40, "sound/handgun.wav", "Pistol", 60, 3, 3, 65, 10, 25, "sound/sword.wav", "Sword", 60, 35, 50, 12, 7, 7, 1, 13);
 
 
     $("ul").on("click", "li#hotel", function() {
@@ -344,8 +334,6 @@ $ (function() {
     });
 
 
-    var pTwoCha4 = new Player(pTwoCha4Name, "indigo", 65, 65, 100, 2, 2, "sound/sniper rifle.wav", "Sniper Rifle", 15, 1, 7, 100, 65, 75, "sound/handgun.wav", "Pistol", 60, 3, 3, 65, 30, 35, "sound/sword.wav", "Knife", 60, 35, 40, 7, 10, 10, 1, 15);
-
 
     $("ul").on("click", "li#indigo", function() {
       if (playerTurn%2 === 0) {
@@ -358,7 +346,6 @@ $ (function() {
     });
 
 
-    var pTwoCha5 = new Player(pTwoCha5Name, "juliett", 150, 150, 60, 2, 2, "sound/minigun.wav", "Minigun", 210, 15, 3, 50, 90, 110, "sound/rocket.wav", "Rocket Launcher", 2, 1, 4, 70, 130, 150, "sound/punch.wav", "Fists", 40, 30, 35, 17, 4, 4, 1, 5);
 
 
     $("ul").on("click", "li#juliett", function() {
@@ -781,12 +768,12 @@ $ (function() {
 
 // on hover
 
-
+  });
 
 //  welcome page
 
 
-  });
+});
 
 
 // });
