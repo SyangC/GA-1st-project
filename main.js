@@ -29,6 +29,7 @@ $ (function() {
   var currentId = "";
   var selectedWeaponHitChance = 0;
   var selectedWeaponAccuracy = 0;
+  var selectedWeaponSound = "";
   var selectedTerrain = "";
   var terrainEffectsEvade = 0;
   var terrainEffectsDefense = 0;
@@ -46,80 +47,113 @@ $ (function() {
   var pTwoCha5Name = "Rurik";
   var teamOneColour = "blue";
   var teamTwoColour = "red";
+  var pcHealthBar = $("#pcHealthBar")
+  var pcHealthBar = $("enemyHealthBar")
 
-// welcome page character and team cutomisation
+  // welcome page character and team cutomisation
 
-var colourIndex = 0;
-var teamColours = ["red", "blue", "green", "purple", "yellow", "orange"]
+  var colourIndex = 0;
+  var teamColours = ["red", "blue", "green", "purple", "yellow", "orange"]
 
-$("#teamOneColourPrev").on("click", function() {
-  colourIndex++;
-  if (colourIndex === teamColours.length) {
-      colourIndex = 0;
-  }
-  $("#teamOneColourChoice").html(teamColours[colourIndex]);
-  ($("#teamOneChoice")).attr("class", teamColours[colourIndex]);
-  teamOneColour = teamColours[colourIndex];
-});
+  $("#teamOneColourPrev").on("click", function() {
+    colourIndex++;
+    if (colourIndex === teamColours.length) {
+        colourIndex = 0;
+    }
+    $("#teamOneColourChoice").html(teamColours[colourIndex]);
+    $("#teamOneChoice").attr("class", teamColours[colourIndex]);
+    teamOneColour = teamColours[colourIndex];
+  });
 
-$("#teamOneColourNext").on("click", function() {
-  colourIndex--;
-  if (colourIndex === -1) {
-      colourIndex = teamColours.length-1;
-  }
-  $("#teamOneColourChoice").html(teamColours[colourIndex]);
-  ($("#teamOneChoice")).attr("class", teamColours[colourIndex]);
-  teamOneColour = teamColours[colourIndex];
-});
+  $("#teamOneColourNext").on("click", function() {
+    colourIndex--;
+    if (colourIndex === -1) {
+        colourIndex = teamColours.length-1;
+    }
+    $("#teamOneColourChoice").html(teamColours[colourIndex]);
+    $("#teamOneChoice").attr("class", teamColours[colourIndex]);
+    teamOneColour = teamColours[colourIndex];
+  });
 
-$("#teamTwoColourPrev").on("click", function() {
-  colourIndex++;
-  if (colourIndex === teamColours.length) {
-      colourIndex = 0;
-  }
-  $("#teamTwoColourChoice").html(teamColours[colourIndex]);
-  ($("#teamTwoChoice")).attr("class", teamColours[colourIndex]);
-  teamTwoColour = teamColours[colourIndex];
-});
+  $("#teamTwoColourPrev").on("click", function() {
+    colourIndex++;
+    if (colourIndex === teamColours.length) {
+        colourIndex = 0;
+    }
+    $("#teamTwoColourChoice").html(teamColours[colourIndex]);
+    $("#teamTwoChoice").attr("class", teamColours[colourIndex]);
+    teamTwoColour = teamColours[colourIndex];
+  });
 
-$("#teamTwoColourNext").on("click", function() {
-  colourIndex--;
-  if (colourIndex === -1) {
-      colourIndex = teamColours.length-1;
-  }
-  $("#teamTwoColourChoice").html(teamColours[colourIndex]);
-  ($("#teamTwoChoice")).attr("class", teamColours[colourIndex]);
-  teamTwoColour = teamColours[colourIndex];
-});
-
+  $("#teamTwoColourNext").on("click", function() {
+    colourIndex--;
+    if (colourIndex === -1) {
+        colourIndex = teamColours.length-1;
+    }
+    $("#teamTwoColourChoice").html(teamColours[colourIndex]);
+    $("#teamTwoChoice").attr("class", teamColours[colourIndex]);
+    teamTwoColour = teamColours[colourIndex];
+  });
 
 // welcome page transform
 
   $("#teamsConfirmed").on("click", function() {
-    setTimeout(function(){
-      $("#homeMenu").animateCss("fadeOut");
-      $("#homeMenu").addClass("invisible");
-    }, 500);
-    setTimeout(function(){
-      $("main").animateCss("fadeIn");
-      $("main").removeClass("invisible");
-    }, 500);
-    if ($("#pOneCha1Name").val()!=="") {
-      pOneCha1Name = $("#pOneCha1Name").val();
-    }
-    $(".blue").attr("class", teamOneColour);
-    $(".blueSelectWeapon").attr("class", teamOneColour+"SelectWeapon");
-
+      if (teamOneColour === teamTwoColour) {
+        $("#homeMenu").animateCss("shake");
+      } else {
+      setTimeout(function(){
+        $("#homeMenu").animateCss("fadeOut");
+        $("#homeMenu").addClass("invisible");
+      }, 500);
+      setTimeout(function(){
+        $("main").animateCss("fadeIn");
+        $("main").removeClass("invisible");
+      }, 500);
+      if ($("#pOneCha1Name").val()!=="") {
+        pOneCha1Name = $("#pOneCha1Name").val();
+      }
+      if ($("#pOneCha2Name").val()!=="") {
+        pOneCha2Name = $("#pOneCha2Name").val();
+      }
+      if ($("#pOneCha3Name").val()!=="") {
+        pOneCha3Name = $("#pOneCha3Name").val();
+      }
+      if ($("#pOneCha4Name").val()!=="") {
+        pOneCha4Name = $("#pOneCha4Name").val();
+      }
+      if ($("#pOneCha5Name").val()!=="") {
+        pOneCha5Name = $("#pOneCha5Name").val();
+      }
+      if ($("#pTwoCha1Name").val()!=="") {
+        pTwoCha1Name = $("#pTwoCha1Name").val();
+      }
+      if ($("#pTwoCha2Name").val()!=="") {
+        pTwoCha2Name = $("#pTwoCha2Name").val();
+      }
+      if ($("#pTwoCha3Name").val()!=="") {
+        pTwoCha3Name = $("#pTwoCha3Name").val();
+      }
+      if ($("#pTwoCha4Name").val()!=="") {
+        pTwoCha4Name = $("#pTwoCha4Name").val();
+      }
+      if ($("#pTwoCha5Name").val()!=="") {
+        pTwoCha5Name = $("#pTwoCha5Name").val();
+      }
+      $(".blue").attr("class", teamOneColour);
+      $(".blueSelectWeapon").attr("class", teamOneColour+"SelectWeapon");
+      }
+    });
     // constructor functions
 
-    function Terrain (divClass, bonusEvade, bonusDefense, bonusMovement) {
+    function Terrain (divClass, bonusEvade, bonusDefense, bonusMovement, sound) {
       this.divClass = divClass
       this.bonusEvade = bonusEvade;
       this.bonusDefense = bonusDefense;
       this.bonusMovement = bonusMovement;
+      this.sound = sound;
     }
 
-    function Player (name, divId, healthTotal, health, accuracy, attackNumber, attackNumberMax, weaponOne, weaponOneAmmo, weaponOneAmmoUsed, weaponOneRange, weaponOneAccuracy, weaponOneDamageMin, weaponOneDamageMax, weaponTwo, weaponTwoAmmo, weaponTwoAmmoUsed, weaponTwoRange, weaponTwoAccuracy, weaponTwoDamageMin, weaponTwoDamageMax, weaponMelee, weaponMeleeAccuracy, weaponMeleeDamageMin, weaponMeleeDamageMax, defense, movement, movementMax, team, evade) {
+    function Player (name, divId, healthTotal, health, accuracy, attackNumber, attackNumberMax, weaponOneSound, weaponOne, weaponOneAmmo, weaponOneAmmoUsed, weaponOneRange, weaponOneAccuracy, weaponOneDamageMin, weaponOneDamageMax, weaponTwoSound, weaponTwo, weaponTwoAmmo, weaponTwoAmmoUsed, weaponTwoRange, weaponTwoAccuracy, weaponTwoDamageMin, weaponTwoDamageMax, weaponMeleeSound, weaponMelee, weaponMeleeAccuracy, weaponMeleeDamageMin, weaponMeleeDamageMax, defense, movement, movementMax, team, evade) {
       this.name = name;
       this.divId = divId;
       this.healthTotal = healthTotal;
@@ -127,6 +161,7 @@ $("#teamTwoColourNext").on("click", function() {
       this.accuracy = accuracy;
       this.attackNumber = attackNumber;
       this.attackNumberMax = attackNumberMax;
+      this.weaponOneSound = weaponOneSound;
       this.weaponOne = weaponOne;
       this.weaponOneAmmo = weaponOneAmmo;
       this.weaponOneAmmoUsed = weaponOneAmmoUsed; 
@@ -134,6 +169,7 @@ $("#teamTwoColourNext").on("click", function() {
       this.weaponOneAccuracy = weaponOneAccuracy;
       this.weaponOneDamageMin = weaponOneDamageMin;
       this.weaponOneDamageMax = weaponOneDamageMax;
+      this.weaponTwoSound = weaponTwoSound;
       this.weaponTwo = weaponTwo;
       this.weaponTwoAmmo = weaponTwoAmmo;
       this.weaponTwoAmmoUsed = weaponTwoAmmoUsed;
@@ -141,6 +177,7 @@ $("#teamTwoColourNext").on("click", function() {
       this.weaponTwoAccuracy = weaponTwoAccuracy;
       this.weaponTwoDamageMin = weaponTwoDamageMin;
       this.weaponTwoDamageMax = weaponTwoDamageMax;
+      this.weaponMeleeSound = weaponMeleeSound;
       this.weaponMelee = weaponMelee;
       this.weaponMeleeAccuracy = weaponMeleeAccuracy;
       this.weaponMeleeDamageMin = weaponMeleeDamageMin;
@@ -174,6 +211,7 @@ $("#teamTwoColourNext").on("click", function() {
       selectedWeaponAmmoUsed = 0;
       weaponDamage = 0;
       $('#infoDisplay').html(selectedCharacter.name + " selected!" + "<br>" + "Use WASD to move" + "</br>" + "Select the weapon then click on the enemy to attack.");
+      pcHealthBar.value = (100/selectedCharacter.healthTotal*selectedCharacter.health);
     }
 
     var enemySelect = function() {
@@ -193,7 +231,7 @@ $("#teamTwoColourNext").on("click", function() {
 
     // team 1
     
-    var pOneCha1 = new Player(pOneCha1Name, "alpha", 100, 100, 80, 2, 2, "Assault Rifle", 30, 3, 5, 75, 50, 60, "Pistol", 60, 3, 3, 65, 30, 35, "Sword", 60, 35, 40, 12, 7, 7, 1, 13);
+    var pOneCha1 = new Player(pOneCha1Name, "alpha", 100, 100, 80, 2, 2, "sound/assault rifle.wav", "Assault Rifle", 30, 3, 5, 75, 50, 60, "sound/handgun.wav", "Pistol", 60, 3, 3, 65, 30, 35, "sound/sword.wav", "Sword", 60, 35, 40, 12, 7, 7, 1, 13);
 
     $("ul").on("click", "li#alpha", function() {
       if (playerTurn%2 !== 0) {
@@ -206,7 +244,7 @@ $("#teamTwoColourNext").on("click", function() {
     });
 
 
-    var pOneCha2 = new Player(pOneCha2Name, "beta", 100, 100, 80, 2, 2, "Assault Rifle", 30, 3, 5, 75, 50, 60, "Pistol", 60, 3, 3, 65, 30, 35, "Sword", 60, 35, 40, 12, 7, 7, 1, 13);
+    var pOneCha2 = new Player(pOneCha2Name, "beta", 100, 100, 80, 2, 2, "sound/assault rifle.wav", "Assault Rifle", 30, 3, 5, 75, 50, 60, "sound/handgun.wav", "Pistol", 60, 3, 3, 65, 30, 35, "sound/sword.wav", "Sword", 60, 35, 40, 12, 7, 7, 1, 13);
 
 
     $("ul").on("click", "li#beta", function() {
@@ -220,7 +258,7 @@ $("#teamTwoColourNext").on("click", function() {
     });
 
 
-    var pOneCha3 = new Player(pOneCha3Name, "charlie", 100, 100, 80, 2, 2, "Assault Rifle", 30, 3, 5, 75, 50, 60, "Pistol", 60, 3, 3, 65, 30, 35, "Sword", 60, 35, 40, 12, 7, 7, 1, 13);
+    var pOneCha3 = new Player(pOneCha3Name, "charlie", 100, 100, 80, 2, 2, "sound/assault rifle.wav", "Assault Rifle", 30, 3, 5, 75, 50, 60, "sound/handgun.wav", "Pistol", 60, 3, 3, 65, 30, 35, "sound/sword.wav", "Sword", 60, 35, 40, 12, 7, 7, 1, 13);
 
 
     $("ul").on("click", "li#charlie", function() {
@@ -234,7 +272,7 @@ $("#teamTwoColourNext").on("click", function() {
     });
 
 
-    var pOneCha4 = new Player(pOneCha4Name, "delta", 65, 65, 100, 2, 2, "Sniper Rifle", 15, 1, 7, 100, 65, 75, "Pistol", 60, 3, 3, 65, 30, 35, "Knife", 60, 35, 40, 7, 10, 10, 1, 15);
+    var pOneCha4 = new Player(pOneCha4Name, "delta", 65, 65, 100, 2, 2, "sound/sniper rifle.wav", "Sniper Rifle", 15, 1, 7, 100, 65, 75, "sound/handgun.wav", "Pistol", 60, 3, 3, 65, 30, 35, "sound/sword.wav", "Knife", 60, 35, 40, 7, 10, 10, 1, 15);
 
 
     $("ul").on("click", "li#delta", function() {
@@ -248,7 +286,7 @@ $("#teamTwoColourNext").on("click", function() {
     });
 
 
-    var pOneCha5 = new Player(pOneCha5Name, "echo", 150, 150, 60, 2, 2, "Minigun", 210, 15, 3, 50, 90, 110, "Rocket Launcher", 2, 1, 4, 70, 130, 150, "Fists", 40, 30, 35, 17, 4, 4, 1, 5);
+    var pOneCha5 = new Player(pOneCha5Name, "echo", 150, 150, 60, 2, 2, "sound/minigun.wav", "Minigun", 210, 15, 3, 50, 90, 110, "sound/rocket.wav", "Rocket Launcher", 2, 1, 4, 70, 130, 150, "sound/punch.wav", "Fists", 40, 30, 35, 17, 4, 4, 1, 5);
 
 
     $("ul").on("click", "li#echo", function() {
@@ -264,7 +302,7 @@ $("#teamTwoColourNext").on("click", function() {
 
     // Team 2
 
-    var pTwoCha1 = new Player(pTwoCha1Name, "foxtrot", 100, 100, 80, 2, 2, "Assault Rifle", 30, 3, 5, 75, 50, 60, "Pistol", 60, 3, 3, 65, 30, 35, "Sword", 60, 35, 40, 12, 7, 7, 1, 13);
+    var pTwoCha1 = new Player(pTwoCha1Name, "foxtrot", 100, 100, 80, 2, 2, "sound/assault rifle.wav", "Assault Rifle", 30, 3, 5, 75, 50, 60, "sound/handgun.wav", "Pistol", 60, 3, 3, 65, 30, 35, "sound/sword.wav", "Sword", 60, 35, 40, 12, 7, 7, 1, 13);
 
 
     $("ul").on("click", "li#foxtrot", function() {
@@ -278,7 +316,7 @@ $("#teamTwoColourNext").on("click", function() {
     });
 
 
-    var pTwoCha2 = new Player(pTwoCha2Name, "gamma", 100, 100, 80, 2, 2, "Assault Rifle", 30, 3, 5, 75, 50, 60, "Pistol", 60, 3, 3, 65, 30, 35, "Sword", 60, 35, 40, 12, 7, 7, 1, 13);
+    var pTwoCha2 = new Player(pTwoCha2Name, "gamma", 100, 100, 80, 2, 2, "sound/assault rifle.wav", "Assault Rifle", 30, 3, 5, 75, 50, 60, "sound/handgun.wav", "Pistol", 60, 3, 3, 65, 30, 35, "sound/sword.wav", "Sword", 60, 35, 40, 12, 7, 7, 1, 13);
 
 
     $("ul").on("click", "li#gamma", function() {
@@ -292,7 +330,7 @@ $("#teamTwoColourNext").on("click", function() {
     });
 
 
-    var pTwoCha3 = new Player(pTwoCha3Name, "hotel", 100, 100, 80, 2, 2, "Assault Rifle", 30, 3, 5, 75, 20, 40, "Pistol", 60, 3, 3, 65, 10, 25, "Sword", 60, 35, 50, 12, 7, 7, 1, 13);
+    var pTwoCha3 = new Player(pTwoCha3Name, "hotel", 100, 100, 80, 2, 2, "sound/assault rifle.wav", "Assault Rifle", 30, 3, 5, 75, 20, 40, "sound/handgun.wav", "Pistol", 60, 3, 3, 65, 10, 25, "sound/sword.wav", "Sword", 60, 35, 50, 12, 7, 7, 1, 13);
 
 
     $("ul").on("click", "li#hotel", function() {
@@ -306,7 +344,7 @@ $("#teamTwoColourNext").on("click", function() {
     });
 
 
-    var pTwoCha4 = new Player(pTwoCha4Name, "indigo", 65, 65, 100, 2, 2, "Sniper Rifle", 15, 1, 7, 100, 65, 75, "Pistol", 60, 3, 3, 65, 30, 35, "Knife", 60, 35, 40, 7, 10, 10, 1, 15);
+    var pTwoCha4 = new Player(pTwoCha4Name, "indigo", 65, 65, 100, 2, 2, "sound/sniper rifle.wav", "Sniper Rifle", 15, 1, 7, 100, 65, 75, "sound/handgun.wav", "Pistol", 60, 3, 3, 65, 30, 35, "sound/sword.wav", "Knife", 60, 35, 40, 7, 10, 10, 1, 15);
 
 
     $("ul").on("click", "li#indigo", function() {
@@ -320,7 +358,7 @@ $("#teamTwoColourNext").on("click", function() {
     });
 
 
-    var pTwoCha5 = new Player(pTwoCha5Name, "juliett", 150, 150, 60, 2, 2, "Minigun", 210, 15, 3, 50, 90, 110, "Rocket Launcher", 2, 1, 4, 70, 130, 150, "Fists", 40, 30, 35, 17, 4, 4, 1, 5);
+    var pTwoCha5 = new Player(pTwoCha5Name, "juliett", 150, 150, 60, 2, 2, "sound/minigun.wav", "Minigun", 210, 15, 3, 50, 90, 110, "sound/rocket.wav", "Rocket Launcher", 2, 1, 4, 70, 130, 150, "sound/punch.wav", "Fists", 40, 30, 35, 17, 4, 4, 1, 5);
 
 
     $("ul").on("click", "li#juliett", function() {
@@ -335,12 +373,12 @@ $("#teamTwoColourNext").on("click", function() {
 
     // terrain
 
-    var plains = new Terrain ("plains", 0, 0, 0);
-    var forest = new Terrain ("forest", 5, 3, 0);
-    var sand = new Terrain ("sand", -5, 0, -1);
-    var rock = new Terrain ("rock", -5, 3, -1);
-    var water = new Terrain ("water", -5, 0, -1);
-    var ice = new Terrain ("ice", -3, 0, 0);
+    var plains = new Terrain ("plains", 0, 0, 0, "sound/plains.wav");
+    var forest = new Terrain ("forest", 5, 3, 0, "sound/forest.wav");
+    var sand = new Terrain ("sand", -5, 0, -1, "sound/sand.ogg");
+    var rock = new Terrain ("rock", -5, 3, -1, "sound/rock.mp3");
+    var water = new Terrain ("water", -5, 0, -1, "sound/water.wav");
+    var ice = new Terrain ("ice", -3, 0, 0, "sound/ice.wav");
 
   // player movement
 
@@ -358,6 +396,7 @@ $("#teamTwoColourNext").on("click", function() {
               $("#new").next().removeClass("pc");
               $("#new").addClass("pc");
               $("#new").attr("id", selectedCharacter.divId);
+              terrainStepSound();
               selectedCharacter.movement = selectedCharacter.movement - 2; 
               $('#movement').html(selectedCharacter.movement + " / " + selectedCharacter.movementMax)
               if(selectedWeapon !== "") {
@@ -372,6 +411,7 @@ $("#teamTwoColourNext").on("click", function() {
             $("#new").next().removeClass("pc");
             $("#new").addClass("pc");
             $("#new").attr("id", selectedCharacter.divId);
+            terrainStepSound();
             selectedCharacter.movement--; 
             $('#movement').html(selectedCharacter.movement + " / " + selectedCharacter.movementMax)
             if(selectedWeapon !== "") {
@@ -391,6 +431,7 @@ $("#teamTwoColourNext").on("click", function() {
               $("#new").nextAll().eq(29).removeClass("pc");
               $("#new").addClass("pc");
               $("#new").attr("id", selectedCharacter.divId);
+              terrainStepSound();
               selectedCharacter.movement = selectedCharacter.movement - 2; 
               $('#movement').html(selectedCharacter.movement + " / " + selectedCharacter.movementMax)
               if(selectedWeapon !== "") {
@@ -405,6 +446,7 @@ $("#teamTwoColourNext").on("click", function() {
             $("#new").nextAll().eq(29).removeClass("pc");
             $("#new").addClass("pc");
             $("#new").attr("id", selectedCharacter.divId);
+            terrainStepSound();
             selectedCharacter.movement--; 
             $('#movement').html(selectedCharacter.movement + " / " + selectedCharacter.movementMax)
             if(selectedWeapon !== "") {
@@ -424,6 +466,7 @@ $("#teamTwoColourNext").on("click", function() {
               $("#new").prev().removeClass("pc");
               $("#new").addClass("pc");
               $("#new").attr("id", selectedCharacter.divId);
+              terrainStepSound();
               selectedCharacter.movement = selectedCharacter.movement - 2; 
               $('#movement').html(selectedCharacter.movement + " / " + selectedCharacter.movementMax)
               if(selectedWeapon !== "") {
@@ -438,6 +481,7 @@ $("#teamTwoColourNext").on("click", function() {
             $("#new").prev().removeClass("pc");
             $("#new").addClass("pc");
             $("#new").attr("id", selectedCharacter.divId);
+            terrainStepSound();
             selectedCharacter.movement--; 
             $('#movement').html(selectedCharacter.movement + " / " + selectedCharacter.movementMax)
             if(selectedWeapon !== "") {
@@ -457,6 +501,7 @@ $("#teamTwoColourNext").on("click", function() {
               $("#new").prevAll().eq(29).removeClass("pc");
               $("#new").addClass("pc");
               $("#new").attr("id", selectedCharacter.divId);
+              terrainStepSound();
               selectedCharacter.movement = selectedCharacter.movement - 2; 
               $('#movement').html(selectedCharacter.movement + " / " + selectedCharacter.movementMax)
               if(selectedWeapon !== "") {
@@ -471,6 +516,7 @@ $("#teamTwoColourNext").on("click", function() {
             $("#new").prevAll().eq(29).removeClass("pc");
             $("#new").addClass("pc");
             $("#new").attr("id", selectedCharacter.divId);
+            terrainStepSound();
             selectedCharacter.movement--; 
             $('#movement').html(selectedCharacter.movement + " / " + selectedCharacter.movementMax)
             if(selectedWeapon !== "") {
@@ -486,6 +532,7 @@ $("#teamTwoColourNext").on("click", function() {
     ($("."+teamOneColour+"SelectWeapon")||$("."+teamTwoColour+"SelectWeapon")).on("click", function() {
       if (selectedCharacter !== "") {
         if (this.id === "selectWeaponOne" && selectedCharacter.weaponOneAmmo >0) {
+          selectedWeaponSound = new Audio(selectedCharacter.weaponOneSound);
           $(".grid").removeClass("inRange");
           selectedWeaponAccuracy = selectedCharacter.weaponOneAccuracy;
           selectedWeaponRange = selectedCharacter.weaponOneRange;
@@ -495,11 +542,13 @@ $("#teamTwoColourNext").on("click", function() {
           selectedWeaponDamageMin = selectedCharacter.weaponOneDamageMin;
           selectedWeaponAmmo = selectedCharacter.weaponOneAmmo;
           selectedWeaponAmmoUsed = selectedCharacter.weaponOneAmmoUsed;
-        } else if (this.id === "selectWeaponOne" && selectedCharacter.weaponOneAmmo <= 0) {        selectedWeapon = selectedCharacter.weaponOne;
+        } else if (this.id === "selectWeaponOne" && selectedCharacter.weaponOneAmmo <= 0) {
+          selectedWeapon = selectedCharacter.weaponOne;
           $('#infoDisplay').html("You are out of Ammo for the " + selectedWeapon + ". Use another weapon");
           selectedWeapon = "";
         }
         if (this.id === "selectWeaponTwo" && selectedCharacter.weaponTwoAmmo >0) {
+          selectedWeaponSound = new Audio(selectedCharacter.weaponTwoSound);
           $(".grid").removeClass("inRange");
           selectedWeaponAccuracy = selectedCharacter.weaponTwoAccuracy;
           selectedWeaponRange = selectedCharacter.weaponTwoRange;
@@ -509,20 +558,21 @@ $("#teamTwoColourNext").on("click", function() {
           selectedWeaponDamageMin = selectedCharacter.weaponTwoDamageMin;
           selectedWeaponAmmo = selectedCharacter.weaponTwoAmmo;
           selectedWeaponAmmoUsed = selectedCharacter.weaponTwoAmmoUsed;
-        } else if (this.id === "selectWeaponTwo" && selectedCharacter.weaponTwoAmmo <= 0) {        
+        } else if (this.id === "selectWeaponTwo" && selectedCharacter.weaponTwoAmmo <= 0) {
           selectedWeapon = selectedCharacter.weaponTwo;
           $('#infoDisplay').html("You are out of Ammo for the " + selectedWeapon + ". Use another weapon");
           selectedWeapon = "";
         }
         if (this.id === "selectWeaponMelee") {
+          selectedWeaponSound = new Audio(selectedCharacter.weaponMeleeSound);
           $(".grid").removeClass("inRange");
           selectedWeaponAccuracy = selectedCharacter.weaponMeleeAccuracy;
           selectedWeaponRange = 1;
           gridHighlightWeaponRange();
-          selectedWeaponDamageMax = selectedCharacter.weaponTwoDamageMax;
-          selectedWeaponDamageMin = selectedCharacter.weaponTwoDamageMin;
-          selectedWeaponAmmo = 1;
-          selectedWeaponAmmoUsed = 0;
+          selectedWeaponDamageMax = selectedCharacter.weaponMeleeDamageMax;
+          selectedWeaponDamageMin = selectedCharacter.weaponMeleeDamageMin;
+          selectedWeaponAmmo=1;
+          selectedWeaponAmmoUsed=0;
         }
       }
     });
@@ -534,6 +584,7 @@ $("#teamTwoColourNext").on("click", function() {
         selectedWeaponHitChance = (selectedCharacter.accuracy+selectedWeaponAccuracy)/2 - (selectedEnemy.evade+terrainEffectsEvade);
         percentage = Math.round(Math.random()*100)
         $('#infoDisplay').html("You have a " + selectedWeaponHitChance + "% chance of hitting the taget.");
+        selectedWeaponSound.play();
         setTimeout(function(){
           if (selectedWeaponHitChance < percentage) {
             $('#infoDisplay').html("Missed!");
@@ -544,28 +595,30 @@ $("#teamTwoColourNext").on("click", function() {
             critChance = Math.random()*100;
             if(critChance > 97) {
               $('#infoDisplay').html("Critical Hit!");
-              weaponDamage = ((selectedWeaponDamageMin+Math.round(Math.random()*(selectedWeaponDamageMax-selectedWeaponDamageMin)))*1.5)-(selectedCharacter.defense);
-              terrainDamageEffect = weaponDamage-terrainEffectsDefense;
+              $('.enemyImage').animateCss('flash');
+              weaponDamage = ((selectedWeaponDamageMin+Math.round(Math.random()*(selectedWeaponDamageMax-selectedWeaponDamageMin)))*1.5)-(selectedCharacter.defense+terrainEffectsDefense);
               setTimeout(function() {
-                $('.enemyImage').animateCss('flash');
                 $('#infoDisplay').html("Dealt the enemy " + weaponDamage + " damage!");
                 $('#selectedEnemy').html(selectedEnemy.name);
                 $('#enemyHealth').html(selectedEnemy.health + " / " + selectedEnemy.healthTotal);
               }, 1000);
               selectedEnemy.health = selectedEnemy.health - weaponDamage;
+              enemyHealthBar.value = (100/selectedenemy.healthTotal*selectedEnemy.health);
+              console.log(enemyHealthBar.value);
               selectedWeaponAmmo = selectedWeaponAmmo - selectedWeaponAmmoUsed;
               deathCheck();
             } else {
               $('#infoDisplay').html("Hit!");
               $('.enemyImage').animateCss('flash');
-              weaponDamage = (selectedWeaponDamageMin+Math.round(Math.random()*(selectedWeaponDamageMax-selectedWeaponDamageMin)))-(selectedCharacter.defense);
-              terrainDamageEffect = weaponDamage-terrainEffectsDefense;
+              weaponDamage = (selectedWeaponDamageMin+Math.round(Math.random()*(selectedWeaponDamageMax-selectedWeaponDamageMin)))-(selectedCharacter.defense+terrainEffectsDefense);
               setTimeout(function(){
                 $('#infoDisplay').html("Dealt the enemy " + weaponDamage + " damage!");
                 $('#selectedEnemy').html(selectedEnemy.name);
                 $('#enemyHealth').html(selectedEnemy.health + " / " + selectedEnemy.healthTotal);
               }, 1000);
               selectedEnemy.health = selectedEnemy.health - weaponDamage;
+              enemyHealthBar.value = (100/selectedEnemy.healthTotal*selectedEnemy.health);
+              console.log(enemyHealthBar.value);
               selectedWeaponAmmo = selectedWeaponAmmo - selectedWeaponAmmoUsed;
               deathCheck();
             }
@@ -581,6 +634,9 @@ $("#teamTwoColourNext").on("click", function() {
           selectedCharacter.attackNumber --;
           $('#attackNumber').html(selectedCharacter.attackNumber);
           $('#weaponTwoAmmo').html(selectedCharacter.weaponTwoAmmo);
+        } else if (selectedWeapon === selectedCharacter.weaponMelee) {
+          selectedCharacter.attackNumber --;
+          $('#attackNumber').html(selectedCharacter.attackNumber);
         }
       } else {
         $('#infoDisplay').html("You have no more attacks.");
@@ -616,6 +672,27 @@ $("#teamTwoColourNext").on("click", function() {
         currentId.nextAll().eq(value).addClass("inRange");
         currentId.prevAll().eq(value).addClass("inRange");
       });
+    }
+
+    var terrainStepSound = function () {
+      if ($("#"+selectedCharacter.divId).hasClass("plains")) {
+        new Audio(plains.sound).play();
+      }
+      if ($("#"+selectedCharacter.divId).hasClass("rock")) {
+        new Audio(rock.sound).play();
+      }
+      if ($("#"+selectedCharacter.divId).hasClass("ice")) {
+        new Audio(ice.sound).play();
+      }
+      if ($("#"+selectedCharacter.divId).hasClass("forest")) {
+        new Audio(forest.sound).play();
+      }
+      if ($("#"+selectedCharacter.divId).hasClass("water")) {
+        new Audio(water.sound).play();
+      }
+      if ($("#"+selectedCharacter.divId).hasClass("sand")) {
+        new Audio(sand.sound).play();
+      }
     }
 
     var terrainEffectsAll = function() {
@@ -706,21 +783,13 @@ $("#teamTwoColourNext").on("click", function() {
 
 
 
-
-
-
-
-
-
-
-
 //  welcome page
 
 
   });
 
 
-});
+// });
 
 // 1 - create game board
 // need a large grid board - create a 4x4 grid to test game in the beginning. Will be easy to increase size

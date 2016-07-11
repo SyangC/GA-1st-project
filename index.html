@@ -102,7 +102,7 @@
     <li class="grid plains pc" id="charlie"></li>
     <li class="grid plains pc" id="delta"></li>
     <li class="grid plains pc" id="echo"></li>
-    <li class="grid plains"></li>
+    <li class="grid plains pc" id="foxtrot"></li>
     <li class="grid rock"></li>
     <li class="grid rock"></li>
     <li class="grid rock"></li>
@@ -835,14 +835,15 @@
     <li class="grid plains"></li>
     <li class="grid plains"></li>
     <li class="grid plains"></li>
-    <li class="grid plains pc" id="foxtrot"></li>
+    <li class="grid plains"></li>
     <li class="grid plains pc" id="gamma"></li>
     <li class="grid plains pc" id="hotel"></li>
     <li class="grid plains pc" id="indigo"></li>
     <li class="grid plains right pc" id="juliett"></li>
   </ul>
   <div class= "blue" id="display">
-    <div class="pcImage"></div>
+    <div class="pcImage">
+    <progress id="pcHealthBar" value="100" max="100"></progress></div>
     <table>     
       <tr>
         <td id="namedisplay">Name</td>
@@ -859,12 +860,10 @@
       <tr>
         <td id="defensedisplay">Defense</td>
         <td id="defense"></td>
-<!--         <td><button id="fortify">Fortify</button></td> -->
       </tr>
       <tr>
         <td id="movementdisply">Movement</td>
         <td id="movement"></td>
-<!--         <td><button id="dodge">Dodge</button></td> -->
       </tr>
       <tr>
         <td id="attackNumberDisplay">No. Attacks</td>
@@ -886,7 +885,7 @@
         <td><button class="blueSelectWeapon" id="selectWeaponMelee">SELECT</button></td>
       </tr>
     </table>
-    <div class="enemyImage"></div>
+    <div class="enemyImage"><progress id="enemyHealthBar" value="100" max="100"></progress></div>
     <table class="enemyDisplay">
       <tr>
         <td id="selectedEnemyDisplay">Enemy Name</td>
@@ -903,11 +902,12 @@
         <td id="terrainName"></td>
       </tr>
       <tr>
-        <td id="enemyHealthDisplay">Health</td>
+        <td id="terrainEffectsDisplay">Terrain Effects</td>
         <td id="enemyHealth"></td>
       </tr>
     </table>
     <div id="infoDisplay"></div>
+
     <button class="blue" id="endTurn">END TURN</button>
   </div>         
 </main>
