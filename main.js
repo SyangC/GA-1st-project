@@ -78,47 +78,55 @@ $ (function() {
 // Team 1
   var pOneCha1 = new Player("Alpha", "alpha", 100, 100, 80, 2, 2, "Assault Rifle", 30, 3, 5, 75, 50, 60, "Pistol", 60, 3, 3, 65, 30, 35, "Sword", 60, 35, 40, 12, 7, 7, 1, 13);
 
+  var playerSelect = function () {
+    $(".grid").removeClass("inRange");
+    selectedWeapon = "";
+    $('#name').html(selectedCharacter.name);
+    $('#health').html(selectedCharacter.health + " / " + selectedCharacter.healthTotal);
+    $('#accuracy').html(selectedCharacter.accuracy);
+    $('#defense').html(selectedCharacter.defense);
+    $('#movement').html(selectedCharacter.movement + " / " + selectedCharacter.movementMax);
+    $('#weaponOneName').html(selectedCharacter.weaponOne);
+    $('#weaponOneAmmo').html(selectedCharacter.weaponOneAmmo);
+    $('#weaponTwoName').html(selectedCharacter.weaponTwo);
+    $('#weaponTwoAmmo').html(selectedCharacter.weaponTwoAmmo);
+    $('#weaponMelee').html(selectedCharacter.weaponMelee);
+    $('#attackNumber').html(selectedCharacter.attackNumber);
+    $('.pcImage').attr("id", selectedCharacter.divId+"Image");
+    selectedWeapon = "";
+    selectedWeaponAmmo = 0;
+    selectedWeaponAmmoUsed = 0;
+    weaponDamage = 0;
+    $('#infoDisplay').html(selectedCharacter.name + " selected!" + "<br>" + "Use WASD to move" + "</br>" + "Select the weapon then click on the enemy to attack.");
+  }
+
+  var enemySelect = function() {
+    $('#selectedEnemy').html(selectedEnemy.name);
+    $('#enemyHealth').html(selectedEnemy.health + " / " + selectedEnemy.healthTotal);
+    $('.enemyImage').attr("id", selectedEnemy.divId+"Image")
+    if ($("#"+selectedEnemy.divId).hasClass("inRange")) {
+      terrainEffectsAll()
+      attackResolve();
+      selectedWeapon = "";
+      $(".grid").removeClass("inRange");
+    } else {
+      $('#infoDisplay').html("You are out of range! Move closer to attack.");
+      selectedWeapon = "";
+      $(".grid").removeClass("inRange");
+    }
+    terrainEffectsMovement = 1;
+    terrainEffectsDefense = 1;
+    terrainEffectsEvade = 1;
+  }
+
 
   $("ul").on("click", "li#alpha", function() {
     if (playerTurn%2 !== 0) {
-      $(".grid").removeClass("inRange");
-      selectedWeapon = "";
-      $('#name').html(pOneCha1.name);
-      $('#health').html(pOneCha1.health + " / " + pOneCha1.healthTotal);
-      $('#accuracy').html(pOneCha1.accuracy);
-      $('#defense').html(pOneCha1.defense);
-      $('#movement').html(pOneCha1.movement + " / " + pOneCha1.movementMax);
-      $('#weaponOneName').html(pOneCha1.weaponOne);
-      $('#weaponOneAmmo').html(pOneCha1.weaponOneAmmo);
-      $('#weaponTwoName').html(pOneCha1.weaponTwo);
-      $('#weaponTwoAmmo').html(pOneCha1.weaponTwoAmmo);
-      $('#weaponMelee').html(pOneCha1.weaponMelee);
-      $('#attackNumber').html(pOneCha1.attackNumber);
-      $('.pcImage').attr("id", pOneCha1.divId+"Image")
       selectedCharacter = pOneCha1;
-      selectedWeapon = "";
-      selectedWeaponAmmo = 0;
-      selectedWeaponAmmoUsed = 0;
-      weaponDamage = 0;
-      $('#infoDisplay').html(pOneCha1.name + " selected!" + "<br>" + "Use WASD to move" + "</br>" + "Select the weapon then click on the enemy to attack.");
+      playerSelect();
     } else {
       selectedEnemy = pOneCha1;
-      $('#selectedEnemy').html(pOneCha1.name);
-      $('#enemyHealth').html(pOneCha1.health + " / " + pOneCha1.healthTotal);
-      $('.enemyImage').attr("id", pOneCha1.divId+"Image")
-      if ($("#"+pOneCha1.divId).hasClass("inRange")) {
-        terrainEffectsAll()
-        attackResolve();
-        selectedWeapon = "";
-        $(".grid").removeClass("inRange");
-      } else {
-        $('#infoDisplay').html("You are out of range! Move closer to attack.");
-        selectedWeapon = "";
-        $(".grid").removeClass("inRange");
-      }
-      terrainEffectsMovement = 1;
-      terrainEffectsDefense = 1;
-      terrainEffectsEvade = 1;
+      enemySelect();
     }
   });
 
@@ -128,43 +136,11 @@ $ (function() {
 
   $("ul").on("click", "li#beta", function() {
     if (playerTurn%2 !== 0) {
-      $(".grid").removeClass("inRange");
-      selectedWeapon = "";
-      $('#name').html(pOneCha2.name)
-      $('#health').html(pOneCha2.health + " / " + pOneCha2.healthTotal)
-      $('#accuracy ').html(pOneCha2.accuracy)
-      $('#defense').html(pOneCha2.defense)
-      $('#movement').html(pOneCha2.movement + " / " + pOneCha2.movementMax)
-      $('#weaponOneName').html(pOneCha2.weaponOne);
-      $('#weaponOneAmmo').html(pOneCha2.weaponOneAmmo);
-      $('#weaponTwoName').html(pOneCha2.weaponTwo);
-      $('#weaponTwoAmmo').html(pOneCha2.weaponTwoAmmo);
-      $('#weaponMelee').html(pOneCha2.weaponMelee);
-      $('#attackNumber').html(pOneCha2.attackNumber);
-      $('.pcImage').attr("id", pOneCha2.divId+"Image")
       selectedCharacter = pOneCha2;
-      selectedWeaponAmmo = "";
-      selectedWeaponAmmoUsed = 0;
-      weaponDamage = 0;
-      $('#infoDisplay').html(pOneCha2.name + " selected!" + "<br>" + "Use WASD to move" + "</br>" + "Select the weapon then click on the enemy to attack.");
+      playerSelect();
     } else {
       selectedEnemy = pOneCha2;
-      $('#selectedEnemy').html(pOneCha2.name);
-      $('#enemyHealth').html(pOneCha2.health + " / " + pOneCha2.healthTotal);
-      $('.enemyImage').attr("id", pOneCha2.divId+"Image")
-      if ($("#"+pOneCha2.divId).hasClass("inRange")) {
-        terrainEffectsAll()
-        attackResolve();
-        selectedWeapon = "";
-        $(".grid").removeClass("inRange");
-      } else {
-        $('#infoDisplay').html("You are out of range! Move closer to attack.");
-        selectedWeapon = "";
-        $(".grid").removeClass("inRange");
-      }
-      terrainEffectsMovement = 1;
-      terrainEffectsDefense = 1;
-      terrainEffectsEvade = 1;
+      enemySelect();
     }
   });
 
@@ -174,43 +150,11 @@ $ (function() {
 
   $("ul").on("click", "li#charlie", function() {
     if (playerTurn%2 !== 0) {
-      $(".grid").removeClass("inRange");
-      selectedWeapon = "";
-      $('#name').html(pOneCha3.name)
-      $('#health').html(pOneCha3.health + " / " + pOneCha3.healthTotal)
-      $('#accuracy').html(pOneCha3.accuracy)
-      $('#defense').html(pOneCha3.defense)
-      $('#movement').html(pOneCha3.movement + " / " + pOneCha3.movementMax)
-      $('#weaponOneName').html(pOneCha3.weaponOne);
-      $('#weaponOneAmmo').html(pOneCha3.weaponOneAmmo);
-      $('#weaponTwoName').html(pOneCha3.weaponTwo);
-      $('#weaponTwoAmmo').html(pOneCha3.weaponTwoAmmo);
-      $('#weaponMelee').html(pOneCha3.weaponMelee);
-      $('#attackNumber').html(pOneCha3.attackNumber);
-      $('.pcImage').attr("id", pOneCha3.divId+"Image")
       selectedCharacter = pOneCha3;
-      selectedWeaponAmmo = "";
-      selectedWeaponAmmoUsed = 0;
-      weaponDamage = 0;
-      $('#infoDisplay').html(pOneCha3.name + " selected!" + "<br>" + "Use WASD to move" + "</br>" + "Select the weapon then click on the enemy to attack.");
+      playerSelect();
     } else {
       selectedEnemy = pOneCha3;
-      $('#selectedEnemy').html(pOneCha3.name);
-      $('#enemyHealth').html(pOneCha3.health + " / " + pOneCha3.healthTotal);
-      $('.enemyImage').attr("id", pOneCha3.divId+"Image")
-      if ($("#"+pOneCha3.divId).hasClass("inRange")) {
-        terrainEffectsAll()
-        attackResolve();
-        selectedWeapon = "";
-        $(".grid").removeClass("inRange");
-      } else {
-        $('#infoDisplay').html("You are out of range! Move closer to attack.");
-        selectedWeapon = "";
-        $(".grid").removeClass("inRange");
-      }
-      terrainEffectsMovement = 1;
-      terrainEffectsDefense = 1;
-      terrainEffectsEvade = 1;
+      enemySelect();
     }
   });
 
@@ -220,43 +164,11 @@ $ (function() {
 
   $("ul").on("click", "li#delta", function() {
     if (playerTurn%2 !== 0) {
-      $(".grid").removeClass("inRange");
-      selectedWeapon = "";
-      $('#name').html(pOneCha4.name)
-      $('#health').html(pOneCha4.health + " / " + pOneCha4.healthTotal)
-      $('#accuracy').html(pOneCha4.accuracy)
-      $('#defense').html(pOneCha4.defense)
-      $('#movement').html(pOneCha4.movement + " / " + pOneCha4.movementMax)
-      $('#weaponOneName').html(pOneCha4.weaponOne);
-      $('#weaponOneAmmo').html(pOneCha4.weaponOneAmmo);
-      $('#weaponTwoName').html(pOneCha4.weaponTwo);
-      $('#weaponTwoAmmo').html(pOneCha4.weaponTwoAmmo);
-      $('#weaponMelee').html(pOneCha4.weaponMelee);
-      $('#attackNumber').html(pOneCha4.attackNumber);
-      $('.pcImage').attr("id", pOneCha4.divId+"Image")
       selectedCharacter = pOneCha4;
-      selectedWeaponAmmo = "";
-      selectedWeaponAmmoUsed = 0;
-      weaponDamage = 0;
-      $('#infoDisplay').html(pOneCha4.name + " selected!" + "<br>" + "Use WASD to move" + "</br>" + "Select the weapon then click on the enemy to attack.");
+      playerSelect();
     } else {
       selectedEnemy = pOneCha4;
-      $('#selectedEnemy').html(pOneCha4.name);
-      $('#enemyHealth').html(pOneCha4.health + " / " + pOneCha4.healthTotal);
-      $('.enemyImage').attr("id", pOneCha4.divId+"Image")
-      if ($("#"+pOneCha4.divId).hasClass("inRange")) {
-        terrainEffectsAll()
-        attackResolve();
-        selectedWeapon = "";
-        $(".grid").removeClass("inRange");
-      } else {
-        $('#infoDisplay').html("You are out of range! Move closer to attack.");
-        selectedWeapon = "";
-        $(".grid").removeClass("inRange");
-      }
-      terrainEffectsMovement = 1;
-      terrainEffectsDefense = 1;
-      terrainEffectsEvade = 1;
+      enemySelect();
     }
   });
 
@@ -266,43 +178,11 @@ $ (function() {
 
   $("ul").on("click", "li#echo", function() {
     if (playerTurn%2 !== 0) {
-      $(".grid").removeClass("inRange");
-      selectedWeapon = "";
-      $('#name').html(pOneCha5.name)
-      $('#health').html(pOneCha5.health + " / " + pOneCha5.healthTotal)
-      $('#accuracy').html(pOneCha5.accuracy)
-      $('#defense').html(pOneCha5.defense)
-      $('#movement').html(pOneCha5.movement + " / " + pOneCha5.movementMax)
-      $('#weaponOneName').html(pOneCha5.weaponOne);
-      $('#weaponOneAmmo').html(pOneCha5.weaponOneAmmo);
-      $('#weaponTwoName').html(pOneCha5.weaponTwo);
-      $('#weaponTwoAmmo').html(pOneCha5.weaponTwoAmmo);
-      $('#weaponMelee').html(pOneCha5.weaponMelee);
-      $('#attackNumber').html(pOneCha5.attackNumber);
-      $('.pcImage').attr("id", pOneCha5.divId+"Image")
       selectedCharacter = pOneCha5;
-      selectedWeaponAmmo = "";
-      selectedWeaponAmmoUsed = 0;
-      weaponDamage = 0;
-      $('#infoDisplay').html(pOneCha5.name + " selected!" + "<br>" + "Use WASD to move" + "</br>" + "Select the weapon then click on the enemy to attack.");
+      playerSelect();
     } else {
-      selectedEnemy = pOneCha5;
-      $('#selectedEnemy').html(pOneCha5.name);
-      $('#enemyHealth').html(pOneCha5.health + " / " + pOneCha5.healthTotal);
-      $('.enemyImage').attr("id", pOneCha5.divId+"Image")
-      if ($("#"+pOneCha5.divId).hasClass("inRange")) {
-        terrainEffectsAll()
-        attackResolve();
-        selectedWeapon = "";
-        $(".grid").removeClass("inRange");
-      } else {
-        $('#infoDisplay').html("You are out of range! Move closer to attack.");
-        selectedWeapon = "";
-        $(".grid").removeClass("inRange");
-      }
-      terrainEffectsMovement = 1;
-      terrainEffectsDefense = 1;
-      terrainEffectsEvade = 1;
+      selectedEnemy = pOneCha5
+      enemySelect();
     }
   });
 
@@ -314,43 +194,11 @@ $ (function() {
 
   $("ul").on("click", "li#foxtrot", function() {
     if (playerTurn%2 === 0) {
-      $(".grid").removeClass("inRange");
-      selectedWeapon = "";
-      $('#name').html(pTwoCha1.name);
-      $('#health').html(pTwoCha1.health + " / " + pTwoCha1.healthTotal);
-      $('#accuracy').html(pTwoCha1.accuracy);
-      $('#defense').html(pTwoCha1.defense);
-      $('#movement').html(pTwoCha1.movement + " / " + pTwoCha1.movementMax);
-      $('#weaponOneName').html(pTwoCha1.weaponOne);
-      $('#weaponOneAmmo').html(pTwoCha1.weaponOneAmmo);
-      $('#weaponTwoName').html(pTwoCha1.weaponTwo);
-      $('#weaponTwoAmmo').html(pTwoCha1.weaponTwoAmmo);
-      $('#weaponMelee').html(pTwoCha1.weaponMelee);
-      $('#attackNumber').html(pTwoCha1.attackNumber);
-      $('.pcImage').attr("id", pTwoCha1.divId+"Image")
       selectedCharacter = pTwoCha1;
-      selectedWeaponAmmo = "";
-      selectedWeaponAmmoUsed = 0;
-      weaponDamage = 0;
-      $('#infoDisplay').html(pTwoCha1.name + " selected!" + "<br>" + "Use WASD to move" + "</br>" + "Select the weapon then click on the enemy to attack.");
+      playerSelect();
     } else {
       selectedEnemy = pTwoCha1;
-      $('#selectedEnemy').html(pTwoCha1.name);
-      $('#enemyHealth').html(pTwoCha1.health + " / " + pTwoCha1.healthTotal);
-      $('.enemyImage').attr("id", pTwoCha1.divId+"Image")
-      if ($("#"+pTwoCha1.divId).hasClass("inRange")) {
-        terrainEffectsAll()
-        attackResolve();
-        selectedWeapon = "";
-        $(".grid").removeClass("inRange");
-      } else {
-        $('#infoDisplay').html("You are out of range! Move closer to attack.");
-        selectedWeapon = "";
-        $(".grid").removeClass("inRange");
-      }
-      terrainEffectsMovement = 1;
-      terrainEffectsDefense = 1;
-      terrainEffectsEvade = 1;
+      enemySelect();
     }
   });
 
@@ -360,44 +208,11 @@ $ (function() {
 
   $("ul").on("click", "li#gamma", function() {
     if (playerTurn%2 === 0) {
-      $(".grid").removeClass("inRange");
-      selectedWeapon = "";
-      $('#name').html(pTwoCha2.name)
-      $('#health').html(pTwoCha2.health + " / " + pTwoCha2.healthTotal)
-      $('#accuracy').html(pTwoCha2.accuracy)
-      $('#defense').html(pTwoCha2.defense)
-      $('#movement').html(pTwoCha2.movement + " / " + pTwoCha2.movementMax)
-      $('#weaponOneName').html(pTwoCha2.weaponOne);
-      $('#weaponOneAmmo').html(pTwoCha2.weaponOneAmmo);
-      $('#weaponTwoName').html(pTwoCha2.weaponTwo);
-      $('#weaponTwoAmmo').html(pTwoCha2.weaponTwoAmmo);
-      $('#weaponMelee').html(pTwoCha2.weaponMelee);
-      $('#attackNumber').html(pTwoCha2.attackNumber);
-      $('.pcImage').attr("id", pTwoCha2.divId+"Image")
       selectedCharacter = pTwoCha2;
-      selectedWeapon = "";
-      selectedWeaponAmmo = "";
-      selectedWeaponAmmoUsed = 0;
-      weaponDamage = 0;
-      $('#infoDisplay').html(pTwoCha2.name + " selected!" + "<br>" + "Use WASD to move" + "</br>" + "Select the weapon then click on the enemy to attack.");
+      playerSelect();
     } else {
       selectedEnemy = pTwoCha2;
-      $('#selectedEnemy').html(pTwoCha2.name);
-      $('#enemyHealth').html(pTwoCha2.health + " / " + pTwoCha2.healthTotal);
-      $('.enemyImage').attr("id", pTwoCha2.divId+"Image")
-      if ($("#"+pTwoCha2.divId).hasClass("inRange")) {
-        terrainEffectsAll()
-        attackResolve();
-        selectedWeapon = "";
-        $(".grid").removeClass("inRange");
-      } else {
-        $('#infoDisplay').html("You are out of range! Move closer to attack.");
-        selectedWeapon = "";
-        $(".grid").removeClass("inRange");
-      }
-      terrainEffectsMovement = 1;
-      terrainEffectsDefense = 1;
-      terrainEffectsEvade = 1;
+      enemySelect();
     }
   });
 
@@ -407,44 +222,11 @@ $ (function() {
 
   $("ul").on("click", "li#hotel", function() {
     if (playerTurn%2 === 0) {
-      $(".grid").removeClass("inRange");
-      selectedWeapon = "";
-      $('#name').html(pTwoCha3.name)
-      $('#health').html(pTwoCha3.health + " / " + pTwoCha3.healthTotal)
-      $('#accuracy').html(pTwoCha3.accuracy)
-      $('#defense').html(pTwoCha3.defense)
-      $('#movement').html(pTwoCha3.movement + " / " + pTwoCha3.movementMax)
-      $('#weaponOneName').html(pTwoCha3.weaponOne);
-      $('#weaponOneAmmo').html(pTwoCha3.weaponOneAmmo);
-      $('#weaponTwoName').html(pTwoCha3.weaponTwo);
-      $('#weaponTwoAmmo').html(pTwoCha3.weaponTwoAmmo);
-      $('#weaponMelee').html(pTwoCha3.weaponMelee);
-      $('#attackNumber').html(pTwoCha3.attackNumber);
-      $('.pcImage').attr("id", pTwoCha3.divId+"Image")
       selectedCharacter = pTwoCha3;
-      selectedWeapon = "";
-      selectedWeaponAmmo = "";
-      selectedWeaponAmmoUsed = 0;
-      weaponDamage = 0;
-      $('#infoDisplay').html(pTwoCha3.name + " selected!" + "<br>" + "Use WASD to move" + "</br>" + "Select the weapon then click on the enemy to attack.");
+      playerSelect();
     } else {
       selectedEnemy = pTwoCha3;
-      $('#selectedEnemy').html(pTwoCha3.name);
-      $('#enemyHealth').html(pTwoCha3.health + " / " + pTwoCha3.healthTotal);
-      $('.enemyImage').attr("id", pTwoCha3.divId+"Image")
-      if ($("#"+pTwoCha3.divId).hasClass("inRange")) {
-        terrainEffectsAll()
-        attackResolve();
-        selectedWeapon = "";
-        $(".grid").removeClass("inRange");
-      } else {
-        $('#infoDisplay').html("You are out of range! Move closer to attack.");
-        selectedWeapon = "";
-        $(".grid").removeClass("inRange");
-      }
-      terrainEffectsMovement = 1;
-      terrainEffectsDefense = 1;
-      terrainEffectsEvade = 1;
+      enemySelect();
     }
   });
 
@@ -454,44 +236,11 @@ $ (function() {
 
   $("ul").on("click", "li#indigo", function() {
     if (playerTurn%2 === 0) {
-      $(".grid").removeClass("inRange");
-      selectedWeapon = "";
-      $('#name').html(pTwoCha4.name)
-      $('#health').html(pTwoCha4.health + " / " + pTwoCha4.healthTotal)
-      $('#accuracy').html(pTwoCha4.accuracy)
-      $('#defense').html(pTwoCha4.defense)
-      $('#movement').html(pTwoCha4.movement + " / " + pTwoCha4.movementMax)
-      $('#weaponOneName').html(pTwoCha4.weaponOne);
-      $('#weaponOneAmmo').html(pTwoCha4.weaponOneAmmo);
-      $('#weaponTwoName').html(pTwoCha4.weaponTwo);
-      $('#weaponTwoAmmo').html(pTwoCha4.weaponTwoAmmo);
-      $('#weaponMelee').html(pTwoCha4.weaponMelee);
-      $('#attackNumber').html(pTwoCha4.attackNumber);
-      $('.pcImage').attr("id", pTwoCha4.divId+"Image")
       selectedCharacter = pTwoCha4;
-      selectedWeapon = "";
-      selectedWeaponAmmo = "";
-      selectedWeaponAmmoUsed = 0;
-      weaponDamage = 0;
-      $('#infoDisplay').html(pTwoCha4.name + " selected!" + "<br>" + "Use WASD to move" + "</br>" + "Select the weapon then click on the enemy to attack.");
+      playerSelect();
     } else {
       selectedEnemy = pTwoCha4;
-      $('#selectedEnemy').html(pTwoCha4.name);
-      $('#enemyHealth').html(pTwoCha4.health + " / " + pTwoCha4.healthTotal);
-      $('.enemyImage').attr("id", pTwoCha4.divId+"Image")
-      if ($("#"+pTwoCha4.divId).hasClass("inRange")) {
-        terrainEffectsAll()
-        attackResolve();
-        selectedWeapon = "";
-        $(".grid").removeClass("inRange");
-      } else {
-        $('#infoDisplay').html("You are out of range! Move closer to attack.");
-        selectedWeapon = "";
-        $(".grid").removeClass("inRange");
-      }
-      terrainEffectsMovement = 1;
-      terrainEffectsDefense = 1;
-      terrainEffectsEvade = 1;
+      enemySelect();
     }
   });
 
@@ -501,44 +250,11 @@ $ (function() {
 
   $("ul").on("click", "li#juliett", function() {
     if (playerTurn%2 === 0) {
-      $(".grid").removeClass("inRange");
-      selectedWeapon = "";
-      $('#name').html(pTwoCha5.name)
-      $('#health').html(pTwoCha5.health + " / " + pTwoCha5.healthTotal)
-      $('#accuracy').html(pTwoCha5.accuracy)
-      $('#defense').html(pTwoCha5.defense)
-      $('#movement').html(pTwoCha5.movement + " / " + pTwoCha5.movementMax)
-      $('#weaponOneName').html(pTwoCha5.weaponOne);
-      $('#weaponOneAmmo').html(pTwoCha5.weaponOneAmmo);
-      $('#weaponTwoName').html(pTwoCha5.weaponTwo);
-      $('#weaponTwoAmmo').html(pTwoCha5.weaponTwoAmmo);
-      $('#weaponMelee').html(pTwoCha5.weaponMelee);
-      $('#attackNumber').html(pTwoCha5.attackNumber);
-      $('.pcImage').attr("id", pTwoCha5.divId+"Image")
       selectedCharacter = pTwoCha5;
-      selectedWeapon = "";
-      selectedWeaponAmmo = "";
-      selectedWeaponAmmoUsed = 0;
-      weaponDamage = 0;
-      $('#infoDisplay').html(pTwoCha5.name + " selected!" + "<br>" + "Use WASD to move" + "</br>" + "Select the weapon then click on the enemy to attack.");
+      playerSelect();
     } else {
       selectedEnemy = pTwoCha5;
-      $('#selectedEnemy').html(pTwoCha5.name);
-      $('#enemyHealth').html(pTwoCha5.health + " / " + pTwoCha5.healthTotal);
-      $('.enemyImage').attr("id", pTwoCha5.divId+"Image")
-      if ($("#"+pTwoCha5.divId).hasClass("inRange")) {
-        terrainEffectsAll()
-        attackResolve();
-        selectedWeapon = "";
-        $(".grid").removeClass("inRange");
-      } else {
-        $('#infoDisplay').html("You are out of range! Move closer to attack.");
-        selectedWeapon = "";
-        $(".grid").removeClass("inRange");
-      }
-      terrainEffectsMovement = 1;
-      terrainEffectsDefense = 1;
-      terrainEffectsEvade = 1;
+      enemySelect();
     }
   });
 
