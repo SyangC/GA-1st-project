@@ -34,13 +34,31 @@
   color: white;
 }
 
-.selectWeaponBlue {
+.blueSelectWeapon {
   margin-left: 43px;
   width: 75px;
   border-radius: 45px;
   background-color: blue;
   font-family: "scorched earth";
   color: white;
+}
+
+table#teamOneChoice.blue {
+  border:5px solid blue;
+  float:left;
+  background-color: #74AFAD;
+  opacity: 0.85;
+  color: white;
+  font-family: "scorched earth";
+}
+
+table#teamTwoChoice.blue {
+  border:5px solid blue;
+  float:right;
+  background-color: #74AFAD;
+  opacity: 0.85;
+  color: white;
+  font-family: "scorched earth";
 }
 
 /*player - red*/
@@ -79,13 +97,283 @@
   color: white;
 }
 
-.selectWeaponRed {
+.redSelectWeapon {
   margin-left: 43px;
   width: 75px;
   border-radius: 45px;
   background-color: red;
   font-family: "scorched earth";
   color: white;
+}
+
+table#teamOneChoice.red {
+  border:5px solid red;
+  float:left;
+  background-color: #FF7246;
+  opacity: 0.85;
+  color: white;
+  font-family: "scorched earth";
+}
+
+table#teamTwoChoice.red {
+  border:5px solid red;
+  float:right;
+  background-color: #FF7246;
+  opacity: 0.85;
+  color: white;
+  font-family: "scorched earth";
+}
+
+/*player - purple*/
+
+.purple#board{
+  width: 780px;
+  height:648px;
+  margin: 0 auto;
+  padding: 0;
+  position:absolute;
+  border:5px solid purple;
+}
+
+.purple#display {
+  position:absolute;
+  height: 646px;
+  width: 471px;
+  border: 6px solid purple;
+  right:0px;
+  background-color: #7D1935;
+  opacity: 0.85;
+  color: white;
+  font-family: "scorched earth";
+  font-size: 15px;
+  font-weight:bold;
+}
+
+.purple#endTurn {
+  background-color: purple;
+  width:100px;
+  height: 50px;
+  border-radius: 45px;
+  margin-left:150px;
+  outline: 0;
+  font-family: "scorched earth";
+  color: white;
+}
+
+.purpleSelectWeapon {
+  margin-left: 43px;
+  width: 75px;
+  border-radius: 45px;
+  background-color: purple;
+  font-family: "scorched earth";
+  color: white;
+}
+
+table#teamOneChoice.purple {
+  border:5px solid purple;
+  float:left;
+  background-color: #7D1935;
+  opacity: 0.85;
+  color: white;
+  font-family: "scorched earth";
+}
+
+table#teamTwoChoice.purple {
+  border:5px solid purple;
+  float:right;
+  background-color: #7D1935;
+  opacity: 0.85;
+  color: white;
+  font-family: "scorched earth";
+}
+
+/*player - green*/
+
+.green#board{
+  width: 780px;
+  height:648px;
+  margin: 0 auto;
+  padding: 0;
+  position:absolute;
+  border:5px solid green;
+}
+
+.green#display {
+  position:absolute;
+  height: 646px;
+  width: 471px;
+  border: 6px solid green;
+  right:0px;
+  background-color: #118C4E;
+  opacity: 0.85;
+  color: white;
+  font-family: "scorched earth";
+  font-size: 15px;
+  font-weight:bold;
+}
+
+.green#endTurn {
+  background-color: green;
+  width:100px;
+  height: 50px;
+  border-radius: 45px;
+  margin-left:150px;
+  outline: 0;
+  font-family: "scorched earth";
+  color: white;
+}
+
+.greenSelectWeapon {
+  margin-left: 43px;
+  width: 75px;
+  border-radius: 45px;
+  background-color: green;
+  font-family: "scorched earth";
+  color: white;
+}
+
+table#teamOneChoice.green {
+  border:5px solid green;
+  float:left;
+  background-color: #118C4E;
+  opacity: 0.85;
+  color: white;
+  font-family: "scorched earth";
+}
+
+table#teamTwoChoice.green {
+  border:5px solid green;
+  float:right;
+  background-color: #118C4E;
+  opacity: 0.85;
+  color: white;
+  font-family: "scorched earth";
+}
+
+/*player - orange*/
+
+.orange#board{
+  width: 780px;
+  height:648px;
+  margin: 0 auto;
+  padding: 0;
+  position:absolute;
+  border:5px solid orange;
+}
+
+.orange#display {
+  position:absolute;
+  height: 646px;
+  width: 471px;
+  border: 6px solid orange;
+  right:0px;
+  background-color: #D9853B;
+  opacity: 0.85;
+  color: white;
+  font-family: "scorched earth";
+  font-size: 15px;
+  font-weight:bold;
+}
+
+.orange#endTurn {
+  background-color: orange;
+  width:100px;
+  height: 50px;
+  border-radius: 45px;
+  margin-left:150px;
+  outline: 0;
+  font-family: "scorched earth";
+  color: white;
+}
+
+.orangeSelectWeapon {
+  margin-left: 43px;
+  width: 75px;
+  border-radius: 45px;
+  background-color: orange;
+  font-family: "scorched earth";
+  color: white;
+}
+
+table#teamOneChoice.orange {
+  border:5px solid orange;
+  float:left;
+  background-color: #D9853B;
+  opacity: 0.85;
+  color: white;
+  font-family: "scorched earth";
+}
+
+table#teamTwoChoice.orange {
+  border:5px solid orange;
+  float:right;
+  background-color: #D9853B;
+  opacity: 0.85;
+  color: white;
+  font-family: "scorched earth";
+}
+
+/*player - yellow*/
+
+.yellow#board{
+  width: 780px;
+  height:648px;
+  margin: 0 auto;
+  padding: 0;
+  position:absolute;
+  border:5px solid yellow;
+}
+
+.yellow#display {
+  position:absolute;
+  height: 646px;
+  width: 471px;
+  border: 6px solid yellow;
+  right:0px;
+  background-color: #E9E581;
+  opacity: 0.85;
+  color: white;
+  font-family: "scorched earth";
+  font-size: 15px;
+  font-weight:bold;
+}
+
+.yellow#endTurn {
+  background-color: yellow;
+  width:100px;
+  height: 50px;
+  border-radius: 45px;
+  margin-left:150px;
+  outline: 0;
+  font-family: "scorched earth";
+  color: white;
+}
+
+.yellowSelectWeapon {
+  margin-left: 43px;
+  width: 75px;
+  border-radius: 45px;
+  background-color: yellow;
+  font-family: "scorched earth";
+  color: white;
+}
+
+table#teamOneChoice.yellow {
+  border:5px solid yellow;
+  float:left;
+  background-color: #E9E581;
+  opacity: 0.85;
+  color: white;
+  font-family: "scorched earth";
+}
+
+table#teamTwoChoice.yellow {
+  border:5px solid yellow;
+  float:right;
+  background-color: #E9E581;
+  opacity: 0.85;
+  color: white;
+  font-family: "scorched earth";
 }
 
 
@@ -328,34 +616,30 @@ body {
   display:none;
 }
 
-table#teamOneChoice {
-  border:1px solid;
-  float:left;
-  background-color: #74AFAD;
-  opacity: 0.85;
-  color: white;
-  font-family: "scorched earth";
-}
-
-table#teamTwoChoice {
-  border:1px solid;
-  float:right;
-  background-color: #FF7246;
-  opacity: 0.85;
-  color: white;
-  font-family: "scorched earth";
-}
-
 table#teamOneChoice td {
   border:1px solid;
   height:20px;
   width: 250px;
+  height:50px;
+}
+
+#teamOneColourChoice {
+  text-transform:capitalize;
+}
+
+#teamTwoColourChoice {
+  text-transform:capitalize;
 }
 
 table#teamTwoChoice td {
   border:1px solid;
   height:20px;
   width: 250px;
+  height:50px;
+}
+
+.align {
+  text-align: center;
 }
 
 .buttonPrev {
@@ -382,5 +666,20 @@ textarea {
 h1 {
   margin:auto;
   text-align:center;
+  margin-bottom:50px;
+  margin-top:50px;
+  color: white;
+  font-family: "scorched earth";
+}
 
+#teamsConfirmed {
+  clear:both;
+  margin-left:46%;
+  margin-top: 50px;
+  background-color: grey;
+  border-radius: 45px;
+  height:90px;
+  width:90px;
+  color: white;
+  font-family: "scorched earth";
 }
