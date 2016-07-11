@@ -40,7 +40,7 @@ $ (function() {
     this.bonusMovement = bonusMovement;
   }
 
-  function Player (name, divId, healthTotal, health, accuracy, attackNumber, attackNumberMax, weaponOne, weaponOneAmmo, weaponOneAmmoUsed, weaponOneRange, weaponOneAccuracy, weaponOneDamageMin, weaponOneDamageMax, weaponTwo, weaponTwoAmmo, weaponTwoAmmoUsed, weaponTwoRange, weaponTwoAccuracy, weaponTwoDamageMin, weaponTwoDamageMax, weaponMelee, weaponMeleeAccuracy, weaponMeleeDamageMin, weaponMeleeDamageMax, defense, movement, movementMax, team, evade){
+  function Player (name, divId, healthTotal, health, accuracy, attackNumber, attackNumberMax, weaponOne, weaponOneAmmo, weaponOneAmmoUsed, weaponOneRange, weaponOneAccuracy, weaponOneDamageMin, weaponOneDamageMax, weaponTwo, weaponTwoAmmo, weaponTwoAmmoUsed, weaponTwoRange, weaponTwoAccuracy, weaponTwoDamageMin, weaponTwoDamageMax, weaponMelee, weaponMeleeAccuracy, weaponMeleeDamageMin, weaponMeleeDamageMax, defense, movement, movementMax, team, evade) {
     this.name = name;
     this.divId = divId;
     this.healthTotal = healthTotal;
@@ -76,7 +76,6 @@ $ (function() {
   // actual players
 
 // Team 1
-  var pOneCha1 = new Player("Alpha", "alpha", 100, 100, 80, 2, 2, "Assault Rifle", 30, 3, 5, 75, 50, 60, "Pistol", 60, 3, 3, 65, 30, 35, "Sword", 60, 35, 40, 12, 7, 7, 1, 13);
 
   var playerSelect = function () {
     $(".grid").removeClass("inRange");
@@ -119,6 +118,7 @@ $ (function() {
     terrainEffectsEvade = 1;
   }
 
+  var pOneCha1 = new Player("Alpha", "alpha", 100, 100, 80, 2, 2, "Assault Rifle", 30, 3, 5, 75, 50, 60, "Pistol", 60, 3, 3, 65, 30, 35, "Sword", 60, 35, 40, 12, 7, 7, 1, 13);
 
   $("ul").on("click", "li#alpha", function() {
     if (playerTurn%2 !== 0) {
@@ -588,6 +588,18 @@ $ (function() {
 
 
 //  welcome page
+
+  $("#teamsConfirmed").on("click", function() {
+    setTimeout(function(){
+      $("#homeMenu").animateCss("fadeOut");
+      $("#homeMenu").addClass("invisible");
+    }, 500);
+    setTimeout(function(){
+      $("main").animateCss("fadeIn");
+      $("main").removeClass("invisible");
+    }, 500);
+  });
+
 
 
 

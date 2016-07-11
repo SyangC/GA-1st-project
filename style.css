@@ -323,3 +323,64 @@ body {
   background: url("dystopian-abandoned-cities-dubai-1024x588.jpg") center no-repeat fixed;
   background-size: cover;
 }
+
+.invisible {
+  display:none;
+}
+
+table#teamOneChoice {
+  border:1px solid;
+  float:left;
+  background-color: #74AFAD;
+  opacity: 0.85;
+  color: white;
+  font-family: "scorched earth";
+}
+
+table#teamTwoChoice {
+  border:1px solid;
+  float:right;
+  background-color: #FF7246;
+  opacity: 0.85;
+  color: white;
+  font-family: "scorched earth";
+}
+
+table#teamOneChoice td {
+  border:1px solid;
+  height:20px;
+  width: 250px;
+}
+
+table#teamTwoChoice td {
+  border:1px solid;
+  height:20px;
+  width: 250px;
+}
+
+.buttonPrev {
+  float:left;
+}
+
+.buttonNext {
+  float:right;
+}
+
+textarea {
+  border: none;
+  overflow: auto;
+  outline: none;
+  resize:none;
+  height: 18px;
+  width:150px;
+
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+h1 {
+  margin:auto;
+  text-align:center;
+
+}
