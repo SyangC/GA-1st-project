@@ -29,9 +29,10 @@ $ (function() {
   var currentId = "";
   var selectedWeaponHitChance = 0;
   var selectedWeaponAccuracy = 0;
-  var terrainEffectsEvade = 1;
-  var terrainEffectsDefense = 1;
-  var terrainEffectsMovement = 1;
+  var selectedTerrain = "";
+  var terrainEffectsEvade = 0;
+  var terrainEffectsDefense = 0;
+  var terrainEffectsMovement = 0;
   var ranges = [[0, 29], [0, 1, 28,29,30,59], [0, 1, 2, 27, 28, 29, 30, 31, 58, 59, 60, 89], [0,1,2,3,26,27,28,29,30,31,32,57,58,59,60,61,88,89,90,119],[0,1,2,3,4,25,26,27,28,29,30,31,32,33,56,57,58,59,60,61,62,87,88,89,90,91,118,119,120,149],[],[0,1,2,3,4,5,6,23,24,25,26,27,28,29,30,31,32,33,34,35,54,55,56,57,58,59,60,61,62,63,64,85,86,87,88,89,90,91,92,93,116,117,118,119,120,121,122,147,148,149,150,151,178,179,180,209]];
   var pOneCha1Name = "Jamril";
   var pOneCha2Name = "Thokk";
@@ -111,7 +112,8 @@ $("#teamTwoColourNext").on("click", function() {
 
     // constructor functions
 
-    function Terrain (bonusEvade, bonusDefense, bonusMovement) {
+    function Terrain (divClass, bonusEvade, bonusDefense, bonusMovement) {
+      this.divClass = divClass
       this.bonusEvade = bonusEvade;
       this.bonusDefense = bonusDefense;
       this.bonusMovement = bonusMovement;
@@ -179,7 +181,6 @@ $("#teamTwoColourNext").on("click", function() {
       $('#enemyHealth').html(selectedEnemy.health + " / " + selectedEnemy.healthTotal);
       $('.enemyImage').attr("id", selectedEnemy.divId+"Image")
       if ($("#"+selectedEnemy.divId).hasClass("inRange")) {
-        terrainEffectsAll()
         attackResolve();
         selectedWeapon = "";
         $(".grid").removeClass("inRange");
@@ -188,9 +189,6 @@ $("#teamTwoColourNext").on("click", function() {
         selectedWeapon = "";
         $(".grid").removeClass("inRange");
       }
-      terrainEffectsMovement = 1;
-      terrainEffectsDefense = 1;
-      terrainEffectsEvade = 1;
     }
 
     // team 1
@@ -335,12 +333,37 @@ $("#teamTwoColourNext").on("click", function() {
       }
     });
 
+    // terrain
+
+    var plains = new Terrain ("plains", 0, 0, 0);
+    var forest = new Terrain ("forest", 5, 3, 0);
+    var sand = new Terrain ("sand", -5, 0, -1);
+    var rock = new Terrain ("rock", -5, 3, -1);
+    var water = new Terrain ("water", -5, 0, -1);
+    var ice = new Terrain ("ice", -3, 0, 0);
+
   // player movement
 
     $(document).on("keydown", function(e) {
       switch(e.key) {
         case "a":
           if ($('#'+selectedCharacter.divId).prev().is(".pc") === true || $('#'+selectedCharacter.divId).is(".left") === true || selectedCharacter.movement === 0) {
+          } else if ($('#'+selectedCharacter.divId).prev().is(".sand") || $('#'+selectedCharacter.divId).prev().is(".rock") || $('#'+selectedCharacter.divId).prev().is(".water")) {
+            if (selectedCharacter.movement-(2) < 0) {
+            } else {
+              $(".grid").removeClass("inRange");
+              $animation.css("left", "-=100px");
+              $("#"+selectedCharacter.divId).prev().attr("id", "new");
+              $("#new").next().removeAttr("id");
+              $("#new").next().removeClass("pc");
+              $("#new").addClass("pc");
+              $("#new").attr("id", selectedCharacter.divId);
+              selectedCharacter.movement = selectedCharacter.movement - 2; 
+              $('#movement').html(selectedCharacter.movement + " / " + selectedCharacter.movementMax)
+              if(selectedWeapon !== "") {
+                gridHighlightWeaponRange();
+              }
+            }
           } else {
             $(".grid").removeClass("inRange");
             $animation.css("left", "-=100px");
@@ -358,6 +381,22 @@ $("#teamTwoColourNext").on("click", function() {
           break;
         case "w":
           if ($("#"+selectedCharacter.divId).prevAll().eq(29).is(".pc") === true || selectedCharacter.movement === 0) {
+          } else if ($('#'+selectedCharacter.divId).prevAll().eq(29).is(".sand") || $('#'+selectedCharacter.divId).prevAll().eq(29).is(".rock") || $('#'+selectedCharacter.divId).prevAll().eq(29).is(".water")) {
+            if (selectedCharacter.movement-(2) < 0) {
+            } else {
+              $(".grid").removeClass("inRange");
+              $animation.css("top", "-=102px");
+              $("#"+selectedCharacter.divId).prevAll().eq(29).attr("id", "new");
+              $("#new").nextAll().eq(29).removeAttr("id");
+              $("#new").nextAll().eq(29).removeClass("pc");
+              $("#new").addClass("pc");
+              $("#new").attr("id", selectedCharacter.divId);
+              selectedCharacter.movement = selectedCharacter.movement - 2; 
+              $('#movement').html(selectedCharacter.movement + " / " + selectedCharacter.movementMax)
+              if(selectedWeapon !== "") {
+                gridHighlightWeaponRange();
+              }
+            }
           } else {
             $(".grid").removeClass("inRange");
             $animation.css("top", "-=102px");
@@ -375,6 +414,22 @@ $("#teamTwoColourNext").on("click", function() {
           break;
         case "d":
           if ($('#'+selectedCharacter.divId).next().is(".pc") === true || $('#'+selectedCharacter.divId).is(".right") === true || selectedCharacter.movement === 0) {
+          } else if ($('#'+selectedCharacter.divId).next().is(".sand") || $('#'+selectedCharacter.divId).next().is(".rock") || $('#'+selectedCharacter.divId).next().is(".water")) {
+            if (selectedCharacter.movement-(2) < 0) {
+            } else {
+              $(".grid").removeClass("inRange");
+              $animation.css("left", "+=100px");
+              $("#"+selectedCharacter.divId).next().attr("id", "new");
+              $("#new").prev().removeAttr("id");
+              $("#new").prev().removeClass("pc");
+              $("#new").addClass("pc");
+              $("#new").attr("id", selectedCharacter.divId);
+              selectedCharacter.movement = selectedCharacter.movement - 2; 
+              $('#movement').html(selectedCharacter.movement + " / " + selectedCharacter.movementMax)
+              if(selectedWeapon !== "") {
+                gridHighlightWeaponRange();
+              }
+            }
           } else {
             $(".grid").removeClass("inRange");
             $animation.css("left", "+=100px");
@@ -392,6 +447,22 @@ $("#teamTwoColourNext").on("click", function() {
           break;
         case "s":
           if ($("#"+selectedCharacter.divId).nextAll().eq(29).is(".pc") === true || selectedCharacter.movement === 0) {
+          } else if ($('#'+selectedCharacter.divId).nextAll().eq(29).is(".sand") || $('#'+selectedCharacter.divId).nextAll().eq(29).is(".rock") || $('#'+selectedCharacter.divId).nextAll().eq(29).is(".water")) {
+            if (selectedCharacter.movement-(2) < 0) {
+            } else {
+              $(".grid").removeClass("inRange");
+              $animation.css("top", "+=102px");
+              $("#"+selectedCharacter.divId).nextAll().eq(29).attr("id", "new");
+              $("#new").prevAll().eq(29).removeAttr("id");
+              $("#new").prevAll().eq(29).removeClass("pc");
+              $("#new").addClass("pc");
+              $("#new").attr("id", selectedCharacter.divId);
+              selectedCharacter.movement = selectedCharacter.movement - 2; 
+              $('#movement').html(selectedCharacter.movement + " / " + selectedCharacter.movementMax)
+              if(selectedWeapon !== "") {
+                gridHighlightWeaponRange();
+              }  
+            }
           } else {
             $(".grid").removeClass("inRange");
             $animation.css("top", "+=102px");
@@ -470,9 +541,11 @@ $("#teamTwoColourNext").on("click", function() {
           $('#enemyHealth').html(selectedEnemy.health + " / " + selectedEnemy.healthTotal)
           }
           if (selectedWeaponHitChance>percentage) {
-            if(selectedWeaponHitChance >= (selectedCharacter.accuracy)*0.97) {
+            critChance = Math.random()*100;
+            if(critChance > 97) {
               $('#infoDisplay').html("Critical Hit!");
-              weaponDamage = ((selectedWeaponDamageMin+Math.round(Math.random()*(selectedWeaponDamageMax-selectedWeaponDamageMin)))*1.5)-(selectedCharacter.defense+terrainEffectsDefense);
+              weaponDamage = ((selectedWeaponDamageMin+Math.round(Math.random()*(selectedWeaponDamageMax-selectedWeaponDamageMin)))*1.5)-(selectedCharacter.defense);
+              terrainDamageEffect = weaponDamage-terrainEffectsDefense;
               setTimeout(function() {
                 $('.enemyImage').animateCss('flash');
                 $('#infoDisplay').html("Dealt the enemy " + weaponDamage + " damage!");
@@ -485,7 +558,8 @@ $("#teamTwoColourNext").on("click", function() {
             } else {
               $('#infoDisplay').html("Hit!");
               $('.enemyImage').animateCss('flash');
-              weaponDamage = (selectedWeaponDamageMin+Math.round(Math.random()*(selectedWeaponDamageMax-selectedWeaponDamageMin)))-(selectedCharacter.defense+terrainEffectsDefense);
+              weaponDamage = (selectedWeaponDamageMin+Math.round(Math.random()*(selectedWeaponDamageMax-selectedWeaponDamageMin)))-(selectedCharacter.defense);
+              terrainDamageEffect = weaponDamage-terrainEffectsDefense;
               setTimeout(function(){
                 $('#infoDisplay').html("Dealt the enemy " + weaponDamage + " damage!");
                 $('#selectedEnemy').html(selectedEnemy.name);
@@ -544,50 +618,31 @@ $("#teamTwoColourNext").on("click", function() {
       });
     }
 
-    var plains = new Terrain (1, 1, 1);
-    var forest = new Terrain (5, 3, 1);
-    var sand = new Terrain (-5, 1, -1);
-    var rock = new Terrain (-5, 3, -1);
-    var water = new Terrain (-5, 1, -1);
-    var ice = new Terrain (-3, 1, 1);
-
     var terrainEffectsAll = function() {
       if ($("#"+selectedEnemy.divId).hasClass("plains") === true) {
         terrainEffectsDefense = plains.bonusDefense
         terrainEffectsEvade = plains.bonusEvade
         terrainEffectsMovement = plains.bonusMovement
-        console.log(terrainEffectsDefense)
-        console.log(terrainEffectsEvade)
       } else if ($("#"+selectedEnemy.divId).hasClass("forest") === true) {
         terrainEffectsDefense = forest.bonusDefense
         terrainEffectsEvade = forest.bonusEvade
-        terrainEffectsMovement = plains.bonusMovement
-        console.log(terrainEffectsDefense)
-        console.log(terrainEffectsEvade)
+        terrainEffectsMovement = forest.bonusMovement
       } else if ($("#"+selectedEnemy.divId).hasClass("sand") === true) {
         terrainEffectsDefense = sand.bonusDefense
         terrainEffectsEvade = sand.bonusEvade
-        terrainEffectsMovement = plains.bonusMovement
-        console.log(terrainEffectsDefense)
-        console.log(terrainEffectsEvade)
+        terrainEffectsMovement = sand.bonusMovement
       } else if ($("#"+selectedEnemy.divId).hasClass("rock") === true) {
         terrainEffectsDefense = rock.bonusDefense
         terrainEffectsEvade = rock.bonusEvade
-        terrainEffectsMovement = plains.bonusMovement
-        console.log(terrainEffectsDefense)
-        console.log(terrainEffectsEvade)
+        terrainEffectsMovement = rock.bonusMovement
       } else if ($("#"+selectedEnemy.divId).hasClass("water") === true) {
         terrainEffectsDefense = water.bonusDefense
         terrainEffectsEvade = water.bonusEvade
-        terrainEffectsMovement = plains.bonusMovement
-        console.log(terrainEffectsDefense)
-        console.log(terrainEffectsEvade)
+        terrainEffectsMovement = water.bonusMovement
       } else if ($("#"+selectedEnemy.divId).hasClass("ice") === true) {
         terrainEffectsDefense = ice.bonusDefense
         terrainEffectsEvade = ice.bonusEvade
-        terrainEffectsMovement = plains.bonusMovement
-        console.log(terrainEffectsDefense)
-        console.log(terrainEffectsEvade)
+        terrainEffectsMovement = ice.bonusMovement
       }
     }
   // switch turn
@@ -622,11 +677,11 @@ $("#teamTwoColourNext").on("click", function() {
         pOneCha5.movement = pOneCha5.movementMax;
         pOneCha5.attackNumber = pOneCha5.attackNumberMax;
         playerTurn ++;
-        $('main').animateCss('flip');
+        $('main').animateCss('fadeOutDown');
         setTimeout(function(){
           $("."+teamOneColour).attr("class", teamTwoColour);
           $("."+teamOneColour+"SelectWeapon").attr("class", teamTwoColour+"SelectWeapon");
-        }, 800);
+        }, 700);
       } else {
         pTwoCha1.movement = pTwoCha1.movementMax;
         pTwoCha1.attackNumber = pTwoCha1.attackNumberMax;
@@ -639,11 +694,11 @@ $("#teamTwoColourNext").on("click", function() {
         pTwoCha5.movement = pTwoCha5.movementMax;
         pTwoCha5.attackNumber = pTwoCha5.attackNumberMax;
         playerTurn ++;
-        $('main').animateCss('flip');
+        $('main').animateCss('fadeOutDown');
         setTimeout(function(){
           $("."+teamTwoColour).attr("class", teamOneColour);
           $("."+teamTwoColour+"SelectWeapon").attr("class", teamOneColour+"SelectWeapon");
-        }, 800);
+        }, 700);
       }
     });
 
